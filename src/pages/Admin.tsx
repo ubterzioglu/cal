@@ -106,9 +106,9 @@ const Admin = () => {
       }
 
       const mapped = (data ?? [])
-        .map((item: any) => item.club)
+        .map((item: { club: unknown }) => item.club)
         .filter(Boolean)
-        .map((club: any) => ({
+        .map((club) => ({
           id: club.id,
           slug: club.slug,
           name: club.name,
@@ -192,9 +192,9 @@ const Admin = () => {
       }
 
       const mapped = (data ?? [])
-        .map((item: any) => item.event)
+        .map((item: { event: unknown }) => item.event)
         .filter(Boolean)
-        .map((event: any) => ({
+        .map((event) => ({
           id: event.id,
           slug: event.slug,
           name: event.name,
@@ -279,9 +279,9 @@ const Admin = () => {
       }
 
       const mapped = (data ?? [])
-        .map((item: any) => item.team)
+        .map((item: { team: unknown }) => item.team)
         .filter(Boolean)
-        .map((team: any) => ({
+        .map((team) => ({
           id: team.id,
           slug: team.slug,
           name: team.name,

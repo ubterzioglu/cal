@@ -30,8 +30,11 @@ const HeroSection = () => {
             </span>
           </h1>
 
-          <p className="mb-8 text-lg text-muted-foreground sm:text-xl">
+          <p className="mb-2 text-lg text-muted-foreground sm:text-xl">
             Cağaloğlu Anadolu Lisesi'nin öğrenci ve mezunlarını bir araya getiren dijital topluluk platformu.
+          </p>
+          <p className="mb-8 text-sm text-muted-foreground">
+            Platformumuz gayriresmi ve gönüllü bir oluşumdur. Başka hiç bir organizasyonla bağlantısı yoktur.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
