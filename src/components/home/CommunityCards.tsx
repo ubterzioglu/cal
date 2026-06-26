@@ -121,7 +121,7 @@ const CommunityCards = () => {
           </h2>
         </div>
 
-        <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-2xl gap-6 grid-cols-1">
           {communityItems.map((item, index) => (
             <CommunityCard key={item.title} item={item} index={index} />
           ))}
