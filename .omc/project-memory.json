@@ -222,21 +222,27 @@
   },
   "hotPaths": [
     {
+      "path": "src\\App.tsx",
+      "accessCount": 10,
+      "lastAccessed": 1782483449563,
+      "type": "file"
+    },
+    {
       "path": "src\\components\\home\\HeroSection.tsx",
       "accessCount": 9,
       "lastAccessed": 1782482628326,
       "type": "file"
     },
     {
-      "path": "src\\App.tsx",
+      "path": "Dockerfile",
       "accessCount": 9,
-      "lastAccessed": 1782483214674,
+      "lastAccessed": 1782483454271,
       "type": "file"
     },
     {
-      "path": "Dockerfile",
-      "accessCount": 8,
-      "lastAccessed": 1782480425951,
+      "path": "package.json",
+      "accessCount": 9,
+      "lastAccessed": 1782483454344,
       "type": "file"
     },
     {
@@ -246,9 +252,15 @@
       "type": "file"
     },
     {
-      "path": "package.json",
+      "path": "src\\main.tsx",
       "accessCount": 7,
-      "lastAccessed": 1782482910438,
+      "lastAccessed": 1782483449611,
+      "type": "file"
+    },
+    {
+      "path": "index.html",
+      "accessCount": 7,
+      "lastAccessed": 1782483454636,
       "type": "file"
     },
     {
@@ -282,33 +294,33 @@
       "type": "file"
     },
     {
-      "path": "src\\main.tsx",
-      "accessCount": 6,
-      "lastAccessed": 1782483207169,
-      "type": "file"
-    },
-    {
       "path": "server.mjs",
-      "accessCount": 5,
-      "lastAccessed": 1782480294682,
-      "type": "file"
-    },
-    {
-      "path": "index.html",
-      "accessCount": 5,
-      "lastAccessed": 1782480561436,
+      "accessCount": 6,
+      "lastAccessed": 1782483454038,
       "type": "file"
     },
     {
       "path": "src\\pages\\Index.tsx",
-      "accessCount": 5,
-      "lastAccessed": 1782480571950,
+      "accessCount": 6,
+      "lastAccessed": 1782483460659,
       "type": "file"
     },
     {
       "path": "src\\pages\\Admin.tsx",
       "accessCount": 5,
       "lastAccessed": 1782482639655,
+      "type": "file"
+    },
+    {
+      "path": "src\\data\\clubs.ts",
+      "accessCount": 5,
+      "lastAccessed": 1782483416233,
+      "type": "file"
+    },
+    {
+      "path": "src\\data\\events.ts",
+      "accessCount": 5,
+      "lastAccessed": 1782483443754,
       "type": "file"
     },
     {
@@ -330,15 +342,33 @@
       "type": "file"
     },
     {
-      "path": "public\\favicon.svg",
-      "accessCount": 3,
-      "lastAccessed": 1782479844247,
+      "path": "vercel.json",
+      "accessCount": 4,
+      "lastAccessed": 1782483453112,
       "type": "file"
     },
     {
-      "path": "vercel.json",
+      "path": "src\\data\\teams.ts",
+      "accessCount": 4,
+      "lastAccessed": 1782483453447,
+      "type": "file"
+    },
+    {
+      "path": "vite.config.ts",
+      "accessCount": 4,
+      "lastAccessed": 1782483453581,
+      "type": "file"
+    },
+    {
+      "path": "src",
+      "accessCount": 4,
+      "lastAccessed": 1782483456651,
+      "type": "directory"
+    },
+    {
+      "path": "public\\favicon.svg",
       "accessCount": 3,
-      "lastAccessed": 1782480264964,
+      "lastAccessed": 1782479844247,
       "type": "file"
     },
     {
@@ -360,33 +390,33 @@
       "type": "directory"
     },
     {
-      "path": "src",
-      "accessCount": 3,
-      "lastAccessed": 1782483218886,
-      "type": "directory"
-    },
-    {
-      "path": "src\\data\\clubs.ts",
-      "accessCount": 3,
-      "lastAccessed": 1782483277022,
-      "type": "file"
-    },
-    {
       "path": "src\\data\\students.ts",
       "accessCount": 3,
       "lastAccessed": 1782483277325,
       "type": "file"
     },
     {
-      "path": "src\\pages\\AlumniCreate.tsx",
-      "accessCount": 2,
-      "lastAccessed": 1782480082127,
+      "path": "src\\data\\alumni.ts",
+      "accessCount": 3,
+      "lastAccessed": 1782483385968,
       "type": "file"
     },
     {
-      "path": "src\\data\\alumni.ts",
+      "path": "src\\data\\alumniSolidarity.ts",
+      "accessCount": 3,
+      "lastAccessed": 1782483386184,
+      "type": "file"
+    },
+    {
+      "path": "src\\pages\\Clubs.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1782483461901,
+      "type": "file"
+    },
+    {
+      "path": "src\\pages\\AlumniCreate.tsx",
       "accessCount": 2,
-      "lastAccessed": 1782480089121,
+      "lastAccessed": 1782480082127,
       "type": "file"
     },
     {
@@ -414,33 +444,9 @@
       "type": "file"
     },
     {
-      "path": "src\\data\\events.ts",
-      "accessCount": 2,
-      "lastAccessed": 1782480117032,
-      "type": "file"
-    },
-    {
-      "path": "src\\data\\alumniSolidarity.ts",
-      "accessCount": 2,
-      "lastAccessed": 1782480117505,
-      "type": "file"
-    },
-    {
-      "path": "src\\data\\teams.ts",
-      "accessCount": 2,
-      "lastAccessed": 1782480122225,
-      "type": "file"
-    },
-    {
       "path": "src\\components\\auth\\RequireAuth.tsx",
       "accessCount": 2,
       "lastAccessed": 1782480273027,
-      "type": "file"
-    },
-    {
-      "path": "vite.config.ts",
-      "accessCount": 2,
-      "lastAccessed": 1782480278820,
       "type": "file"
     },
     {
@@ -450,9 +456,15 @@
       "type": "file"
     },
     {
-      "path": "src\\pages\\Clubs.tsx",
+      "path": "src\\pages\\News.tsx",
       "accessCount": 2,
-      "lastAccessed": 1782483289054,
+      "lastAccessed": 1782483461129,
+      "type": "file"
+    },
+    {
+      "path": "src\\pages\\Events.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1782483461829,
       "type": "file"
     },
     {
@@ -474,12 +486,6 @@
       "type": "file"
     },
     {
-      "path": "src\\pages\\Events.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1782480057652,
-      "type": "file"
-    },
-    {
       "path": "src\\pages\\Teams.tsx",
       "accessCount": 1,
       "lastAccessed": 1782480082053,
@@ -495,12 +501,6 @@
       "path": "src\\pages\\Contact.tsx",
       "accessCount": 1,
       "lastAccessed": 1782480097564,
-      "type": "file"
-    },
-    {
-      "path": "src\\pages\\News.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1782480098028,
       "type": "file"
     },
     {

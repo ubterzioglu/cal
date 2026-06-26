@@ -42,30 +42,6 @@ type ClubRow = {
   created_at: string;
 };
 
-const fallbackClubs: Club[] = [
-  {
-    id: "placeholder",
-    slug: "ornek-kulup",
-    name: "Örnek Kulüp",
-    shortInfo: "Kısa kulüp açıklaması burada yer alır.",
-    longInfo:
-      "Bu bir örnek kulüp profilidir. Gerçek kulüp listesi ve bilgiler veritabanından gelecektir.",
-    supportNeeded: false,
-    supportTypes: ["Maddi", "Manevi"],
-    financialSupportInfo: "Hesap Bilgileri",
-    financialSupportBankName: "Banka İsmi",
-    financialSupportIban: "TR00 0000 0000 0000 0000 0000 00",
-    financialSupportDescription: "Açıklama",
-    moralSupportText: "Gönüllü katkılar, mentorluk ve etkinlik desteği için bize yazabilirsiniz.",
-    imageUrl: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop",
-    websiteUrl: "https://example.com",
-    contactEmail: "info@example.com",
-    responsiblePeople: ["Ayşe Yılmaz", "Mehmet Kaya"],
-    developments: ["01.02.26 Kulüp duyuruları yakında burada görünecek."],
-    createdAt: new Date().toISOString(),
-  },
-];
-
 const mapClub = (club: ClubRow): Club => ({
   id: club.id,
   slug: club.slug,
@@ -89,7 +65,7 @@ const mapClub = (club: ClubRow): Club => ({
 
 export const fetchClubs = async (): Promise<Club[]> => {
   if (!supabase) {
-    return fallbackClubs;
+    return [];
   }
 
   const { data, error } = await supabase
@@ -99,11 +75,7 @@ export const fetchClubs = async (): Promise<Club[]> => {
 
   if (error || !data) {
     console.error("Kulüpler alınamadı", error);
-    return fallbackClubs;
-  }
-
-  if (data.length === 0) {
-    return fallbackClubs;
+    return [];
   }
 
   return data.map(mapClub);
@@ -111,7 +83,7 @@ export const fetchClubs = async (): Promise<Club[]> => {
 
 export const fetchClubBySlug = async (slug: string): Promise<Club | null> => {
   if (!supabase) {
-    return fallbackClubs.find((club) => club.slug === slug) ?? null;
+    return null;
   }
 
   const { data, error } = await supabase
@@ -122,7 +94,7 @@ export const fetchClubBySlug = async (slug: string): Promise<Club | null> => {
 
   if (error || !data) {
     console.error("Kulüp detayı alınamadı", error);
-    return fallbackClubs.find((club) => club.slug === slug) ?? null;
+    return null;
   }
 
   return mapClub(data as ClubRow);

@@ -42,30 +42,6 @@ type StudentTeamRow = {
   created_at: string;
 };
 
-const fallbackTeams: StudentTeam[] = [
-  {
-    id: "placeholder-team",
-    slug: "ornek-takim",
-    name: "Örnek Takım",
-    shortInfo: "Kısa takım açıklaması burada yer alır.",
-    longInfo:
-      "Bu bir örnek takım profilidir. Gerçek takım listesi ve bilgiler veritabanından gelecektir.",
-    supportNeeded: false,
-    supportTypes: ["Maddi", "Manevi"],
-    financialSupportInfo: "Hesap Bilgileri",
-    financialSupportBankName: "Banka İsmi",
-    financialSupportIban: "TR00 0000 0000 0000 0000 0000 00",
-    financialSupportDescription: "Açıklama",
-    moralSupportText: "Gönüllü katkılar ve takım desteği için bize yazabilirsiniz.",
-    imageUrl: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop",
-    websiteUrl: "https://example.com",
-    contactEmail: "info@example.com",
-    responsiblePeople: ["Ayşe Yılmaz", "Mehmet Kaya"],
-    developments: ["01.02.26 Takım detayları yakında burada görünecek."],
-    createdAt: new Date().toISOString(),
-  },
-];
-
 const mapTeam = (team: StudentTeamRow): StudentTeam => ({
   id: team.id,
   slug: team.slug,

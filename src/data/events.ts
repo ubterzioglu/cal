@@ -42,30 +42,6 @@ type StudentEventRow = {
   created_at: string;
 };
 
-const fallbackEvents: StudentEvent[] = [
-  {
-    id: "placeholder-event",
-    slug: "ornek-etkinlik",
-    name: "Örnek Etkinlik",
-    shortInfo: "Kısa etkinlik açıklaması burada yer alır.",
-    longInfo:
-      "Bu bir örnek etkinlik profilidir. Gerçek etkinlik listesi ve bilgiler veritabanından gelecektir.",
-    supportNeeded: false,
-    supportTypes: ["Maddi", "Manevi"],
-    financialSupportInfo: "Hesap Bilgileri",
-    financialSupportBankName: "Banka İsmi",
-    financialSupportIban: "TR00 0000 0000 0000 0000 0000 00",
-    financialSupportDescription: "Açıklama",
-    moralSupportText: "Gönüllü katkılar ve etkinlik desteği için bize yazabilirsiniz.",
-    imageUrl: "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1600&auto=format&fit=crop",
-    websiteUrl: "https://example.com",
-    contactEmail: "info@example.com",
-    responsiblePeople: ["Ayşe Yılmaz", "Mehmet Kaya"],
-    developments: ["01.02.26 Etkinlik detayları yakında burada görünecek."],
-    createdAt: new Date().toISOString(),
-  },
-];
-
 const mapEvent = (event: StudentEventRow): StudentEvent => ({
   id: event.id,
   slug: event.slug,
@@ -89,7 +65,7 @@ const mapEvent = (event: StudentEventRow): StudentEvent => ({
 
 export const fetchEvents = async (): Promise<StudentEvent[]> => {
   if (!supabase) {
-    return fallbackEvents;
+    return [];
   }
 
   const { data, error } = await supabase
@@ -101,11 +77,7 @@ export const fetchEvents = async (): Promise<StudentEvent[]> => {
 
   if (error || !data) {
     console.error("Etkinlikler alınamadı", error);
-    return fallbackEvents;
-  }
-
-  if (data.length === 0) {
-    return fallbackEvents;
+    return [];
   }
 
   return data.map(mapEvent);
@@ -113,7 +85,7 @@ export const fetchEvents = async (): Promise<StudentEvent[]> => {
 
 export const fetchEventBySlug = async (slug: string): Promise<StudentEvent | null> => {
   if (!supabase) {
-    return fallbackEvents.find((event) => event.slug === slug) ?? null;
+    return null;
   }
 
   const { data, error } = await supabase
@@ -126,7 +98,7 @@ export const fetchEventBySlug = async (slug: string): Promise<StudentEvent | nul
 
   if (error || !data) {
     console.error("Etkinlik detayı alınamadı", error);
-    return fallbackEvents.find((event) => event.slug === slug) ?? null;
+    return null;
   }
 
   return mapEvent(data as StudentEventRow);
