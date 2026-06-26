@@ -223,14 +223,26 @@
   "hotPaths": [
     {
       "path": "src\\App.tsx",
-      "accessCount": 15,
-      "lastAccessed": 1782484973028,
+      "accessCount": 19,
+      "lastAccessed": 1782486337663,
+      "type": "file"
+    },
+    {
+      "path": "src\\pages\\Admin.tsx",
+      "accessCount": 18,
+      "lastAccessed": 1782486690573,
       "type": "file"
     },
     {
       "path": "",
+      "accessCount": 17,
+      "lastAccessed": 1782486629465,
+      "type": "directory"
+    },
+    {
+      "path": "src",
       "accessCount": 15,
-      "lastAccessed": 1782485725617,
+      "lastAccessed": 1782485842836,
       "type": "directory"
     },
     {
@@ -240,63 +252,75 @@
       "type": "file"
     },
     {
-      "path": "src\\pages\\Admin.tsx",
+      "path": "src\\main.tsx",
       "accessCount": 14,
-      "lastAccessed": 1782485548110,
-      "type": "file"
-    },
-    {
-      "path": "src",
-      "accessCount": 14,
-      "lastAccessed": 1782485650823,
-      "type": "directory"
-    },
-    {
-      "path": "package.json",
-      "accessCount": 10,
-      "lastAccessed": 1782483488666,
-      "type": "file"
-    },
-    {
-      "path": "src\\components\\home\\HeroSection.tsx",
-      "accessCount": 10,
-      "lastAccessed": 1782483494248,
+      "lastAccessed": 1782486051618,
       "type": "file"
     },
     {
       "path": "src\\data\\clubs.ts",
-      "accessCount": 10,
-      "lastAccessed": 1782485504085,
+      "accessCount": 14,
+      "lastAccessed": 1782486337591,
       "type": "file"
     },
     {
-      "path": "src\\data\\events.ts",
-      "accessCount": 10,
-      "lastAccessed": 1782485509827,
-      "type": "file"
-    },
-    {
-      "path": "src\\main.tsx",
-      "accessCount": 10,
-      "lastAccessed": 1782485538690,
+      "path": "package.json",
+      "accessCount": 14,
+      "lastAccessed": 1782486393565,
       "type": "file"
     },
     {
       "path": "index.html",
-      "accessCount": 10,
-      "lastAccessed": 1782485605263,
+      "accessCount": 14,
+      "lastAccessed": 1782486510587,
       "type": "file"
     },
     {
-      "path": "Dockerfile",
-      "accessCount": 9,
-      "lastAccessed": 1782483454271,
+      "path": "src\\pages\\Clubs.tsx",
+      "accessCount": 12,
+      "lastAccessed": 1782486089072,
+      "type": "file"
+    },
+    {
+      "path": "src\\data\\events.ts",
+      "accessCount": 12,
+      "lastAccessed": 1782486100096,
+      "type": "file"
+    },
+    {
+      "path": "src\\pages\\Index.tsx",
+      "accessCount": 11,
+      "lastAccessed": 1782486085120,
+      "type": "file"
+    },
+    {
+      "path": "src\\pages\\Events.tsx",
+      "accessCount": 11,
+      "lastAccessed": 1782486089304,
+      "type": "file"
+    },
+    {
+      "path": "src\\pages\\Teams.tsx",
+      "accessCount": 11,
+      "lastAccessed": 1782486089391,
       "type": "file"
     },
     {
       "path": "src\\data\\teams.ts",
-      "accessCount": 9,
-      "lastAccessed": 1782485514187,
+      "accessCount": 11,
+      "lastAccessed": 1782486100182,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\home\\HeroSection.tsx",
+      "accessCount": 11,
+      "lastAccessed": 1782486110361,
+      "type": "file"
+    },
+    {
+      "path": "Dockerfile",
+      "accessCount": 10,
+      "lastAccessed": 1782485729250,
       "type": "file"
     },
     {
@@ -306,9 +330,27 @@
       "type": "file"
     },
     {
-      "path": "src\\pages\\Index.tsx",
+      "path": "src\\lib\\supabase.ts",
+      "accessCount": 9,
+      "lastAccessed": 1782486110525,
+      "type": "file"
+    },
+    {
+      "path": "src\\pages\\Alumni.tsx",
+      "accessCount": 9,
+      "lastAccessed": 1782486691414,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\layout\\Header.tsx",
       "accessCount": 8,
-      "lastAccessed": 1782484715023,
+      "lastAccessed": 1782486344326,
+      "type": "file"
+    },
+    {
+      "path": "api\\_shared.js",
+      "accessCount": 8,
+      "lastAccessed": 1782486368967,
       "type": "file"
     },
     {
@@ -318,45 +360,51 @@
       "type": "file"
     },
     {
-      "path": "src\\pages\\Clubs.tsx",
-      "accessCount": 7,
-      "lastAccessed": 1782483622714,
-      "type": "file"
-    },
-    {
-      "path": "src\\pages\\Events.tsx",
-      "accessCount": 7,
-      "lastAccessed": 1782483651276,
-      "type": "file"
-    },
-    {
-      "path": "src\\pages\\Teams.tsx",
-      "accessCount": 7,
-      "lastAccessed": 1782483651673,
-      "type": "file"
-    },
-    {
-      "path": "src\\pages\\Alumni.tsx",
-      "accessCount": 7,
-      "lastAccessed": 1782483652635,
-      "type": "file"
-    },
-    {
       "path": "vite.config.ts",
       "accessCount": 7,
       "lastAccessed": 1782484858819,
       "type": "file"
     },
     {
-      "path": "api\\_shared.js",
+      "path": "src\\pages\\News.tsx",
       "accessCount": 7,
-      "lastAccessed": 1782485553336,
+      "lastAccessed": 1782486059856,
+      "type": "file"
+    },
+    {
+      "path": "src\\pages\\AlumniSolidarity.tsx",
+      "accessCount": 7,
+      "lastAccessed": 1782486060699,
+      "type": "file"
+    },
+    {
+      "path": "src\\data\\alumni.ts",
+      "accessCount": 7,
+      "lastAccessed": 1782486078145,
+      "type": "file"
+    },
+    {
+      "path": "src\\data\\students.ts",
+      "accessCount": 7,
+      "lastAccessed": 1782486078545,
       "type": "file"
     },
     {
       "path": "tailwind.config.ts",
-      "accessCount": 6,
-      "lastAccessed": 1782481814746,
+      "accessCount": 7,
+      "lastAccessed": 1782486083178,
+      "type": "file"
+    },
+    {
+      "path": ".env.example",
+      "accessCount": 7,
+      "lastAccessed": 1782486092858,
+      "type": "file"
+    },
+    {
+      "path": "src\\pages\\Login.tsx",
+      "accessCount": 7,
+      "lastAccessed": 1782486344020,
       "type": "file"
     },
     {
@@ -372,24 +420,6 @@
       "type": "file"
     },
     {
-      "path": "src\\components\\layout\\Header.tsx",
-      "accessCount": 6,
-      "lastAccessed": 1782483522452,
-      "type": "file"
-    },
-    {
-      "path": "src\\data\\students.ts",
-      "accessCount": 6,
-      "lastAccessed": 1782485518911,
-      "type": "file"
-    },
-    {
-      "path": "src\\data\\alumni.ts",
-      "accessCount": 6,
-      "lastAccessed": 1782485525067,
-      "type": "file"
-    },
-    {
       "path": "src\\data\\alumniSolidarity.ts",
       "accessCount": 6,
       "lastAccessed": 1782485529836,
@@ -402,33 +432,21 @@
       "type": "file"
     },
     {
-      "path": ".env.example",
+      "path": "src\\pages\\Contact.tsx",
       "accessCount": 6,
-      "lastAccessed": 1782485589863,
-      "type": "file"
-    },
-    {
-      "path": "src\\lib\\supabase.ts",
-      "accessCount": 6,
-      "lastAccessed": 1782485676933,
-      "type": "file"
-    },
-    {
-      "path": "src\\pages\\Login.tsx",
-      "accessCount": 4,
-      "lastAccessed": 1782483507334,
+      "lastAccessed": 1782486070132,
       "type": "file"
     },
     {
       "path": "src\\pages\\ClubDetail.tsx",
-      "accessCount": 4,
-      "lastAccessed": 1782483553262,
+      "accessCount": 6,
+      "lastAccessed": 1782486343529,
       "type": "file"
     },
     {
-      "path": "src\\pages\\News.tsx",
-      "accessCount": 4,
-      "lastAccessed": 1782484715043,
+      "path": "src\\components\\auth\\RequireAuth.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1782486073055,
       "type": "file"
     },
     {
@@ -438,51 +456,33 @@
       "type": "file"
     },
     {
-      "path": "src\\components\\auth\\RequireAuth.tsx",
+      "path": "src\\index.css",
       "accessCount": 4,
-      "lastAccessed": 1782485543366,
+      "lastAccessed": 1782486078293,
+      "type": "file"
+    },
+    {
+      "path": "api\\alumni-profiles.js",
+      "accessCount": 4,
+      "lastAccessed": 1782486088781,
+      "type": "file"
+    },
+    {
+      "path": "api\\solidarity\\comments.js",
+      "accessCount": 4,
+      "lastAccessed": 1782486303811,
+      "type": "file"
+    },
+    {
+      "path": "api\\solidarity\\topics.js",
+      "accessCount": 4,
+      "lastAccessed": 1782486321750,
       "type": "file"
     },
     {
       "path": "public\\favicon.svg",
       "accessCount": 3,
       "lastAccessed": 1782479844247,
-      "type": "file"
-    },
-    {
-      "path": "src\\index.css",
-      "accessCount": 3,
-      "lastAccessed": 1782480572385,
-      "type": "file"
-    },
-    {
-      "path": "src\\pages\\AlumniSolidarity.tsx",
-      "accessCount": 3,
-      "lastAccessed": 1782483552431,
-      "type": "file"
-    },
-    {
-      "path": "src\\pages\\Contact.tsx",
-      "accessCount": 3,
-      "lastAccessed": 1782483629081,
-      "type": "file"
-    },
-    {
-      "path": "api\\alumni-profiles.js",
-      "accessCount": 3,
-      "lastAccessed": 1782485559025,
-      "type": "file"
-    },
-    {
-      "path": "api\\solidarity\\topics.js",
-      "accessCount": 3,
-      "lastAccessed": 1782485570628,
-      "type": "file"
-    },
-    {
-      "path": "api\\solidarity\\comments.js",
-      "accessCount": 3,
-      "lastAccessed": 1782485575736,
       "type": "file"
     },
     {

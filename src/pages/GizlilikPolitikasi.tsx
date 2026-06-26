@@ -1,9 +1,15 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Seo from "@/seo/Seo";
 
 const GizlilikPolitikasi = () => {
   return (
     <div className="flex min-h-screen flex-col">
+      <Seo
+        title="Gizlilik Politikası"
+        description="CAL Community gizlilik politikası: işlenen kişisel veriler, amaçlar, saklama, üçüncü taraf sağlayıcılar ve haklarınız."
+        path="/gizlilik-politikasi"
+      />
       <Header />
       <main className="flex-1 py-16">
         <div className="container max-w-3xl space-y-6">
@@ -70,7 +76,7 @@ const GizlilikPolitikasi = () => {
               <li>Barındırma / dağıtım: Vercel</li>
               <li>Veritabanı / backend: Supabase</li>
               <li>Kod yönetimi / operasyon: GitHub</li>
-              <li>Analitik: Microsoft Clarity ve GoatCounter</li>
+              <li>Analitik: Microsoft Clarity</li>
             </ul>
             <p className="text-muted-foreground">
               Her sağlayıcı yalnızca ilgili hizmetin gerektirdiği ölçüde veri işleyebilir.

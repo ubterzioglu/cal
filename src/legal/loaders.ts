@@ -8,7 +8,6 @@ declare global {
 }
 
 const CLARITY_ID = import.meta.env.VITE_CLARITY_ID;
-const GOATCOUNTER_ENDPOINT = "https://calcommunity.goatcounter.com/count";
 
 export function loadClarity(): void {
   if (!CLARITY_ID) return;
@@ -18,17 +17,6 @@ export function loadClarity(): void {
   script.async = true;
   script.src = `https://www.clarity.ms/tag/${CLARITY_ID}`;
   script.dataset.clarity = "true";
-  document.head.appendChild(script);
-}
-
-export function loadGoatCounter(): void {
-  if (document.querySelector('script[data-goatcounter-loaded="true"]')) return;
-
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = "https://gc.zgo.at/count.js";
-  script.dataset.goatcounter = GOATCOUNTER_ENDPOINT;
-  script.dataset.goatcounterLoaded = "true";
   document.head.appendChild(script);
 }
 
@@ -45,7 +33,6 @@ export function updateClarityConsent(granted: boolean): void {
 export function enableAnalytics(): void {
   loadClarity();
   updateClarityConsent(true);
-  loadGoatCounter();
 }
 
 export function disableAnalytics(): void {

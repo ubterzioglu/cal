@@ -14,6 +14,8 @@ import {
   fetchSolidarityTopics,
 } from "@/data/alumniSolidarity";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import Seo from "@/seo/Seo";
+import { breadcrumbSchema } from "@/seo/jsonLd";
 
 const AlumniSolidarity = () => {
   const { data: alumni, isLoading: isAlumniLoading } = useQuery({
@@ -75,6 +77,15 @@ const AlumniSolidarity = () => {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <Seo
+        title="Mezun Dayanışması"
+        description="Cağaloğlu Anadolu Lisesi mezunlarının birbirine destek olduğu dayanışma topluluğu."
+        path="/mezun-dayanisma"
+        jsonLd={breadcrumbSchema([
+          { name: "Ana Sayfa", path: "/" },
+          { name: "Mezun Dayanışması", path: "/mezun-dayanisma" },
+        ])}
+      />
       <Header />
       <main className="flex-1">
         <section className="py-20">

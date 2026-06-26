@@ -59,7 +59,7 @@ const CookieBanner = () => {
       <div className="container flex flex-col gap-4 py-5 md:flex-row md:items-center md:justify-between">
         <p className="text-sm leading-relaxed text-white/80">
           Bu sitede zorunlu çerezlerin yanı sıra, kullanımı ölçmek için isteğe bağlı
-          analitik çerezler (Microsoft Clarity, GoatCounter) kullanılır. Analitik
+          analitik çerezler (Microsoft Clarity) kullanılır. Analitik
           çerezler yalnızca onayınızla yüklenir. Ayrıntılar için{" "}
           <Link to="/cerez-politikasi" className="underline hover:text-white">
             Çerez Politikası

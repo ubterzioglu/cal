@@ -1,9 +1,15 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Seo from "@/seo/Seo";
 
 const AcikRiza = () => {
   return (
     <div className="flex min-h-screen flex-col">
+      <Seo
+        title="Açık Rıza Metni"
+        description="CAL Community açık rıza metni: rızanın kapsamı, profil görünürlüğü, yurt dışı aktarım ve rızanın geri alınması."
+        path="/acik-riza"
+      />
       <Header />
       <main className="flex-1 py-16">
         <div className="container max-w-3xl space-y-6">
@@ -33,7 +39,7 @@ const AcikRiza = () => {
               </li>
               <li>
                 Hizmetin sunulması için kullanılan üçüncü taraf sağlayıcıların (Vercel, Supabase, GitHub,
-                Microsoft Clarity, GoatCounter) altyapısı üzerinden verilerin yurt dışında işlenmesi.
+                Microsoft Clarity) altyapısı üzerinden verilerin yurt dışında işlenmesi.
               </li>
             </ul>
           </section>

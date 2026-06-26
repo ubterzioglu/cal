@@ -2,6 +2,8 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar } from "lucide-react";
+import Seo from "@/seo/Seo";
+import { breadcrumbSchema, newsArticleSchema } from "@/seo/jsonLd";
 
 const newsItems = [
   {
@@ -15,6 +17,24 @@ const newsItems = [
 const News = () => {
   return (
     <div className="flex min-h-screen flex-col">
+      <Seo
+        title="Haberler & Duyurular"
+        description="CAL topluluğundan en güncel haberler ve duyurular."
+        path="/news"
+        jsonLd={[
+          breadcrumbSchema([
+            { name: "Ana Sayfa", path: "/" },
+            { name: "Haberler", path: "/news" },
+          ]),
+          ...newsItems.map((item) =>
+            newsArticleSchema({
+              headline: item.title,
+              description: item.summary,
+              datePublished: "2026-02-01",
+            }),
+          ),
+        ]}
+      />
       <Header />
       <main className="flex-1">
         {/* Page Header */}

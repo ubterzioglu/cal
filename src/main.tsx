@@ -1,9 +1,14 @@
 import { createRoot } from "react-dom/client";
+import { HelmetProvider } from "react-helmet-async";
 import App from "./App.tsx";
 import "./index.css";
 
-// Analytics scripts (Microsoft Clarity, GoatCounter) are NOT loaded here.
-// They are injected only after the user grants analytics consent via the
-// cookie banner — see src/legal/loaders.ts and src/components/legal/CookieBanner.tsx.
+// Microsoft Clarity is NOT loaded here. It is injected only after the user
+// grants analytics consent via the cookie banner — see src/legal/loaders.ts
+// and src/components/legal/CookieBanner.tsx.
 
-createRoot(document.getElementById("root")!).render(<App />);
+createRoot(document.getElementById("root")!).render(
+  <HelmetProvider>
+    <App />
+  </HelmetProvider>,
+);

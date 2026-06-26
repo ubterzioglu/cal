@@ -1,5 +1,6 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Seo from "@/seo/Seo";
 
 const cookieRows = [
   {
@@ -34,19 +35,16 @@ const cookieRows = [
     duration: "1 yıl",
     party: "Üçüncü taraf",
   },
-  {
-    provider: "GoatCounter",
-    name: "(çerez kullanmaz)",
-    category: "Analitik",
-    purpose: "Sayfa görüntüleme istatistiği; çerez veya kalıcı tanımlayıcı kullanmadan ölçüm yapar",
-    duration: "—",
-    party: "Üçüncü taraf",
-  },
 ];
 
 const CerezPolitikasi = () => {
   return (
     <div className="flex min-h-screen flex-col">
+      <Seo
+        title="Çerez Politikası"
+        description="CAL Community çerez politikası: kullanılan çerezler, Microsoft Clarity analitiği, kategoriler ve çerez yönetimi."
+        path="/cerez-politikasi"
+      />
       <Header />
       <main className="flex-1 py-16">
         <div className="container max-w-3xl space-y-6">
@@ -77,8 +75,8 @@ const CerezPolitikasi = () => {
           <section className="space-y-2">
             <h2 className="text-xl font-semibold">Çerez Tablosu</h2>
             <p className="text-muted-foreground">
-              Analitik ölçüm için Microsoft Clarity ve GoatCounter hizmetleri kullanılmaktadır. Bu
-              hizmetlerin kullanabileceği çerezler aşağıda listelenmiştir. Süreler ilgili sağlayıcının
+              Analitik ölçüm için Microsoft Clarity hizmeti kullanılmaktadır. Bu hizmetin
+              kullanabileceği çerezler aşağıda listelenmiştir. Süreler ilgili sağlayıcının
               uygulamasına göre değişebilir.
             </p>
             <div className="overflow-x-auto">
@@ -112,9 +110,8 @@ const CerezPolitikasi = () => {
           <section className="space-y-2">
             <h2 className="text-xl font-semibold">Üçüncü Taraflar</h2>
             <p className="text-muted-foreground">
-              Microsoft Clarity ve GoatCounter, kendi sistemleri üzerinden veri işleyebilir ve bu
-              verileri yurt dışındaki sunucularda tutabilir. Bu sağlayıcılar kendi gizlilik
-              politikalarına tabidir.
+              Microsoft Clarity, kendi sistemleri üzerinden veri işleyebilir ve bu verileri yurt
+              dışındaki sunucularda tutabilir. Bu sağlayıcı kendi gizlilik politikasına tabidir.
             </p>
           </section>
 

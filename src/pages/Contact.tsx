@@ -1,9 +1,20 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Seo from "@/seo/Seo";
+import { breadcrumbSchema } from "@/seo/jsonLd";
 
 const Contact = () => {
   return (
     <div className="flex min-h-screen flex-col">
+      <Seo
+        title="İletişim"
+        description="CAL Community ile iletişime geçin. Veri sahibi başvuruları ve hukuki bildirimler için iletişim bilgileri."
+        path="/contact"
+        jsonLd={breadcrumbSchema([
+          { name: "Ana Sayfa", path: "/" },
+          { name: "İletişim", path: "/contact" },
+        ])}
+      />
       <Header />
       <main className="flex-1 py-16">
         <div className="container max-w-4xl space-y-6">

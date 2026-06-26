@@ -7,6 +7,8 @@ import { HandHeart } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchClubs } from "@/data/clubs";
 import { Link } from "react-router-dom";
+import Seo from "@/seo/Seo";
+import { breadcrumbSchema, collectionPageSchema } from "@/seo/jsonLd";
 
 const Clubs = () => {
   const { data, isLoading, isError } = useQuery({
@@ -18,6 +20,18 @@ const Clubs = () => {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <Seo
+        title="Öğrenci Kulüpleri"
+        description="Cağaloğlu Anadolu Lisesi öğrenci kulüplerini keşfet ve destek ol."
+        path="/clubs"
+        jsonLd={[
+          breadcrumbSchema([
+            { name: "Ana Sayfa", path: "/" },
+            { name: "Öğrenci Kulüpleri", path: "/clubs" },
+          ]),
+          collectionPageSchema("Öğrenci Kulüpleri", "/clubs"),
+        ]}
+      />
       <Header />
       <main className="flex-1">
         <section className="py-20">

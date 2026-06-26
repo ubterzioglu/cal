@@ -1,9 +1,15 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Seo from "@/seo/Seo";
 
 const Kvkk = () => {
   return (
     <div className="flex min-h-screen flex-col">
+      <Seo
+        title="KVKK Aydınlatma Metni"
+        description="6698 sayılı KVKK kapsamında CAL Community aydınlatma metni: veri sorumlusu, işleme amaçları, aktarım ve haklarınız."
+        path="/kvkk"
+      />
       <Header />
       <main className="flex-1 py-16">
         <div className="container max-w-3xl space-y-6">
@@ -58,7 +64,7 @@ const Kvkk = () => {
             <p className="text-muted-foreground">
               Kişisel verileriniz; teknik altyapı, barındırma ve dağıtım hizmeti sağlayan Vercel,
               veritabanı ve backend hizmeti sağlayan Supabase, kod yönetimi ve operasyon hizmeti sağlayan
-              GitHub, kullanım analizi kapsamında Microsoft Clarity ve GoatCounter ile ve yasal talepler
+              GitHub, kullanım analizi kapsamında Microsoft Clarity ile ve yasal talepler
               doğrultusunda yetkili resmi kurumlarla sınırlı ve ölçülü biçimde paylaşılabilir. Bu
               sağlayıcıların altyapısına bağlı olarak veriler yurt dışında işlenebilir.
             </p>

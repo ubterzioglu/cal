@@ -81,6 +81,19 @@ const Footer = () => {
           </p>
           <p className="text-white/50">Yasal metinler son güncelleme: 26.06.2026 · Sürüm v2.0</p>
           <p>© {new Date().getFullYear()} CAL Community. Tüm hakları saklıdır.</p>
+          <p className="space-x-2">
+            <a href="https://chatio.com.tr/" rel="dofollow" className="underline hover:text-white">
+              Canlı Destek Yazılımı
+            </a>
+            <a
+              href="https://www.spindorai.com/seo/en-iyi-seo-ajansi"
+              rel="dofollow"
+              className="underline hover:text-white"
+            >
+              Seo Ajansı
+            </a>
+            <span>Spindora Tarafından Seosu Yapılmıştır.</span>
+          </p>
         </div>
       </div>
     </footer>

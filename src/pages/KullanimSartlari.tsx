@@ -1,9 +1,15 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Seo from "@/seo/Seo";
 
 const KullanimSartlari = () => {
   return (
     <div className="flex min-h-screen flex-col">
+      <Seo
+        title="Kullanım Şartları ve Sorumluluk Reddi"
+        description="CAL Community kullanım şartları: üyelik, kullanıcı içerikleri, yasak kullanımlar, fikri mülkiyet ve sorumluluk reddi."
+        path="/kullanim-sartlari"
+      />
       <Header />
       <main className="flex-1 py-16">
         <div className="container max-w-3xl space-y-6">
@@ -77,7 +83,7 @@ const KullanimSartlari = () => {
           <section className="space-y-2">
             <h2 className="text-xl font-semibold">Üçüncü Taraf Hizmetler</h2>
             <p className="text-muted-foreground">
-              Platform kapsamında kullanılan Vercel, Supabase, GitHub, Microsoft Clarity ve GoatCounter
+              Platform kapsamında kullanılan Vercel, Supabase, GitHub ve Microsoft Clarity
               gibi hizmet sağlayıcıların kendi gizlilik ve kullanım politikaları geçerlidir ve bu
               hizmetlerden kaynaklanan süreçler ilgili sağlayıcıların sorumluluğundadır.
             </p>

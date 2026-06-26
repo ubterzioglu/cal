@@ -1,0 +1,23 @@
+# CAL Community
+
+> Cağaloğlu Anadolu Lisesi (CAL) öğrenci ve mezunlarını bir araya getiren bağımsız, gayriresmi dijital topluluk platformu. Haberler, öğrenci kulüpleri, etkinlikler, takımlar ve mezun dayanışmasını tek çatı altında toplar. Resmî okul sistemi değildir; CALMED, Cağaloğlu Anadolu Lisesi veya diğer oluşumlarla kurumsal bağı yoktur.
+
+Site dili Türkçe'dir. Üretici: Umut Barış Terzioğlu (2003 CAL mezunu). İletişim: ubterzioglu@gmail.com.
+
+## Ana Sayfalar
+
+- [Ana Sayfa](https://calcom.club/): Topluluğun tanıtımı ve öne çıkan bölümler.
+- [Haberler & Duyurular](https://calcom.club/news): Topluluktan güncel haberler ve duyurular.
+- [Öğrenci Kulüpleri](https://calcom.club/clubs): CAL öğrenci kulüpleri ve destek ihtiyaçları.
+- [Öğrenci Etkinlikleri](https://calcom.club/etkinlikler): Öğrenci etkinlikleri ve destek çağrıları.
+- [Öğrenci Takımları](https://calcom.club/takimlar): Öğrenci takımları ve destek ihtiyaçları.
+- [Mezun Dayanışması](https://calcom.club/mezun-dayanisma): Mezunların birbirine destek olduğu dayanışma topluluğu.
+- [İletişim](https://calcom.club/contact): İletişim ve başvuru bilgileri.
+
+## Yasal
+
+- [Gizlilik Politikası](https://calcom.club/gizlilik-politikasi)
+- [KVKK Aydınlatma Metni](https://calcom.club/kvkk)
+- [Çerez Politikası](https://calcom.club/cerez-politikasi)
+- [Açık Rıza Metni](https://calcom.club/acik-riza)
+- [Kullanım Şartları ve Sorumluluk Reddi](https://calcom.club/kullanim-sartlari)
