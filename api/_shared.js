@@ -10,13 +10,34 @@ const getAllowedOrigins = () => {
   return configured?.length ? configured : DEFAULT_ALLOWED_ORIGINS;
 };
 
+// Pure CORS decision so it can be unit-tested in isolation.
+// A request is allowed only when its Origin is same-host or explicitly
+// allow-listed. Requests with NO Origin header are rejected: legitimate
+// browser fetch() calls to these cross-path write endpoints always send an
+// Origin, so a missing one indicates a non-browser client (curl, bot,
+// server-to-server) that should not reach the write path.
+export const isOriginAllowed = (origin, host, allowedOrigins) => {
+  if (!origin) {
+    return false;
+  }
+
+  let originHost;
+  try {
+    originHost = new URL(origin).host;
+  } catch {
+    return false;
+  }
+
+  const isSameHost = Boolean(host) && originHost === host;
+  return isSameHost || allowedOrigins.includes(origin);
+};
+
 export const applyCors = (req, res) => {
   const origin = normalizeOrigin(req.headers?.origin);
   const host = req.headers?.host;
   const allowedOrigins = getAllowedOrigins();
 
-  const isSameHost = Boolean(origin && host) && new URL(origin).host === host;
-  const isAllowed = !origin || isSameHost || allowedOrigins.includes(origin);
+  const isAllowed = isOriginAllowed(origin, host, allowedOrigins);
 
   if (origin && isAllowed) {
     res.setHeader("Access-Control-Allow-Origin", origin);
