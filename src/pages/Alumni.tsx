@@ -1,7 +1,10 @@
+import { useMemo, useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAlumni } from "@/data/alumni";
 import { Link } from "react-router-dom";
@@ -11,6 +14,8 @@ const Alumni = () => {
     queryKey: ["alumni"],
     queryFn: fetchAlumni,
   });
+  const [search, setSearch] = useState("");
+  const [yearFilter, setYearFilter] = useState("");
 
   const alumni = data ?? [];
   const getInitials = (fullName: string) =>
@@ -19,6 +24,20 @@ const Alumni = () => {
       .filter(Boolean)
       .map((part) => part[0]?.toUpperCase())
       .join("");
+
+  const getDisplayName = (profile: { isAnonymous: boolean; fullName: string }) =>
+    profile.isAnonymous ? getInitials(profile.fullName) : profile.fullName;
+
+  const filteredAlumni = useMemo(() => {
+    const normalizedSearch = search.trim().toLocaleLowerCase("tr");
+    return alumni.filter((profile) => {
+      const matchesYear = yearFilter ? String(profile.graduationYear) === yearFilter.trim() : true;
+      const matchesSearch = normalizedSearch
+        ? getDisplayName(profile).toLocaleLowerCase("tr").includes(normalizedSearch)
+        : true;
+      return matchesYear && matchesSearch;
+    });
+  }, [alumni, search, yearFilter]);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -36,6 +55,23 @@ const Alumni = () => {
               </Button>
             </div>
 
+            {!isLoading && !isError && alumni.length > 0 && (
+              <div className="mx-auto mb-10 flex max-w-2xl flex-col gap-3 sm:flex-row">
+                <Input
+                  placeholder="İsim ile ara"
+                  value={search}
+                  onChange={(event) => setSearch(event.target.value)}
+                />
+                <Input
+                  type="number"
+                  placeholder="Mezuniyet yılı"
+                  value={yearFilter}
+                  onChange={(event) => setYearFilter(event.target.value)}
+                  className="sm:max-w-[180px]"
+                />
+              </div>
+            )}
+
             {isLoading && (
               <div className="text-center text-muted-foreground">Mezun profilleri yükleniyor...</div>
             )}
@@ -48,24 +84,37 @@ const Alumni = () => {
                 Henüz mezun profili eklenmemiş. Çok yakında burada olacak.
               </div>
             )}
-            {!isLoading && !isError && alumni.length > 0 && (
+            {!isLoading && !isError && alumni.length > 0 && filteredAlumni.length === 0 && (
+              <div className="text-center text-muted-foreground py-12">
+                Aramanla eşleşen mezun profili bulunamadı.
+              </div>
+            )}
+            {!isLoading && !isError && filteredAlumni.length > 0 && (
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {alumni.map((profile) => (
-                  <Card key={profile.id} className="overflow-hidden">
+                {filteredAlumni.map((profile) => (
+                  <Card key={profile.id} className="flex flex-col overflow-hidden">
                     <CardHeader>
-                      <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <CardTitle>
-                            {profile.isAnonymous ? getInitials(profile.fullName) : profile.fullName}
-                          </CardTitle>
-                        </div>
-                      </div>
+                      <CardTitle>{getDisplayName(profile)}</CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-2">
+                    <CardContent className="flex flex-1 flex-col gap-3">
                       <p className="text-sm text-muted-foreground">
                         Mezuniyet Yılı {profile.graduationYear}
                       </p>
-                      <Button asChild variant="outline" size="sm">
+                      {!profile.isAnonymous && profile.shortBio && (
+                        <p className="line-clamp-3 text-sm text-muted-foreground">
+                          {profile.shortBio}
+                        </p>
+                      )}
+                      {!profile.isAnonymous && profile.supportTopics.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {profile.supportTopics.slice(0, 3).map((topic) => (
+                            <Badge key={topic} variant="secondary">
+                              {topic}
+                            </Badge>
+                          ))}
+                        </div>
+                      )}
+                      <Button asChild variant="outline" size="sm" className="mt-auto self-start">
                         <Link to={`/alumni/${profile.id}`}>Profili Gör</Link>
                       </Button>
                     </CardContent>

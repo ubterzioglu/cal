@@ -1,14 +1,20 @@
+import { useMemo, useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { useQuery } from "@tanstack/react-query";
 import { fetchStudents } from "@/data/students";
+import { Link } from "react-router-dom";
 
 const Students = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["students"],
     queryFn: fetchStudents,
   });
+  const [search, setSearch] = useState("");
+  const [yearFilter, setYearFilter] = useState("");
 
   const students = data ?? [];
   const getInitials = (fullName: string) =>
@@ -17,6 +23,18 @@ const Students = () => {
       .filter(Boolean)
       .map((part) => part[0]?.toUpperCase())
       .join("");
+
+  const filteredStudents = useMemo(() => {
+    const normalizedSearch = search.trim().toLocaleLowerCase("tr");
+    return students.filter((student) => {
+      const matchesYear = yearFilter ? String(student.graduationYear) === yearFilter.trim() : true;
+      const matchesSearch = normalizedSearch
+        ? getInitials(student.fullName).toLocaleLowerCase("tr").includes(normalizedSearch) ||
+          student.graduationTerm.toLocaleLowerCase("tr").includes(normalizedSearch)
+        : true;
+      return matchesYear && matchesSearch;
+    });
+  }, [students, search, yearFilter]);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -29,7 +47,27 @@ const Students = () => {
               <p className="text-muted-foreground text-lg">
                 Öğrenci profilleri anonimdir; yalnızca baş harfler, mezuniyet yılı ve dönem paylaşılır.
               </p>
+              <Button asChild className="mt-6">
+                <Link to="/students/yeni">Öğrenci Profili Oluştur</Link>
+              </Button>
             </div>
+
+            {!isLoading && !isError && students.length > 0 && (
+              <div className="mx-auto mb-10 flex max-w-2xl flex-col gap-3 sm:flex-row">
+                <Input
+                  placeholder="Baş harf veya dönem ara"
+                  value={search}
+                  onChange={(event) => setSearch(event.target.value)}
+                />
+                <Input
+                  type="number"
+                  placeholder="Mezuniyet yılı"
+                  value={yearFilter}
+                  onChange={(event) => setYearFilter(event.target.value)}
+                  className="sm:max-w-[180px]"
+                />
+              </div>
+            )}
 
             {isLoading && (
               <div className="text-center text-muted-foreground">Öğrenci profilleri yükleniyor...</div>
@@ -43,9 +81,14 @@ const Students = () => {
                 Henüz öğrenci profili eklenmemiş. Çok yakında burada olacak.
               </div>
             )}
-            {!isLoading && !isError && students.length > 0 && (
+            {!isLoading && !isError && students.length > 0 && filteredStudents.length === 0 && (
+              <div className="text-center text-muted-foreground py-12">
+                Aramanla eşleşen öğrenci profili bulunamadı.
+              </div>
+            )}
+            {!isLoading && !isError && filteredStudents.length > 0 && (
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {students.map((student) => (
+                {filteredStudents.map((student) => (
                   <Card key={student.id} className="overflow-hidden">
                     <CardHeader>
                       <CardTitle>{getInitials(student.fullName)}</CardTitle>
@@ -55,6 +98,9 @@ const Students = () => {
                         Mezuniyet Yılı {student.graduationYear}
                       </p>
                       <p className="text-sm text-muted-foreground">Dönem: {student.graduationTerm}</p>
+                      <Button asChild variant="outline" size="sm">
+                        <Link to={`/students/${student.id}`}>Profili Gör</Link>
+                      </Button>
                     </CardContent>
                   </Card>
                 ))}
