@@ -223,8 +223,14 @@
   "hotPaths": [
     {
       "path": "Dockerfile",
+      "accessCount": 8,
+      "lastAccessed": 1782480425951,
+      "type": "file"
+    },
+    {
+      "path": "src\\App.tsx",
       "accessCount": 7,
-      "lastAccessed": 1782480097105,
+      "lastAccessed": 1782481560298,
       "type": "file"
     },
     {
@@ -235,14 +241,26 @@
     },
     {
       "path": "README.md",
-      "accessCount": 5,
-      "lastAccessed": 1782480263575,
+      "accessCount": 6,
+      "lastAccessed": 1782480561369,
       "type": "file"
     },
     {
       "path": "api\\_shared.js",
-      "accessCount": 5,
-      "lastAccessed": 1782480272881,
+      "accessCount": 6,
+      "lastAccessed": 1782481347144,
+      "type": "file"
+    },
+    {
+      "path": "tailwind.config.ts",
+      "accessCount": 6,
+      "lastAccessed": 1782481814746,
+      "type": "file"
+    },
+    {
+      "path": ".env.local",
+      "accessCount": 6,
+      "lastAccessed": 1782482025374,
       "type": "file"
     },
     {
@@ -252,21 +270,21 @@
       "type": "file"
     },
     {
-      "path": "src\\App.tsx",
-      "accessCount": 5,
-      "lastAccessed": 1782480305900,
-      "type": "file"
-    },
-    {
-      "path": ".env.local",
-      "accessCount": 4,
-      "lastAccessed": 1782480060652,
-      "type": "file"
-    },
-    {
       "path": "index.html",
-      "accessCount": 4,
-      "lastAccessed": 1782480291024,
+      "accessCount": 5,
+      "lastAccessed": 1782480561436,
+      "type": "file"
+    },
+    {
+      "path": "src\\pages\\Index.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1782480571950,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\home\\HeroSection.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1782481584178,
       "type": "file"
     },
     {
@@ -276,9 +294,39 @@
       "type": "file"
     },
     {
-      "path": "src\\pages\\Index.tsx",
+      "path": "src\\components\\layout\\Header.tsx",
       "accessCount": 4,
-      "lastAccessed": 1782480338147,
+      "lastAccessed": 1782480585572,
+      "type": "file"
+    },
+    {
+      "path": ".env.example",
+      "accessCount": 4,
+      "lastAccessed": 1782481331690,
+      "type": "file"
+    },
+    {
+      "path": "src\\lib\\supabase.ts",
+      "accessCount": 4,
+      "lastAccessed": 1782481346967,
+      "type": "file"
+    },
+    {
+      "path": "src\\main.tsx",
+      "accessCount": 4,
+      "lastAccessed": 1782481560221,
+      "type": "file"
+    },
+    {
+      "path": "PROJECT_NOTES.md",
+      "accessCount": 4,
+      "lastAccessed": 1782482073035,
+      "type": "file"
+    },
+    {
+      "path": "AGENTS.md",
+      "accessCount": 4,
+      "lastAccessed": 1782482086997,
       "type": "file"
     },
     {
@@ -288,27 +336,9 @@
       "type": "file"
     },
     {
-      "path": "PROJECT_NOTES.md",
-      "accessCount": 3,
-      "lastAccessed": 1782480263998,
-      "type": "file"
-    },
-    {
       "path": "vercel.json",
       "accessCount": 3,
       "lastAccessed": 1782480264964,
-      "type": "file"
-    },
-    {
-      "path": "src\\main.tsx",
-      "accessCount": 3,
-      "lastAccessed": 1782480271980,
-      "type": "file"
-    },
-    {
-      "path": "src\\lib\\supabase.ts",
-      "accessCount": 3,
-      "lastAccessed": 1782480272460,
       "type": "file"
     },
     {
@@ -318,21 +348,9 @@
       "type": "file"
     },
     {
-      "path": ".env.example",
+      "path": "src\\index.css",
       "accessCount": 3,
-      "lastAccessed": 1782480296100,
-      "type": "file"
-    },
-    {
-      "path": "src\\components\\layout\\Header.tsx",
-      "accessCount": 3,
-      "lastAccessed": 1782480310533,
-      "type": "file"
-    },
-    {
-      "path": "src\\components\\home\\HeroSection.tsx",
-      "accessCount": 3,
-      "lastAccessed": 1782480311499,
+      "lastAccessed": 1782480572385,
       "type": "file"
     },
     {
@@ -402,21 +420,9 @@
       "type": "file"
     },
     {
-      "path": "AGENTS.md",
-      "accessCount": 2,
-      "lastAccessed": 1782480265027,
-      "type": "file"
-    },
-    {
       "path": "src\\components\\auth\\RequireAuth.tsx",
       "accessCount": 2,
       "lastAccessed": 1782480273027,
-      "type": "file"
-    },
-    {
-      "path": "tailwind.config.ts",
-      "accessCount": 2,
-      "lastAccessed": 1782480278631,
       "type": "file"
     },
     {
@@ -436,12 +442,6 @@
       "accessCount": 2,
       "lastAccessed": 1782480296581,
       "type": "directory"
-    },
-    {
-      "path": "src\\index.css",
-      "accessCount": 2,
-      "lastAccessed": 1782480300606,
-      "type": "file"
     },
     {
       "path": "",
