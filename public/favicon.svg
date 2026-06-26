@@ -1,3 +1,25 @@
-<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="64" cy="64" r="56" fill="#22c55e" />
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CAL Community">
+  <!-- Beyaz kenarlik -->
+  <circle cx="64" cy="64" r="63" fill="#ffffff" />
+
+  <!-- Tam daire: GRI (#C0C0C2) taban -->
+  <circle cx="64" cy="64" r="58" fill="#C0C0C2" />
+
+  <!-- BORDO (#8B1A2B) "S" govdesi:
+       Dis ust yaridan (sag->sol) buyuk yay ile alta in,
+       sonra alt kucuk yarim daire (geri yukari),
+       sonra ust kucuk yarim daire (alta) ile kapat. -->
+  <path
+    d="M64 6
+       A58 58 0 0 0 64 122
+       A29 29 0 0 0 64 64
+       A29 29 0 0 1 64 6
+       Z"
+    fill="#8B1A2B" />
+
+  <!-- Gozler -->
+  <!-- Ust: bordo bolge icinde GRI nokta -->
+  <circle cx="64" cy="35" r="9.5" fill="#C0C0C2" />
+  <!-- Alt: gri bolge icinde BORDO nokta -->
+  <circle cx="64" cy="93" r="9.5" fill="#8B1A2B" />
 </svg>
