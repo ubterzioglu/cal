@@ -1,0 +1,7 @@
+{
+  "tool_name": "Read",
+  "tool_input_preview": "{\"file_path\":\"c:\\\\temp_private\\\\cal\"}",
+  "error": "EISDIR: illegal operation on a directory, read 'c:\\temp_private\\cal'",
+  "timestamp": "2026-06-26T13:24:41.963Z",
+  "retry_count": 1
+}

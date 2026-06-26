@@ -229,8 +229,32 @@
     },
     {
       "path": "package.json",
-      "accessCount": 4,
-      "lastAccessed": 1782480038101,
+      "accessCount": 6,
+      "lastAccessed": 1782480271604,
+      "type": "file"
+    },
+    {
+      "path": "README.md",
+      "accessCount": 5,
+      "lastAccessed": 1782480263575,
+      "type": "file"
+    },
+    {
+      "path": "api\\_shared.js",
+      "accessCount": 5,
+      "lastAccessed": 1782480272881,
+      "type": "file"
+    },
+    {
+      "path": "server.mjs",
+      "accessCount": 5,
+      "lastAccessed": 1782480294682,
+      "type": "file"
+    },
+    {
+      "path": "src\\App.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1782480305900,
       "type": "file"
     },
     {
@@ -240,21 +264,21 @@
       "type": "file"
     },
     {
-      "path": "server.mjs",
+      "path": "index.html",
       "accessCount": 4,
-      "lastAccessed": 1782480082309,
+      "lastAccessed": 1782480291024,
       "type": "file"
     },
     {
-      "path": "api\\_shared.js",
+      "path": "src\\pages\\Admin.tsx",
       "accessCount": 4,
-      "lastAccessed": 1782480092664,
+      "lastAccessed": 1782480305248,
       "type": "file"
     },
     {
-      "path": "README.md",
+      "path": "src\\pages\\Index.tsx",
       "accessCount": 4,
-      "lastAccessed": 1782480117648,
+      "lastAccessed": 1782480338147,
       "type": "file"
     },
     {
@@ -264,57 +288,57 @@
       "type": "file"
     },
     {
-      "path": "src\\App.tsx",
+      "path": "PROJECT_NOTES.md",
       "accessCount": 3,
-      "lastAccessed": 1782480068612,
+      "lastAccessed": 1782480263998,
       "type": "file"
     },
     {
-      "path": "index.html",
+      "path": "vercel.json",
       "accessCount": 3,
-      "lastAccessed": 1782480069443,
-      "type": "file"
-    },
-    {
-      "path": "src\\pages\\Admin.tsx",
-      "accessCount": 3,
-      "lastAccessed": 1782480122144,
-      "type": "file"
-    },
-    {
-      "path": ".env.example",
-      "accessCount": 2,
-      "lastAccessed": 1782480060840,
+      "lastAccessed": 1782480264964,
       "type": "file"
     },
     {
       "path": "src\\main.tsx",
-      "accessCount": 2,
-      "lastAccessed": 1782480065121,
+      "accessCount": 3,
+      "lastAccessed": 1782480271980,
       "type": "file"
     },
     {
-      "path": "PROJECT_NOTES.md",
-      "accessCount": 2,
-      "lastAccessed": 1782480076408,
+      "path": "src\\lib\\supabase.ts",
+      "accessCount": 3,
+      "lastAccessed": 1782480272460,
       "type": "file"
     },
     {
       "path": "src\\pages\\Login.tsx",
-      "accessCount": 2,
-      "lastAccessed": 1782480081857,
+      "accessCount": 3,
+      "lastAccessed": 1782480295612,
+      "type": "file"
+    },
+    {
+      "path": ".env.example",
+      "accessCount": 3,
+      "lastAccessed": 1782480296100,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\layout\\Header.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1782480310533,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\home\\HeroSection.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1782480311499,
       "type": "file"
     },
     {
       "path": "src\\pages\\AlumniCreate.tsx",
       "accessCount": 2,
       "lastAccessed": 1782480082127,
-      "type": "file"
-    },
-    {
-      "path": "src\\lib\\supabase.ts",
-      "accessCount": 2,
-      "lastAccessed": 1782480083362,
       "type": "file"
     },
     {
@@ -378,33 +402,63 @@
       "type": "file"
     },
     {
+      "path": "AGENTS.md",
+      "accessCount": 2,
+      "lastAccessed": 1782480265027,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\auth\\RequireAuth.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1782480273027,
+      "type": "file"
+    },
+    {
+      "path": "tailwind.config.ts",
+      "accessCount": 2,
+      "lastAccessed": 1782480278631,
+      "type": "file"
+    },
+    {
+      "path": "vite.config.ts",
+      "accessCount": 2,
+      "lastAccessed": 1782480278820,
+      "type": "file"
+    },
+    {
+      "path": "src\\test\\example.test.ts",
+      "accessCount": 2,
+      "lastAccessed": 1782480296035,
+      "type": "file"
+    },
+    {
+      "path": "src",
+      "accessCount": 2,
+      "lastAccessed": 1782480296581,
+      "type": "directory"
+    },
+    {
+      "path": "src\\index.css",
+      "accessCount": 2,
+      "lastAccessed": 1782480300606,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 2,
+      "lastAccessed": 1782480311206,
+      "type": "directory"
+    },
+    {
       "path": ".dockerignore",
       "accessCount": 1,
       "lastAccessed": 1782477633453,
       "type": "file"
     },
     {
-      "path": "vercel.json",
-      "accessCount": 1,
-      "lastAccessed": 1782477634169,
-      "type": "file"
-    },
-    {
       "path": "public\\logo.png",
       "accessCount": 1,
       "lastAccessed": 1782479730598,
-      "type": "file"
-    },
-    {
-      "path": "vite.config.ts",
-      "accessCount": 1,
-      "lastAccessed": 1782480038052,
-      "type": "file"
-    },
-    {
-      "path": "tailwind.config.ts",
-      "accessCount": 1,
-      "lastAccessed": 1782480057403,
       "type": "file"
     },
     {
@@ -426,27 +480,9 @@
       "type": "file"
     },
     {
-      "path": "src\\pages\\Index.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1782480057784,
-      "type": "file"
-    },
-    {
-      "path": "AGENTS.md",
-      "accessCount": 1,
-      "lastAccessed": 1782480069528,
-      "type": "file"
-    },
-    {
       "path": "src\\pages\\Teams.tsx",
       "accessCount": 1,
       "lastAccessed": 1782480082053,
-      "type": "file"
-    },
-    {
-      "path": "src\\test\\example.test.ts",
-      "accessCount": 1,
-      "lastAccessed": 1782480087540,
       "type": "file"
     },
     {
@@ -468,9 +504,21 @@
       "type": "file"
     },
     {
-      "path": "src\\components\\layout\\Header.tsx",
+      "path": "src\\pages\\AlumniDetail.tsx",
       "accessCount": 1,
-      "lastAccessed": 1782480106040,
+      "lastAccessed": 1782480149469,
+      "type": "file"
+    },
+    {
+      "path": "src\\pages\\ClubDetail.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1782480160546,
+      "type": "file"
+    },
+    {
+      "path": "docs\\PROJECT_DOCUMENTATION.md",
+      "accessCount": 1,
+      "lastAccessed": 1782480264443,
       "type": "file"
     }
   ],
