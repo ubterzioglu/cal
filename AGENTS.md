@@ -134,14 +134,14 @@ npm run lint
 
 ### Client-side (Vite - prefix with `VITE_`)
 ```
-VITE_SUPABASE_URL=https://xllosidsyodtvghslymq.supabase.co
+VITE_SUPABASE_URL=https://jtsohmvbyftwzkvzyopy.supabase.co
 VITE_SUPABASE_ANON_KEY=your-anon-key
 VITE_CLARITY_ID=your-clarity-id
 ```
 
 ### Server-side (Vercel Functions)
 ```
-SUPABASE_URL=https://xllosidsyodtvghslymq.supabase.co
+SUPABASE_URL=https://jtsohmvbyftwzkvzyopy.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 ALLOWED_ORIGINS=https://yourdomain.com,https://www.yourdomain.com
 IP_HASH_SALT=random-salt-for-ip-hashing
@@ -288,9 +288,9 @@ All database changes are versioned in `supabase/migrations/` with timestamps.
 - Vite handles asset optimization
 
 ### Supabase Connection
-- Project: `xllosidsyodtvghslymq`
+- Project: `jtsohmvbyftwzkvzyopy`
 - Region: Central EU (Frankfurt)
-- URL: https://xllosidsyodtvghslymq.supabase.co
+- URL: https://jtsohmvbyftwzkvzyopy.supabase.co
 
 ## Important Implementation Notes
 
@@ -309,7 +309,7 @@ All database changes are versioned in `supabase/migrations/` with timestamps.
 
 ## Resources
 
-- **Supabase Dashboard:** https://supabase.com/dashboard/project/xllosidsyodtvghslymq
+- **Supabase Dashboard:** https://supabase.com/dashboard/project/jtsohmvbyftwzkvzyopy
 - **Production URL:** https://calcom-rosy-two.vercel.app
 - **Favicon:** `/favicon.svg`
 - **Logo:** `/logo.png`

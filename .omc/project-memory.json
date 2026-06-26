@@ -228,6 +228,12 @@
       "type": "file"
     },
     {
+      "path": "AGENTS.md",
+      "accessCount": 8,
+      "lastAccessed": 1782482099089,
+      "type": "file"
+    },
+    {
       "path": "src\\App.tsx",
       "accessCount": 7,
       "lastAccessed": 1782481560298,
@@ -261,6 +267,12 @@
       "path": ".env.local",
       "accessCount": 6,
       "lastAccessed": 1782482025374,
+      "type": "file"
+    },
+    {
+      "path": "PROJECT_NOTES.md",
+      "accessCount": 6,
+      "lastAccessed": 1782482122517,
       "type": "file"
     },
     {
@@ -315,18 +327,6 @@
       "path": "src\\main.tsx",
       "accessCount": 4,
       "lastAccessed": 1782481560221,
-      "type": "file"
-    },
-    {
-      "path": "PROJECT_NOTES.md",
-      "accessCount": 4,
-      "lastAccessed": 1782482073035,
-      "type": "file"
-    },
-    {
-      "path": "AGENTS.md",
-      "accessCount": 4,
-      "lastAccessed": 1782482086997,
       "type": "file"
     },
     {

@@ -11,10 +11,10 @@
 
 ## Supabase
 
-- **Doğru Proje:** `xllosidsyodtvghslymq` (calcom-supabase)
-- **Silinecek:** `jqpsdjqwzkwicjebbnzx` (CALCOM) — boş, kullanılmıyor
-- **URL:** `https://xllosidsyodtvghslymq.supabase.co`
-- **Migration Durumu:** İlk 2 migration remote'a uygulanmış, kalan 11 bekliyor
+- **Doğru Proje:** `jtsohmvbyftwzkvzyopy` (calcom.club — aktif/yeni DB)
+- **Eski (kullanılmıyor):** `xllosidsyodtvghslymq`, `pkbmcfpcvjmvjzqzixyc`, `jqpsdjqwzkwicjebbnzx`
+- **URL:** `https://jtsohmvbyftwzkvzyopy.supabase.co`
+- **Migration Durumu:** Tüm migration'lar uygulandı (bootstrap 202606180001 + 13 eski migration kaydı senkron)
 - **Region:** Central EU (Frankfurt)
 
 ## GitHub
@@ -32,7 +32,7 @@
 
 ## Yapılacaklar
 
-- [x] Kalan 11 Supabase migration'ı push edilecek (Remote ile senkronize - `xllosidsyodtvghslymq`)
+- [x] Supabase migration'ları yeni DB'ye uygulandı (bootstrap ile - `jtsohmvbyftwzkvzyopy`)
 - [ ] Boş Supabase projesi (jqpsdjqwzkwicjebbnzx) silinecek
 - [x] Vercel'de yeni proje oluşturulacak
 - [x] GitHub repo'su Vercel'e bağlanacak
