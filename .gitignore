@@ -26,7 +26,10 @@ dist-ssr
 
 # Supabase
 supabase/.temp
+# Ignore stray SQL (dumps, ad-hoc scripts) but keep tracked migrations,
+# which are source of truth and must live in version control.
 *.sql
+!supabase/migrations/*.sql
 .vercel
 
 # OMC local tooling state (not source code)

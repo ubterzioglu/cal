@@ -45,10 +45,11 @@ const Students = () => {
             <div className="mx-auto max-w-2xl text-center mb-12">
               <h1 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Öğrenciler</h1>
               <p className="text-muted-foreground text-lg">
-                Öğrenci profilleri anonimdir; yalnızca baş harfler, mezuniyet yılı ve dönem paylaşılır.
+                Öğrenci profilleri. Gizlilik tercihine göre yalnızca baş harfler ya da tüm bilgiler
+                gösterilir.
               </p>
               <Button asChild className="mt-6">
-                <Link to="/students/yeni">Öğrenci Profili Oluştur</Link>
+                <Link to="/profil">Profilini Oluştur / Düzenle</Link>
               </Button>
             </div>
 

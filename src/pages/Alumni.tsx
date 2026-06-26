@@ -51,7 +51,7 @@ const Alumni = () => {
                 Mezun profilleri ve destek olabilecekleri alanlar.
               </p>
               <Button asChild className="mt-6">
-                <Link to="/alumni/yeni">Mezun Profili Oluştur</Link>
+                <Link to="/profil">Profilini Oluştur / Düzenle</Link>
               </Button>
             </div>
 
