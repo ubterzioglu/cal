@@ -19,6 +19,8 @@ const Alumni = lazy(() => import("./pages/Alumni"));
 const AlumniCreate = lazy(() => import("./pages/AlumniCreate"));
 const AlumniDetail = lazy(() => import("./pages/AlumniDetail"));
 const Students = lazy(() => import("./pages/Students"));
+const StudentCreate = lazy(() => import("./pages/StudentCreate"));
+const StudentDetail = lazy(() => import("./pages/StudentDetail"));
 const AlumniSolidarity = lazy(() => import("./pages/AlumniSolidarity"));
 const Kvkk = lazy(() => import("./pages/Kvkk"));
 const KullanimSartlari = lazy(() => import("./pages/KullanimSartlari"));
@@ -50,6 +52,8 @@ const App = () => (
             <Route path="/takimlar/:slug" element={<TeamDetail />} />
             <Route element={<RequireAuth />}>
               <Route path="/students" element={<Students />} />
+              <Route path="/students/yeni" element={<StudentCreate />} />
+              <Route path="/students/:id" element={<StudentDetail />} />
               <Route path="/alumni" element={<Alumni />} />
               <Route path="/alumni/yeni" element={<AlumniCreate />} />
               <Route path="/alumni/:id" element={<AlumniDetail />} />

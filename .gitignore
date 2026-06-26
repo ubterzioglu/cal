@@ -28,3 +28,6 @@ dist-ssr
 supabase/.temp
 *.sql
 .vercel
+
+# OMC local tooling state (not source code)
+.omc/

@@ -1,7 +1,0 @@
-{
-  "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"f=\\\"C:/Users/BARIS-~1/AppData/Local/Temp/claude/c--temp-private-cal/72bfa4db-9377-4b90-9b52-bef263c41ec7/tasks/ae147c21d84fd74a0.output\\\"; echo \\\"bytes: $(wc -c < \\\"$f\\\" 2>/dev/null)\\\"; ca...",
-  "error": "Exit code 143\nCommand timed out after 2m 0s\nbytes: 0\n--- valagswhnq check ---",
-  "timestamp": "2026-06-26T15:10:19.262Z",
-  "retry_count": 1
-}

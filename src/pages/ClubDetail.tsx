@@ -6,6 +6,7 @@ import { ExternalLink, Mail, ArrowLeft, Users } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchClubBySlug } from "@/data/clubs";
 import { Link, useParams } from "react-router-dom";
+import ClaimButton from "@/components/claim/ClaimButton";
 
 const ClubDetail = () => {
   const { slug } = useParams();
@@ -185,6 +186,8 @@ const ClubDetail = () => {
                       <p className="text-muted-foreground">Henüz gelişme eklenmedi.</p>
                     )}
                   </div>
+
+                  <ClaimButton entityType="club" entityId={data.id} />
                 </div>
               </div>
             )}

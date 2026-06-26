@@ -4,7 +4,33 @@ import {
   clampList,
   filterStringList,
   hashText,
+  isOriginAllowed,
 } from "./_shared.js";
+
+describe("isOriginAllowed", () => {
+  const allowed = ["https://calcom.club", "https://www.calcom.club"];
+
+  it("allows a same-host origin", () => {
+    expect(isOriginAllowed("https://app.example.com", "app.example.com", [])).toBe(true);
+  });
+
+  it("allows an explicitly allow-listed origin", () => {
+    expect(isOriginAllowed("https://calcom.club", "other-host", allowed)).toBe(true);
+  });
+
+  it("rejects an origin that is neither same-host nor allow-listed", () => {
+    expect(isOriginAllowed("https://evil.example.com", "calcom.club", allowed)).toBe(false);
+  });
+
+  it("rejects a request with no Origin header", () => {
+    expect(isOriginAllowed(undefined, "calcom.club", allowed)).toBe(false);
+    expect(isOriginAllowed("", "calcom.club", allowed)).toBe(false);
+  });
+
+  it("rejects a malformed origin", () => {
+    expect(isOriginAllowed("not-a-url", "calcom.club", allowed)).toBe(false);
+  });
+});
 
 describe("trimText", () => {
   it("trims surrounding whitespace", () => {
