@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { openCookiePreferences } from "@/legal/consent";
 
 const Footer = () => {
   return (
@@ -55,15 +56,30 @@ const Footer = () => {
               >
                 Açık Rıza Metni
               </Link>
+              <span className="text-white/40">|</span>
+              <button
+                type="button"
+                onClick={openCookiePreferences}
+                className="font-semibold text-white transition-colors hover:text-white"
+              >
+                Çerez Tercihleri
+              </button>
             </div>
           </div>
         </div>
 
         <div className="mt-12 border-t border-white/10 pt-8 text-center text-white/70 space-y-2 leading-relaxed">
           <p>
-            Bu topluluk gayriresmidir ve CALMED veya diğer oluşumlarla bağlantılı değildir.
+            Bu topluluk gayriresmidir ve CALMED veya Cağaloğlu Anadolu Lisesi ya da diğer oluşumlarla bağlantılı değildir.
           </p>
           <p>KVKK ve öğrencilerimizi korumak amacıyla öğrencilerimizin isimleri sadece isim ve soyisminin baş harfleri ile verilmektedir.</p>
+          <p>
+            Veri sahibi başvuruları ve hukuki bildirimler için:{" "}
+            <a href="mailto:ubterzioglu@gmail.com" className="underline hover:text-white">
+              ubterzioglu@gmail.com
+            </a>
+          </p>
+          <p className="text-white/50">Yasal metinler son güncelleme: 26.06.2026 · Sürüm v2.0</p>
           <p>© {new Date().getFullYear()} CAL Community. Tüm hakları saklıdır.</p>
         </div>
       </div>

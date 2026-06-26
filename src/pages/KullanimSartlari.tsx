@@ -9,6 +9,19 @@ const KullanimSartlari = () => {
         <div className="container max-w-3xl space-y-6">
           <h1 className="text-3xl font-bold tracking-tight">KULLANIM ŞARTLARI VE SORUMLULUK REDDİ</h1>
 
+          <p className="text-sm text-muted-foreground">
+            Yürürlük Tarihi: 26.06.2026 · Sürüm: v2.0
+          </p>
+
+          <section className="space-y-2">
+            <h2 className="text-xl font-semibold">Şartların Kabulü</h2>
+            <p className="text-muted-foreground">
+              Platforma kayıt olarak veya platformu kullanarak bu Kullanım Şartları'nı okuduğunuzu ve
+              kabul ettiğinizi beyan etmiş olursunuz. Şartları kabul etmiyorsanız platformu
+              kullanmamalısınız.
+            </p>
+          </section>
+
           <section className="space-y-2">
             <h2 className="text-xl font-semibold">Platform Tanımı</h2>
             <p className="text-muted-foreground">
@@ -64,9 +77,9 @@ const KullanimSartlari = () => {
           <section className="space-y-2">
             <h2 className="text-xl font-semibold">Üçüncü Taraf Hizmetler</h2>
             <p className="text-muted-foreground">
-              Platform kapsamında kullanılan Google, Vercel, Supabase ve GitHub gibi hizmet
-              sağlayıcıların kendi gizlilik ve kullanım politikaları geçerlidir ve bu hizmetlerden
-              kaynaklanan süreçler ilgili sağlayıcıların sorumluluğundadır.
+              Platform kapsamında kullanılan Vercel, Supabase, GitHub, Microsoft Clarity ve GoatCounter
+              gibi hizmet sağlayıcıların kendi gizlilik ve kullanım politikaları geçerlidir ve bu
+              hizmetlerden kaynaklanan süreçler ilgili sağlayıcıların sorumluluğundadır.
             </p>
           </section>
 
@@ -88,9 +101,45 @@ const KullanimSartlari = () => {
           </section>
 
           <section className="space-y-2">
+            <h2 className="text-xl font-semibold">Yasak Kullanımlar</h2>
+            <p className="text-muted-foreground">
+              Kullanıcı; hukuka aykırı, hakaret içeren, başkalarının kişisel verilerini ifşa eden, telif
+              ihlaline yol açan, spam veya istenmeyen ileti niteliğindeki içerikleri paylaşamaz; platformu
+              otomatik araçlarla (bot, scraper) izinsiz olarak kullanamaz ve sistemin güvenliğini tehlikeye
+              atacak davranışlarda bulunamaz.
+            </p>
+          </section>
+
+          <section className="space-y-2">
+            <h2 className="text-xl font-semibold">Fikri Mülkiyet ve Lisans</h2>
+            <p className="text-muted-foreground">
+              Platformun kodu, tasarımı ve marka unsurları üzerindeki haklar veri sorumlusuna aittir.
+              Kullanıcı, paylaştığı içerikler bakımından platforma yalnızca hizmetin işletimi için gerekli,
+              sınırlı bir kullanım hakkı tanır; içeriğin mülkiyeti kullanıcıda kalır.
+            </p>
+          </section>
+
+          <section className="space-y-2">
+            <h2 className="text-xl font-semibold">Şikâyet ve İhlal Bildirimi</h2>
+            <p className="text-muted-foreground">
+              Hak ihlali, kişisel veri ifşası, telif ihlali veya hukuka aykırı içerik bildirimlerinizi
+              ubterzioglu@gmail.com adresine iletebilirsiniz. Bildirimler makul süre içinde değerlendirilir.
+            </p>
+          </section>
+
+          <section className="space-y-2">
+            <h2 className="text-xl font-semibold">Uygulanacak Hukuk ve Yetki</h2>
+            <p className="text-muted-foreground">
+              Bu şartlardan doğabilecek uyuşmazlıklarda Türkiye Cumhuriyeti hukuku uygulanır ve İstanbul
+              mahkemeleri ile icra daireleri yetkilidir.
+            </p>
+          </section>
+
+          <section className="space-y-2">
             <h2 className="text-xl font-semibold">Değişiklik Hakkı</h2>
             <p className="text-muted-foreground">
-              Platform, bu metinleri önceden bildirim yapmaksızın güncelleme hakkını saklı tutar.
+              Platform, bu metinleri güncelleme hakkını saklı tutar. Esaslı değişiklikler yeni sürüm
+              tarihi ile yayımlanır ve gerekli hâllerde kullanıcıya bildirilir.
             </p>
           </section>
         </div>

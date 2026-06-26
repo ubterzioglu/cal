@@ -25,9 +25,10 @@ const Kvkk = () => {
             <h2 className="text-xl font-semibold">İşlenen Kişisel Veriler</h2>
             <p className="text-muted-foreground">
               Platforma kayıt ve kullanım kapsamında kullanıcıların ad soyad bilgileri, mezuniyet
-              yılı, e-posta adresi, sosyal medya bağlantıları, platform içi etkileşimleri ve sistem
-              log kayıtları (IP adresi, zaman damgası gibi teknik veriler) işlenebilmektedir.
-              Platform kapsamında fotoğraf verisi toplanmamaktadır.
+              yılı, e-posta adresi, WhatsApp numarası, sosyal medya bağlantıları (LinkedIn, Instagram),
+              profil biyografisi, platform içi etkileşimleri ile dayanışma başlığı ve yorum gibi
+              kullanıcı içerikleri ve sistem log kayıtları (özetlenmiş IP adresi, zaman damgası gibi
+              teknik veriler) işlenebilmektedir. Platform kapsamında fotoğraf verisi toplanmamaktadır.
             </p>
           </section>
 
@@ -42,39 +43,54 @@ const Kvkk = () => {
           </section>
 
           <section className="space-y-2">
-            <h2 className="text-xl font-semibold">Hukuki Sebep</h2>
+            <h2 className="text-xl font-semibold">Kişisel Veri Toplamanın Yöntemi ve Hukuki Sebebi</h2>
             <p className="text-muted-foreground">
-              Veriler, açık rıza, sözleşmenin kurulması ve ifası, veri sorumlusunun meşru menfaati ve
-              yürürlükteki kanuni yükümlülüklerin yerine getirilmesi hukuki sebeplerine dayanılarak
-              işlenmektedir.
+              Kişisel verileriniz; üyelik ve profil formları, iletişim kanalları, çerezler ve benzeri
+              ölçüm teknolojileri, sunucu logları, API talepleri ve kullanıcı içerikleri gibi elektronik
+              ortamlar üzerinden toplanmaktadır. Veriler; açık rıza, sözleşmenin (üyeliğin) kurulması ve
+              ifası, veri sorumlusunun meşru menfaati ve yürürlükteki kanuni yükümlülüklerin yerine
+              getirilmesi hukuki sebeplerine dayanılarak işlenmektedir.
             </p>
           </section>
 
           <section className="space-y-2">
             <h2 className="text-xl font-semibold">Veri Aktarımı</h2>
             <p className="text-muted-foreground">
-              Kişisel veriler; barındırma ve altyapı hizmetleri sağlayan Vercel ve Supabase, yazılım
-              ve kod yönetimi hizmetleri sunan GitHub, analiz hizmetleri kapsamında Google Analytics
-              ve yasal talepler doğrultusunda yetkili resmi kurumlarla sınırlı olmak üzere
-              paylaşılabilir.
+              Kişisel verileriniz; teknik altyapı, barındırma ve dağıtım hizmeti sağlayan Vercel,
+              veritabanı ve backend hizmeti sağlayan Supabase, kod yönetimi ve operasyon hizmeti sağlayan
+              GitHub, kullanım analizi kapsamında Microsoft Clarity ve GoatCounter ile ve yasal talepler
+              doğrultusunda yetkili resmi kurumlarla sınırlı ve ölçülü biçimde paylaşılabilir. Bu
+              sağlayıcıların altyapısına bağlı olarak veriler yurt dışında işlenebilir.
             </p>
           </section>
 
           <section className="space-y-2">
             <h2 className="text-xl font-semibold">Veri Saklama Süresi</h2>
             <p className="text-muted-foreground">
-              Kişisel veriler, kullanıcı hesabı aktif olduğu sürece ve hukuki yükümlülükler
-              kapsamında gerekli olan süre boyunca saklanmaktadır.
+              Kişisel veriler, kullanıcı hesabı aktif olduğu sürece ve işleme amacı ile hukuki
+              yükümlülükler kapsamında gerekli olan süre boyunca saklanmaktadır. Saklama süresi sona eren
+              veriler silinir, yok edilir veya anonim hâle getirilir.
             </p>
           </section>
 
           <section className="space-y-2">
             <h2 className="text-xl font-semibold">Kullanıcı Hakları</h2>
             <p className="text-muted-foreground">
-              Kullanıcılar KVKK'nın 11. maddesi kapsamında kişisel verilerinin işlenip işlenmediğini
-              öğrenme, düzeltilmesini talep etme, silinmesini isteme, işlenmesine itiraz etme ve
-              zararın giderilmesini talep etme haklarına sahiptir. Bu kapsamda yapılacak başvurular
-              ubterzioglu@gmail.com adresine iletilebilir.
+              Kullanıcılar KVKK'nın 11. maddesi kapsamında; kişisel verilerinin işlenip işlenmediğini
+              öğrenme, işlenmişse buna ilişkin bilgi talep etme, işlenme amacını ve amaca uygun kullanılıp
+              kullanılmadığını öğrenme, yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme,
+              eksik veya yanlış işlenmişse düzeltilmesini isteme, silinmesini veya yok edilmesini isteme,
+              bu işlemlerin aktarıldığı üçüncü kişilere bildirilmesini isteme, işlenmesine itiraz etme ve
+              kanuna aykırı işleme nedeniyle zararın giderilmesini talep etme haklarına sahiptir.
+            </p>
+          </section>
+
+          <section className="space-y-2">
+            <h2 className="text-xl font-semibold">Başvuru Usulü</h2>
+            <p className="text-muted-foreground">
+              Haklarınıza ilişkin taleplerinizi, kimliğinizi tevsik edici bilgilerle birlikte
+              ubterzioglu@gmail.com adresine iletebilirsiniz. Talepleriniz, mevzuatta öngörülen süre
+              içinde sonuçlandırılır.
             </p>
           </section>
         </div>

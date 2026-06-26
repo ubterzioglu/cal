@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Users, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 const HeroSection = () => {
   return (
@@ -23,10 +24,6 @@ const HeroSection = () => {
 
       <div className="container relative">
         <div className="mx-auto max-w-4xl text-center">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-white/70 opacity-0 animate-fade-in-up [animation-delay:0ms]">
-            DEMO Sayfasıdır. Çok yakında sizlerleyiz!
-          </p>
-
           <div className="mb-8 flex justify-center opacity-0 animate-fade-in-up [animation-delay:80ms]">
             <div className="relative rounded-full p-1 animate-pulse-glow">
               <img
@@ -61,10 +58,13 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-in-up [animation-delay:460ms]">
             <Button
               size="lg"
+              asChild
               className="gap-2 transition-transform duration-200 hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
             >
-              Topluluğa Katıl
-              <ArrowRight size={18} />
+              <Link to="/login">
+                Topluluğa Katıl
+                <ArrowRight size={18} />
+              </Link>
             </Button>
             <Button
               size="lg"

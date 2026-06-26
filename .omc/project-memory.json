@@ -222,6 +222,18 @@
   },
   "hotPaths": [
     {
+      "path": "src\\components\\home\\HeroSection.tsx",
+      "accessCount": 9,
+      "lastAccessed": 1782482628326,
+      "type": "file"
+    },
+    {
+      "path": "src\\App.tsx",
+      "accessCount": 9,
+      "lastAccessed": 1782483214674,
+      "type": "file"
+    },
+    {
       "path": "Dockerfile",
       "accessCount": 8,
       "lastAccessed": 1782480425951,
@@ -234,15 +246,9 @@
       "type": "file"
     },
     {
-      "path": "src\\App.tsx",
-      "accessCount": 7,
-      "lastAccessed": 1782481560298,
-      "type": "file"
-    },
-    {
       "path": "package.json",
-      "accessCount": 6,
-      "lastAccessed": 1782480271604,
+      "accessCount": 7,
+      "lastAccessed": 1782482910438,
       "type": "file"
     },
     {
@@ -276,6 +282,12 @@
       "type": "file"
     },
     {
+      "path": "src\\main.tsx",
+      "accessCount": 6,
+      "lastAccessed": 1782483207169,
+      "type": "file"
+    },
+    {
       "path": "server.mjs",
       "accessCount": 5,
       "lastAccessed": 1782480294682,
@@ -294,15 +306,9 @@
       "type": "file"
     },
     {
-      "path": "src\\components\\home\\HeroSection.tsx",
-      "accessCount": 5,
-      "lastAccessed": 1782481584178,
-      "type": "file"
-    },
-    {
       "path": "src\\pages\\Admin.tsx",
-      "accessCount": 4,
-      "lastAccessed": 1782480305248,
+      "accessCount": 5,
+      "lastAccessed": 1782482639655,
       "type": "file"
     },
     {
@@ -321,12 +327,6 @@
       "path": "src\\lib\\supabase.ts",
       "accessCount": 4,
       "lastAccessed": 1782481346967,
-      "type": "file"
-    },
-    {
-      "path": "src\\main.tsx",
-      "accessCount": 4,
-      "lastAccessed": 1782481560221,
       "type": "file"
     },
     {
@@ -354,6 +354,30 @@
       "type": "file"
     },
     {
+      "path": "",
+      "accessCount": 3,
+      "lastAccessed": 1782482640698,
+      "type": "directory"
+    },
+    {
+      "path": "src",
+      "accessCount": 3,
+      "lastAccessed": 1782483218886,
+      "type": "directory"
+    },
+    {
+      "path": "src\\data\\clubs.ts",
+      "accessCount": 3,
+      "lastAccessed": 1782483277022,
+      "type": "file"
+    },
+    {
+      "path": "src\\data\\students.ts",
+      "accessCount": 3,
+      "lastAccessed": 1782483277325,
+      "type": "file"
+    },
+    {
       "path": "src\\pages\\AlumniCreate.tsx",
       "accessCount": 2,
       "lastAccessed": 1782480082127,
@@ -363,12 +387,6 @@
       "path": "src\\data\\alumni.ts",
       "accessCount": 2,
       "lastAccessed": 1782480089121,
-      "type": "file"
-    },
-    {
-      "path": "src\\data\\clubs.ts",
-      "accessCount": 2,
-      "lastAccessed": 1782480089444,
       "type": "file"
     },
     {
@@ -408,12 +426,6 @@
       "type": "file"
     },
     {
-      "path": "src\\data\\students.ts",
-      "accessCount": 2,
-      "lastAccessed": 1782480122196,
-      "type": "file"
-    },
-    {
       "path": "src\\data\\teams.ts",
       "accessCount": 2,
       "lastAccessed": 1782480122225,
@@ -438,16 +450,10 @@
       "type": "file"
     },
     {
-      "path": "src",
+      "path": "src\\pages\\Clubs.tsx",
       "accessCount": 2,
-      "lastAccessed": 1782480296581,
-      "type": "directory"
-    },
-    {
-      "path": "",
-      "accessCount": 2,
-      "lastAccessed": 1782480311206,
-      "type": "directory"
+      "lastAccessed": 1782483289054,
+      "type": "file"
     },
     {
       "path": ".dockerignore",
@@ -465,12 +471,6 @@
       "path": "tsconfig.json",
       "accessCount": 1,
       "lastAccessed": 1782480057467,
-      "type": "file"
-    },
-    {
-      "path": "src\\pages\\Clubs.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1782480057526,
       "type": "file"
     },
     {
