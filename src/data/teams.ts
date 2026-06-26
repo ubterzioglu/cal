@@ -21,7 +21,7 @@ export type StudentTeam = {
   createdAt: string;
 };
 
-type StudentTeamRow = {
+export type StudentTeamRow = {
   id: string;
   slug: string;
   name: string;

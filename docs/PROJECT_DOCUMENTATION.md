@@ -1,7 +1,7 @@
 **Project Overview**
 - CAL Community is a Vite + React + Supabase web app for clubs, student events/teams, alumni profiles, and alumni solidarity discussions.
 - Primary UI entry: [src/App.tsx](src/App.tsx) with public routes and a small protected area (students/alumni).
-- Analytics: Microsoft Clarity and GoatCounter scripts are injected in [src/main.tsx](src/main.tsx#L1-L13).
+- Analytics: Microsoft Clarity and GoatCounter load only after analytics consent via the cookie banner — see [src/legal/loaders.ts](src/legal/loaders.ts) and [src/components/legal/CookieBanner.tsx](src/components/legal/CookieBanner.tsx).
 
 **Architecture**
 - Frontend: Vite React app with shadcn/ui components and React Query for data fetching.
@@ -67,7 +67,7 @@
 - Client (Vite):
   - VITE_SUPABASE_URL
   - VITE_SUPABASE_ANON_KEY
-  - VITE_CLARITY_ID (declared in README; main.tsx currently uses a hard-coded id)
+  - VITE_CLARITY_ID (required for Clarity; if unset, Clarity simply does not load — no hard-coded fallback)
 - Server (Vercel functions):
   - SUPABASE_URL
   - SUPABASE_SERVICE_ROLE_KEY
@@ -80,10 +80,10 @@
 - Supabase project metadata in [PROJECT_NOTES.md](PROJECT_NOTES.md).
 
 **Known Gaps / Risks**
-- Public insert policies still exist for alumni_profiles and solidarity tables in RLS; direct anon-key inserts are still possible even though the UI uses /api.
+- The consolidated schema ([202606180001_reconstruct_schema_for_fresh_projects.sql](supabase/migrations/202606180001_reconstruct_schema_for_fresh_projects.sql)) enables RLS on all tables and defines only read / superadmin-all / admin-update policies — there is no anon `insert` policy, and `anon` is granted only `select` on public views. Anon-key inserts are blocked; all writes go through /api (service_role). (Verify on the live DB that only the reconstruct migration is applied, not the older RLS-less incremental `202602010013`.)
 - Admin panel writes still go directly to Supabase; these are protected by RLS but not by API-level validation.
 - No explicit CSRF handling for serverless routes; safe for token-less endpoints, but review if auth cookies are introduced.
-- Role selection on login page is currently UI-only (no backend enforcement).
+- Role selection on login page is currently UI-only (no backend enforcement); the actual access gate is the Supabase session via RequireAuth.
 
 **Suggested Next Hardening Steps**
 - Remove public insert policies and enforce writes only through /api (or add stricter RLS rules).

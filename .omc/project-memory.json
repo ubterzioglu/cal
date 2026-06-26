@@ -223,9 +223,33 @@
   "hotPaths": [
     {
       "path": "src\\App.tsx",
-      "accessCount": 11,
-      "lastAccessed": 1782483480362,
+      "accessCount": 15,
+      "lastAccessed": 1782484973028,
       "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 15,
+      "lastAccessed": 1782485725617,
+      "type": "directory"
+    },
+    {
+      "path": "AGENTS.md",
+      "accessCount": 14,
+      "lastAccessed": 1782485410213,
+      "type": "file"
+    },
+    {
+      "path": "src\\pages\\Admin.tsx",
+      "accessCount": 14,
+      "lastAccessed": 1782485548110,
+      "type": "file"
+    },
+    {
+      "path": "src",
+      "accessCount": 14,
+      "lastAccessed": 1782485650823,
+      "type": "directory"
     },
     {
       "path": "package.json",
@@ -240,10 +264,28 @@
       "type": "file"
     },
     {
-      "path": "src",
+      "path": "src\\data\\clubs.ts",
       "accessCount": 10,
-      "lastAccessed": 1782483738508,
-      "type": "directory"
+      "lastAccessed": 1782485504085,
+      "type": "file"
+    },
+    {
+      "path": "src\\data\\events.ts",
+      "accessCount": 10,
+      "lastAccessed": 1782485509827,
+      "type": "file"
+    },
+    {
+      "path": "src\\main.tsx",
+      "accessCount": 10,
+      "lastAccessed": 1782485538690,
+      "type": "file"
+    },
+    {
+      "path": "index.html",
+      "accessCount": 10,
+      "lastAccessed": 1782485605263,
+      "type": "file"
     },
     {
       "path": "Dockerfile",
@@ -252,33 +294,21 @@
       "type": "file"
     },
     {
-      "path": "src\\main.tsx",
+      "path": "src\\data\\teams.ts",
       "accessCount": 9,
-      "lastAccessed": 1782483633535,
-      "type": "file"
-    },
-    {
-      "path": "index.html",
-      "accessCount": 9,
-      "lastAccessed": 1782483781636,
-      "type": "file"
-    },
-    {
-      "path": "AGENTS.md",
-      "accessCount": 8,
-      "lastAccessed": 1782482099089,
+      "lastAccessed": 1782485514187,
       "type": "file"
     },
     {
       "path": "server.mjs",
-      "accessCount": 8,
-      "lastAccessed": 1782483789809,
+      "accessCount": 9,
+      "lastAccessed": 1782485580701,
       "type": "file"
     },
     {
       "path": "src\\pages\\Index.tsx",
-      "accessCount": 7,
-      "lastAccessed": 1782483496800,
+      "accessCount": 8,
+      "lastAccessed": 1782484715023,
       "type": "file"
     },
     {
@@ -312,9 +342,15 @@
       "type": "file"
     },
     {
+      "path": "vite.config.ts",
+      "accessCount": 7,
+      "lastAccessed": 1782484858819,
+      "type": "file"
+    },
+    {
       "path": "api\\_shared.js",
-      "accessCount": 6,
-      "lastAccessed": 1782481347144,
+      "accessCount": 7,
+      "lastAccessed": 1782485553336,
       "type": "file"
     },
     {
@@ -336,75 +372,45 @@
       "type": "file"
     },
     {
-      "path": "src\\data\\clubs.ts",
-      "accessCount": 6,
-      "lastAccessed": 1782483471613,
-      "type": "file"
-    },
-    {
-      "path": "src\\data\\events.ts",
-      "accessCount": 6,
-      "lastAccessed": 1782483472112,
-      "type": "file"
-    },
-    {
       "path": "src\\components\\layout\\Header.tsx",
       "accessCount": 6,
       "lastAccessed": 1782483522452,
       "type": "file"
     },
     {
-      "path": "src\\pages\\Admin.tsx",
-      "accessCount": 5,
-      "lastAccessed": 1782482639655,
-      "type": "file"
-    },
-    {
-      "path": "src\\lib\\supabase.ts",
-      "accessCount": 5,
-      "lastAccessed": 1782483472352,
-      "type": "file"
-    },
-    {
-      "path": "src\\data\\teams.ts",
-      "accessCount": 5,
-      "lastAccessed": 1782483472628,
-      "type": "file"
-    },
-    {
-      "path": ".env.example",
-      "accessCount": 5,
-      "lastAccessed": 1782483485662,
-      "type": "file"
-    },
-    {
       "path": "src\\data\\students.ts",
-      "accessCount": 5,
-      "lastAccessed": 1782483490729,
+      "accessCount": 6,
+      "lastAccessed": 1782485518911,
       "type": "file"
     },
     {
       "path": "src\\data\\alumni.ts",
-      "accessCount": 5,
-      "lastAccessed": 1782483515980,
+      "accessCount": 6,
+      "lastAccessed": 1782485525067,
       "type": "file"
     },
     {
       "path": "src\\data\\alumniSolidarity.ts",
-      "accessCount": 5,
-      "lastAccessed": 1782483543858,
+      "accessCount": 6,
+      "lastAccessed": 1782485529836,
       "type": "file"
     },
     {
       "path": "vercel.json",
-      "accessCount": 5,
-      "lastAccessed": 1782483789270,
+      "accessCount": 6,
+      "lastAccessed": 1782485585598,
       "type": "file"
     },
     {
-      "path": "vite.config.ts",
-      "accessCount": 5,
-      "lastAccessed": 1782483790287,
+      "path": ".env.example",
+      "accessCount": 6,
+      "lastAccessed": 1782485589863,
+      "type": "file"
+    },
+    {
+      "path": "src\\lib\\supabase.ts",
+      "accessCount": 6,
+      "lastAccessed": 1782485676933,
       "type": "file"
     },
     {
@@ -414,15 +420,27 @@
       "type": "file"
     },
     {
-      "path": "",
-      "accessCount": 4,
-      "lastAccessed": 1782483529545,
-      "type": "directory"
-    },
-    {
       "path": "src\\pages\\ClubDetail.tsx",
       "accessCount": 4,
       "lastAccessed": 1782483553262,
+      "type": "file"
+    },
+    {
+      "path": "src\\pages\\News.tsx",
+      "accessCount": 4,
+      "lastAccessed": 1782484715043,
+      "type": "file"
+    },
+    {
+      "path": "docs\\PROJECT_DOCUMENTATION.md",
+      "accessCount": 4,
+      "lastAccessed": 1782485434191,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\auth\\RequireAuth.tsx",
+      "accessCount": 4,
+      "lastAccessed": 1782485543366,
       "type": "file"
     },
     {
@@ -438,18 +456,6 @@
       "type": "file"
     },
     {
-      "path": "src\\pages\\News.tsx",
-      "accessCount": 3,
-      "lastAccessed": 1782483497256,
-      "type": "file"
-    },
-    {
-      "path": "src\\components\\auth\\RequireAuth.tsx",
-      "accessCount": 3,
-      "lastAccessed": 1782483533053,
-      "type": "file"
-    },
-    {
       "path": "src\\pages\\AlumniSolidarity.tsx",
       "accessCount": 3,
       "lastAccessed": 1782483552431,
@@ -462,27 +468,39 @@
       "type": "file"
     },
     {
+      "path": "api\\alumni-profiles.js",
+      "accessCount": 3,
+      "lastAccessed": 1782485559025,
+      "type": "file"
+    },
+    {
+      "path": "api\\solidarity\\topics.js",
+      "accessCount": 3,
+      "lastAccessed": 1782485570628,
+      "type": "file"
+    },
+    {
+      "path": "api\\solidarity\\comments.js",
+      "accessCount": 3,
+      "lastAccessed": 1782485575736,
+      "type": "file"
+    },
+    {
       "path": "src\\pages\\AlumniCreate.tsx",
       "accessCount": 2,
       "lastAccessed": 1782480082127,
       "type": "file"
     },
     {
-      "path": "api\\solidarity\\topics.js",
-      "accessCount": 2,
-      "lastAccessed": 1782480093580,
-      "type": "file"
-    },
-    {
-      "path": "api\\solidarity\\comments.js",
-      "accessCount": 2,
-      "lastAccessed": 1782480093731,
-      "type": "file"
-    },
-    {
       "path": "src\\test\\example.test.ts",
       "accessCount": 2,
       "lastAccessed": 1782480296035,
+      "type": "file"
+    },
+    {
+      "path": "tsconfig.json",
+      "accessCount": 2,
+      "lastAccessed": 1782484913993,
       "type": "file"
     },
     {
@@ -498,27 +516,9 @@
       "type": "file"
     },
     {
-      "path": "tsconfig.json",
-      "accessCount": 1,
-      "lastAccessed": 1782480057467,
-      "type": "file"
-    },
-    {
-      "path": "api\\alumni-profiles.js",
-      "accessCount": 1,
-      "lastAccessed": 1782480093118,
-      "type": "file"
-    },
-    {
       "path": "src\\pages\\AlumniDetail.tsx",
       "accessCount": 1,
       "lastAccessed": 1782480149469,
-      "type": "file"
-    },
-    {
-      "path": "docs\\PROJECT_DOCUMENTATION.md",
-      "accessCount": 1,
-      "lastAccessed": 1782480264443,
       "type": "file"
     }
   ],

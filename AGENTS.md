@@ -92,9 +92,9 @@ src/
 └── index.css           # Global styles + CSS variables
 
 supabase/
-└── migrations/         # 25+ SQL migration files
+└── migrations/         # 14 SQL migration files (13 incremental + 1 consolidated reconstruct)
 
-api/                    # Vercel Serverless Functions
+api/                    # Serverless Functions (run via server.mjs in the Coolify container; Vercel-compatible)
 ├── _shared.js          # Shared utilities (CORS, rate limiting)
 ├── alumni-profiles.js  # Alumni profile creation endpoint
 └── solidarity/
@@ -278,14 +278,18 @@ All database changes are versioned in `supabase/migrations/` with timestamps.
 
 ## Deployment
 
-### Vercel Configuration
-- SPA routing fallback configured
-- Security headers applied to all routes
-- Serverless functions in `api/` directory
+Primary target is **Coolify** via the `Dockerfile` (single container running `server.mjs`, port 3000, health check `/health`). `server.mjs` serves both the Vite `dist/` output and the `api/` endpoints. The `api/` handlers are also Vercel-serverless-compatible, but Coolify is the canonical deployment.
+
+### Coolify Configuration
+- Build Pack: Dockerfile
+- Port: 3000
+- Health Check Path: `/health`
+- `server.mjs` applies SPA routing fallback and security headers, and routes `/api/*` to the handlers.
 
 ### Build Output
 - Static files: `dist/`
 - Vite handles asset optimization
+- Route-level code splitting via `React.lazy` in `src/App.tsx` (each page is its own chunk)
 
 ### Supabase Connection
 - Project: `jtsohmvbyftwzkvzyopy`
@@ -295,17 +299,19 @@ All database changes are versioned in `supabase/migrations/` with timestamps.
 ## Important Implementation Notes
 
 1. **Supabase Client:** Initialized with optional chaining - returns `null` if env vars missing (graceful degradation)
-2. **Fallback Data:** Data fetchers provide fallback/mock data when Supabase is unavailable
-3. **Analytics:** Microsoft Clarity and GoatCounter scripts injected in `main.tsx`
+2. **Empty States:** Data fetchers return an empty array/`null` when Supabase is unavailable or has no rows; list pages render a "Henüz ... eklenmemiş" empty state. No mock/placeholder data is shown to visitors.
+3. **Analytics:** Microsoft Clarity and GoatCounter load only after analytics consent via the cookie banner (`src/legal/loaders.ts`, `src/components/legal/CookieBanner.tsx`). Clarity loads only when `VITE_CLARITY_ID` is set.
 4. **Port:** Dev server runs on port 8080 (configured in `vite.config.ts`)
 5. **Language:** All UI text is in Turkish
 
 ## Known Gaps (As Documented)
 
-- Public insert policies still exist for alumni_profiles and solidarity tables (direct anon-key inserts possible)
 - Admin panel writes go directly to Supabase (protected by RLS but not API-level validation)
 - No explicit CSRF handling for serverless routes
-- Role selection on login page is UI-only (no backend enforcement)
+- Role selection on login page is UI-only (the real access gate is the Supabase session via RequireAuth)
+- Live-DB check pending: confirm only the consolidated reconstruct migration is applied (not the older RLS-less `202602010013`), and delete the unused empty Supabase project noted in PROJECT_NOTES.md
+
+> Note: anon-key inserts are NOT possible. The consolidated schema grants `anon` only `select` on public views and defines no anon insert policy; all writes go through `/api` (service_role).
 
 ## Resources
 

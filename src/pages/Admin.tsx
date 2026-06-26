@@ -6,9 +6,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/lib/supabase";
-import type { Club } from "@/data/clubs";
-import type { StudentEvent } from "@/data/events";
-import type { StudentTeam } from "@/data/teams";
+import type { Club, ClubRow } from "@/data/clubs";
+import type { StudentEvent, StudentEventRow } from "@/data/events";
+import type { StudentTeam, StudentTeamRow } from "@/data/teams";
 
 const SUPERADMIN_EMAIL = "ubterzioglu@gmail.com";
 
@@ -106,8 +106,9 @@ const Admin = () => {
       }
 
       const mapped = (data ?? [])
-        .map((item: { club: unknown }) => item.club)
-        .filter(Boolean)
+        .flatMap((item: { club: ClubRow | ClubRow[] | null }) =>
+          Array.isArray(item.club) ? item.club : item.club ? [item.club] : []
+        )
         .map((club) => ({
           id: club.id,
           slug: club.slug,
@@ -192,8 +193,9 @@ const Admin = () => {
       }
 
       const mapped = (data ?? [])
-        .map((item: { event: unknown }) => item.event)
-        .filter(Boolean)
+        .flatMap((item: { event: StudentEventRow | StudentEventRow[] | null }) =>
+          Array.isArray(item.event) ? item.event : item.event ? [item.event] : []
+        )
         .map((event) => ({
           id: event.id,
           slug: event.slug,
@@ -279,8 +281,9 @@ const Admin = () => {
       }
 
       const mapped = (data ?? [])
-        .map((item: { team: unknown }) => item.team)
-        .filter(Boolean)
+        .flatMap((item: { team: StudentTeamRow | StudentTeamRow[] | null }) =>
+          Array.isArray(item.team) ? item.team : item.team ? [item.team] : []
+        )
         .map((team) => ({
           id: team.id,
           slug: team.slug,

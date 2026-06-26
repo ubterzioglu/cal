@@ -21,7 +21,7 @@ export type Club = {
   createdAt: string;
 };
 
-type ClubRow = {
+export type ClubRow = {
   id: string;
   slug: string;
   name: string;

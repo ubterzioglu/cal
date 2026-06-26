@@ -21,7 +21,7 @@ export type StudentEvent = {
   createdAt: string;
 };
 
-type StudentEventRow = {
+export type StudentEventRow = {
   id: string;
   slug: string;
   name: string;
