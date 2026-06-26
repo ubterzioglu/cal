@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RequireAuth from "./components/auth/RequireAuth";
+import RequireProfile from "./components/auth/RequireProfile";
 import CookieBanner from "./components/legal/CookieBanner";
 
 const Index = lazy(() => import("./pages/Index"));
@@ -16,11 +17,10 @@ const EventDetail = lazy(() => import("./pages/EventDetail"));
 const Teams = lazy(() => import("./pages/Teams"));
 const TeamDetail = lazy(() => import("./pages/TeamDetail"));
 const Alumni = lazy(() => import("./pages/Alumni"));
-const AlumniCreate = lazy(() => import("./pages/AlumniCreate"));
 const AlumniDetail = lazy(() => import("./pages/AlumniDetail"));
 const Students = lazy(() => import("./pages/Students"));
-const StudentCreate = lazy(() => import("./pages/StudentCreate"));
 const StudentDetail = lazy(() => import("./pages/StudentDetail"));
+const Profil = lazy(() => import("./pages/Profil"));
 const AlumniSolidarity = lazy(() => import("./pages/AlumniSolidarity"));
 const Kvkk = lazy(() => import("./pages/Kvkk"));
 const KullanimSartlari = lazy(() => import("./pages/KullanimSartlari"));
@@ -42,30 +42,38 @@ const App = () => (
       <BrowserRouter>
         <Suspense fallback={<div className="py-16 text-center text-muted-foreground">Yükleniyor...</div>}>
           <Routes>
+            {/* Herkese açık sayfalar: ana sayfa, login, iletişim ve yasal metinler */}
             <Route path="/" element={<Index />} />
-            <Route path="/news" element={<News />} />
-            <Route path="/clubs" element={<Clubs />} />
-            <Route path="/clubs/:slug" element={<ClubDetail />} />
-            <Route path="/etkinlikler" element={<Events />} />
-            <Route path="/etkinlikler/:slug" element={<EventDetail />} />
-            <Route path="/takimlar" element={<Teams />} />
-            <Route path="/takimlar/:slug" element={<TeamDetail />} />
-            <Route element={<RequireAuth />}>
-              <Route path="/students" element={<Students />} />
-              <Route path="/students/yeni" element={<StudentCreate />} />
-              <Route path="/students/:id" element={<StudentDetail />} />
-              <Route path="/alumni" element={<Alumni />} />
-              <Route path="/alumni/yeni" element={<AlumniCreate />} />
-              <Route path="/alumni/:id" element={<AlumniDetail />} />
-            </Route>
-            <Route path="/mezun-dayanisma" element={<AlumniSolidarity />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/gizlilik-politikasi" element={<GizlilikPolitikasi />} />
             <Route path="/cerez-politikasi" element={<CerezPolitikasi />} />
             <Route path="/kullanim-sartlari" element={<KullanimSartlari />} />
             <Route path="/acik-riza" element={<AcikRiza />} />
             <Route path="/kvkk" element={<Kvkk />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
+
+            {/* Giriş yeter: profilini tamamlama sayfası */}
+            <Route element={<RequireAuth />}>
+              <Route path="/profil" element={<Profil />} />
+            </Route>
+
+            {/* Giriş + tamamlanmış profil gerektiren sayfalar */}
+            <Route element={<RequireProfile />}>
+              <Route path="/news" element={<News />} />
+              <Route path="/clubs" element={<Clubs />} />
+              <Route path="/clubs/:slug" element={<ClubDetail />} />
+              <Route path="/etkinlikler" element={<Events />} />
+              <Route path="/etkinlikler/:slug" element={<EventDetail />} />
+              <Route path="/takimlar" element={<Teams />} />
+              <Route path="/takimlar/:slug" element={<TeamDetail />} />
+              <Route path="/mezun-dayanisma" element={<AlumniSolidarity />} />
+              <Route path="/students" element={<Students />} />
+              <Route path="/students/:id" element={<StudentDetail />} />
+              <Route path="/alumni" element={<Alumni />} />
+              <Route path="/alumni/:id" element={<AlumniDetail />} />
+            </Route>
+
+            {/* Admin kendi giriş akışına sahip */}
             <Route path="/admin" element={<Admin />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

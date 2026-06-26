@@ -28,6 +28,9 @@ type AlumniRow = {
   created_at: string;
 };
 
+const PUBLIC_COLUMNS =
+  "id, graduation_year, full_name, linkedin_url, instagram_url, email, whatsapp_number, short_bio, support_topics, is_anonymous, created_at";
+
 const mapAlumni = (row: AlumniRow): AlumniProfile => ({
   id: row.id,
   graduationYear: row.graduation_year,
@@ -61,9 +64,7 @@ export const fetchAlumni = async (): Promise<AlumniProfile[]> => {
 
   const { data, error } = await supabase
     .from("public_alumni_profiles")
-    .select(
-      "id, graduation_year, full_name, linkedin_url, instagram_url, email, whatsapp_number, short_bio, support_topics, is_anonymous, created_at",
-    )
+    .select(PUBLIC_COLUMNS)
     .order("graduation_year", { ascending: false });
 
   if (error || !data) {
@@ -81,9 +82,7 @@ export const fetchAlumniById = async (id: string): Promise<AlumniProfile | null>
 
   const { data, error } = await supabase
     .from("public_alumni_profiles")
-    .select(
-      "id, graduation_year, full_name, linkedin_url, instagram_url, email, whatsapp_number, short_bio, support_topics, is_anonymous, created_at",
-    )
+    .select(PUBLIC_COLUMNS)
     .eq("id", id)
     .single();
 
@@ -95,39 +94,61 @@ export const fetchAlumniById = async (id: string): Promise<AlumniProfile | null>
   return mapAlumni(data as AlumniRow);
 };
 
-export const createAlumniProfile = async (input: AlumniProfileInput): Promise<AlumniProfile | null> => {
+// The signed-in user's own alumni profile (raw table, gated by RLS).
+export const fetchMyAlumniProfile = async (
+  userId: string,
+): Promise<AlumniProfile | null> => {
   if (!supabase) {
     return null;
   }
 
-  const response = await fetch("/api/alumni-profiles", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      graduationYear: input.graduationYear,
-      fullName: input.fullName,
-      whatsappNumber: input.whatsappNumber,
-      email: input.email ?? null,
-      linkedinUrl: input.linkedinUrl ?? null,
-      instagramUrl: input.instagramUrl ?? null,
-      shortBio: input.shortBio ?? null,
-      supportTopics: input.supportTopics ?? [],
-      isAnonymous: input.isAnonymous ?? false,
-    }),
-  });
+  const { data, error } = await supabase
+    .from("alumni_profiles")
+    .select(PUBLIC_COLUMNS)
+    .eq("user_id", userId)
+    .maybeSingle();
 
-  if (!response.ok) {
-    const errorPayload = await response.json().catch(() => ({}));
-    console.error("Mezun profili oluşturulamadı", errorPayload);
-    throw new Error("Mezun profili oluşturulamadı");
+  if (error) {
+    console.error("Mezun profili alınamadı", error);
+    return null;
   }
 
-  const payload = await response.json();
-  if (!payload?.data) {
-    throw new Error("Mezun profili oluşturulamadı");
+  return data ? mapAlumni(data as AlumniRow) : null;
+};
+
+// Create or update the signed-in user's alumni profile. RLS enforces that
+// user_id matches auth.uid(), so a user can only ever write their own row.
+export const upsertMyAlumniProfile = async (
+  userId: string,
+  input: AlumniProfileInput,
+): Promise<AlumniProfile | null> => {
+  if (!supabase) {
+    return null;
   }
 
-  return mapAlumni(payload.data as AlumniRow);
+  const payload = {
+    user_id: userId,
+    graduation_year: input.graduationYear,
+    full_name: input.fullName,
+    whatsapp_number: input.whatsappNumber,
+    email: input.email ?? null,
+    linkedin_url: input.linkedinUrl ?? null,
+    instagram_url: input.instagramUrl ?? null,
+    short_bio: input.shortBio ?? null,
+    support_topics: input.supportTopics ?? [],
+    is_anonymous: input.isAnonymous ?? false,
+  };
+
+  const { data, error } = await supabase
+    .from("alumni_profiles")
+    .upsert(payload, { onConflict: "user_id" })
+    .select(PUBLIC_COLUMNS)
+    .single();
+
+  if (error || !data) {
+    console.error("Mezun profili kaydedilemedi", error);
+    throw new Error("Mezun profili kaydedilemedi");
+  }
+
+  return mapAlumni(data as AlumniRow);
 };
