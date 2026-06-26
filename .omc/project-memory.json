@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1781357772908,
+  "lastScanned": 1782477606931,
   "projectRoot": "c:\\temp_private\\cal",
   "techStack": {
     "languages": [
@@ -57,6 +57,7 @@
       "build:dev": "vite build --mode development",
       "lint": "eslint .",
       "preview": "vite preview",
+      "start": "node server.mjs",
       "test": "vitest run",
       "test:watch": "vitest"
     }
@@ -75,10 +76,7 @@
       "public",
       "src"
     ],
-    "gitBranches": {
-      "defaultBranch": "main",
-      "branchingStrategy": null
-    }
+    "gitBranches": null
   },
   "customNotes": [],
   "directoryMap": {
@@ -86,18 +84,32 @@
       "path": "api",
       "purpose": "API routes",
       "fileCount": 2,
-      "lastAccessed": 1781357772789,
+      "lastAccessed": 1782477606869,
       "keyFiles": [
         "alumni-profiles.js",
         "_shared.js"
       ]
     },
+    "dist": {
+      "path": "dist",
+      "purpose": "Distribution/build output",
+      "fileCount": 6,
+      "lastAccessed": 1782477606909,
+      "keyFiles": [
+        "favicon.svg",
+        "index.html",
+        "jpgubt.jpg",
+        "logo.png",
+        "placeholder.svg"
+      ]
+    },
     "docs": {
       "path": "docs",
       "purpose": "Documentation",
-      "fileCount": 1,
-      "lastAccessed": 1781357772789,
+      "fileCount": 2,
+      "lastAccessed": 1782477606909,
       "keyFiles": [
+        "NEW_DATABASE_BOOTSTRAP.md",
         "PROJECT_DOCUMENTATION.md"
       ]
     },
@@ -105,7 +117,7 @@
       "path": "public",
       "purpose": "Public files",
       "fileCount": 5,
-      "lastAccessed": 1781357772789,
+      "lastAccessed": 1782477606910,
       "keyFiles": [
         "favicon.svg",
         "jpgubt.jpg",
@@ -118,7 +130,7 @@
       "path": "src",
       "purpose": "Source code",
       "fileCount": 5,
-      "lastAccessed": 1781357772790,
+      "lastAccessed": 1782477606910,
       "keyFiles": [
         "App.css",
         "App.tsx",
@@ -131,14 +143,24 @@
       "path": "supabase",
       "purpose": null,
       "fileCount": 0,
-      "lastAccessed": 1781357772790,
+      "lastAccessed": 1782477606911,
       "keyFiles": []
+    },
+    "dist\\assets": {
+      "path": "dist\\assets",
+      "purpose": "Static assets",
+      "fileCount": 2,
+      "lastAccessed": 1782477606911,
+      "keyFiles": [
+        "index-C5i-wyAF.js",
+        "index-Cwe-b22d.css"
+      ]
     },
     "src\\components": {
       "path": "src\\components",
       "purpose": "UI components",
       "fileCount": 1,
-      "lastAccessed": 1781357772791,
+      "lastAccessed": 1782477606912,
       "keyFiles": [
         "NavLink.tsx"
       ]
@@ -147,7 +169,7 @@
       "path": "src\\data",
       "purpose": "Data files",
       "fileCount": 6,
-      "lastAccessed": 1781357772791,
+      "lastAccessed": 1782477606912,
       "keyFiles": [
         "alumni.ts",
         "alumniSolidarity.ts",
@@ -158,7 +180,7 @@
       "path": "src\\lib",
       "purpose": "Library code",
       "fileCount": 3,
-      "lastAccessed": 1781357772791,
+      "lastAccessed": 1782477606913,
       "keyFiles": [
         "graduation.ts",
         "supabase.ts",
@@ -169,7 +191,7 @@
       "path": "src\\pages",
       "purpose": "Page components",
       "fileCount": 22,
-      "lastAccessed": 1781357772792,
+      "lastAccessed": 1782477606913,
       "keyFiles": [
         "AcikRiza.tsx",
         "Admin.tsx",
@@ -180,7 +202,7 @@
       "path": "src\\test",
       "purpose": "Test files",
       "fileCount": 2,
-      "lastAccessed": 1781357772792,
+      "lastAccessed": 1782477606914,
       "keyFiles": [
         "example.test.ts",
         "setup.ts"
@@ -189,8 +211,8 @@
     "supabase\\migrations": {
       "path": "supabase\\migrations",
       "purpose": "Database migrations",
-      "fileCount": 13,
-      "lastAccessed": 1781357772792,
+      "fileCount": 14,
+      "lastAccessed": 1782477606915,
       "keyFiles": [
         "202602010001_create_clubs.sql",
         "202602010002_add_admins_and_rls.sql",
@@ -198,6 +220,61 @@
       ]
     }
   },
-  "hotPaths": [],
+  "hotPaths": [
+    {
+      "path": "Dockerfile",
+      "accessCount": 5,
+      "lastAccessed": 1782477830304,
+      "type": "file"
+    },
+    {
+      "path": "package.json",
+      "accessCount": 1,
+      "lastAccessed": 1782477615868,
+      "type": "file"
+    },
+    {
+      "path": ".dockerignore",
+      "accessCount": 1,
+      "lastAccessed": 1782477633453,
+      "type": "file"
+    },
+    {
+      "path": "server.mjs",
+      "accessCount": 1,
+      "lastAccessed": 1782477633991,
+      "type": "file"
+    },
+    {
+      "path": ".env.example",
+      "accessCount": 1,
+      "lastAccessed": 1782477634067,
+      "type": "file"
+    },
+    {
+      "path": "README.md",
+      "accessCount": 1,
+      "lastAccessed": 1782477634108,
+      "type": "file"
+    },
+    {
+      "path": "vercel.json",
+      "accessCount": 1,
+      "lastAccessed": 1782477634169,
+      "type": "file"
+    },
+    {
+      "path": ".env.local",
+      "accessCount": 1,
+      "lastAccessed": 1782477643833,
+      "type": "file"
+    },
+    {
+      "path": "api\\_shared.js",
+      "accessCount": 1,
+      "lastAccessed": 1782477671143,
+      "type": "file"
+    }
+  ],
   "userDirectives": []
 }

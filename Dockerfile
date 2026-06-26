@@ -19,6 +19,9 @@ RUN npm prune --omit=dev
 FROM node:22-alpine AS runner
 WORKDIR /app
 
+# tini for correct PID 1 signal handling (graceful SIGTERM on redeploy/stop)
+RUN apk add --no-cache tini
+
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
 ENV NODE_ENV=production
@@ -35,6 +38,7 @@ USER appuser
 EXPOSE 3000
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-  CMD node -e "fetch('http://127.0.0.1:3000/health').then((response) => process.exit(response.ok ? 0 : 1)).catch(() => process.exit(1))"
+  CMD node -e "fetch('http://127.0.0.1:'+(process.env.PORT||3000)+'/health').then((response) => process.exit(response.ok ? 0 : 1)).catch(() => process.exit(1))"
 
-CMD ["npm", "run", "start"]
+ENTRYPOINT ["/sbin/tini", "--"]
+CMD ["node", "server.mjs"]
