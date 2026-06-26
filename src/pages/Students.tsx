@@ -38,7 +38,12 @@ const Students = () => {
               <div className="text-center text-destructive">Öğrenci profilleri yüklenemedi.</div>
             )}
 
-            {!isLoading && !isError && (
+            {!isLoading && !isError && students.length === 0 && (
+              <div className="text-center text-muted-foreground py-12">
+                Henüz öğrenci profili eklenmemiş. Çok yakında burada olacak.
+              </div>
+            )}
+            {!isLoading && !isError && students.length > 0 && (
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {students.map((student) => (
                   <Card key={student.id} className="overflow-hidden">

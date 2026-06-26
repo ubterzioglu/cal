@@ -65,7 +65,7 @@ const mapTeam = (team: StudentTeamRow): StudentTeam => ({
 
 export const fetchTeams = async (): Promise<StudentTeam[]> => {
   if (!supabase) {
-    return fallbackTeams;
+    return [];
   }
 
   const { data, error } = await supabase
@@ -77,11 +77,7 @@ export const fetchTeams = async (): Promise<StudentTeam[]> => {
 
   if (error || !data) {
     console.error("Takımlar alınamadı", error);
-    return fallbackTeams;
-  }
-
-  if (data.length === 0) {
-    return fallbackTeams;
+    return [];
   }
 
   return data.map(mapTeam);
@@ -89,7 +85,7 @@ export const fetchTeams = async (): Promise<StudentTeam[]> => {
 
 export const fetchTeamBySlug = async (slug: string): Promise<StudentTeam | null> => {
   if (!supabase) {
-    return fallbackTeams.find((team) => team.slug === slug) ?? null;
+    return null;
   }
 
   const { data, error } = await supabase
@@ -102,7 +98,7 @@ export const fetchTeamBySlug = async (slug: string): Promise<StudentTeam | null>
 
   if (error || !data) {
     console.error("Takım detayı alınamadı", error);
-    return fallbackTeams.find((team) => team.slug === slug) ?? null;
+    return null;
   }
 
   return mapTeam(data as StudentTeamRow);

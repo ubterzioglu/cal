@@ -25,7 +25,7 @@ const Teams = () => {
             <div className="mx-auto max-w-2xl text-center mb-12">
               <h1 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Öğrenci Takımları</h1>
               <p className="text-muted-foreground text-lg">
-                Öğrenci takım profilleri yakında veritabanından otomatik olarak listelenecek.
+                Cağaloğlu Anadolu Lisesi öğrenci takımlarını keşfet.
               </p>
             </div>
 
@@ -36,7 +36,12 @@ const Teams = () => {
               <div className="text-center text-destructive">Öğrenci takımları yüklenemedi.</div>
             )}
 
-            {!isLoading && !isError && (
+            {!isLoading && !isError && teams.length === 0 && (
+              <div className="text-center text-muted-foreground py-12">
+                Henüz takım eklenmemiş. Çok yakında burada olacak.
+              </div>
+            )}
+            {!isLoading && !isError && teams.length > 0 && (
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {teams.map((team) => (
                   <Card key={team.id} className="overflow-hidden">

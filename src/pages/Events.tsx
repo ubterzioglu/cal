@@ -25,7 +25,7 @@ const Events = () => {
             <div className="mx-auto max-w-2xl text-center mb-12">
               <h1 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Öğrenci Etkinlikleri</h1>
               <p className="text-muted-foreground text-lg">
-                Öğrenci etkinliği profilleri yakında veritabanından otomatik olarak listelenecek.
+                Cağaloğlu Anadolu Lisesi öğrenci etkinliklerini keşfet.
               </p>
             </div>
 
@@ -36,7 +36,12 @@ const Events = () => {
               <div className="text-center text-destructive">Öğrenci etkinlikleri yüklenemedi.</div>
             )}
 
-            {!isLoading && !isError && (
+            {!isLoading && !isError && events.length === 0 && (
+              <div className="text-center text-muted-foreground py-12">
+                Henüz etkinlik eklenmemiş. Çok yakında burada olacak.
+              </div>
+            )}
+            {!isLoading && !isError && events.length > 0 && (
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {events.map((event) => (
                   <Card key={event.id} className="overflow-hidden">

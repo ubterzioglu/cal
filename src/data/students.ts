@@ -18,17 +18,6 @@ type StudentRow = {
   created_at: string;
 };
 
-const fallbackStudents: StudentProfile[] = [
-  {
-    id: "placeholder-student",
-    fullName: "Ayşe Demir",
-    graduationYear: 2026,
-    graduationTerm: "168. dönem",
-    isAnonymous: true,
-    createdAt: new Date().toISOString(),
-  },
-];
-
 const mapStudent = (row: StudentRow): StudentProfile => ({
   id: row.id,
   fullName: row.full_name,
@@ -40,7 +29,7 @@ const mapStudent = (row: StudentRow): StudentProfile => ({
 
 export const fetchStudents = async (): Promise<StudentProfile[]> => {
   if (!supabase) {
-    return fallbackStudents;
+    return [];
   }
 
   const { data, error } = await supabase
@@ -50,11 +39,7 @@ export const fetchStudents = async (): Promise<StudentProfile[]> => {
 
   if (error || !data) {
     console.error("Öğrenci profilleri alınamadı", error);
-    return fallbackStudents;
-  }
-
-  if (data.length === 0) {
-    return fallbackStudents;
+    return [];
   }
 
   return data.map(mapStudent);

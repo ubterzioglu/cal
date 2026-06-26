@@ -28,22 +28,6 @@ type AlumniRow = {
   created_at: string;
 };
 
-const fallbackAlumni: AlumniProfile[] = [
-  {
-    id: "placeholder-alumni",
-    graduationYear: 2018,
-    fullName: "Deniz Yılmaz",
-    linkedinUrl: "https://www.linkedin.com",
-    instagramUrl: "https://www.instagram.com/deniz.yilmaz",
-    email: "deniz@example.com",
-    whatsappNumber: "+905551112233",
-    shortBio: "Teknoloji sektöründe ürün yönetimi alanında çalışıyorum. Öğrencilere kariyer planlama desteği sunabilirim.",
-    supportTopics: ["Kariyer", "Staj", "Ürün Yönetimi"],
-    isAnonymous: false,
-    createdAt: new Date().toISOString(),
-  },
-];
-
 const mapAlumni = (row: AlumniRow): AlumniProfile => ({
   id: row.id,
   graduationYear: row.graduation_year,
@@ -72,7 +56,7 @@ export type AlumniProfileInput = {
 
 export const fetchAlumni = async (): Promise<AlumniProfile[]> => {
   if (!supabase) {
-    return fallbackAlumni;
+    return [];
   }
 
   const { data, error } = await supabase
@@ -84,11 +68,7 @@ export const fetchAlumni = async (): Promise<AlumniProfile[]> => {
 
   if (error || !data) {
     console.error("Mezun profilleri alınamadı", error);
-    return fallbackAlumni;
-  }
-
-  if (data.length === 0) {
-    return fallbackAlumni;
+    return [];
   }
 
   return data.map(mapAlumni);
@@ -96,7 +76,7 @@ export const fetchAlumni = async (): Promise<AlumniProfile[]> => {
 
 export const fetchAlumniById = async (id: string): Promise<AlumniProfile | null> => {
   if (!supabase) {
-    return fallbackAlumni.find((alumni) => alumni.id === id) ?? null;
+    return null;
   }
 
   const { data, error } = await supabase
@@ -109,7 +89,7 @@ export const fetchAlumniById = async (id: string): Promise<AlumniProfile | null>
 
   if (error || !data) {
     console.error("Mezun profili alınamadı", error);
-    return fallbackAlumni.find((alumni) => alumni.id === id) ?? null;
+    return null;
   }
 
   return mapAlumni(data as AlumniRow);
@@ -117,7 +97,7 @@ export const fetchAlumniById = async (id: string): Promise<AlumniProfile | null>
 
 export const createAlumniProfile = async (input: AlumniProfileInput): Promise<AlumniProfile | null> => {
   if (!supabase) {
-    return fallbackAlumni[0] ?? null;
+    return null;
   }
 
   const response = await fetch("/api/alumni-profiles", {

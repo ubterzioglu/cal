@@ -28,30 +28,6 @@ type CommentRow = {
   created_at: string;
 };
 
-const fallbackTopics: SolidarityTopic[] = [
-  {
-    id: "placeholder-topic",
-    title: "Dayanışma başlığı",
-    description: "Buraya kısa bir açıklama yazılacak.",
-    createdAt: new Date().toISOString(),
-  },
-  {
-    id: "placeholder-topic-2",
-    title: "Mentorluk desteği arayanlar",
-    description: "Kariyer planlaması ve sektör geçişi hakkında deneyim paylaşımı için başlık açtım.",
-    createdAt: new Date().toISOString(),
-  },
-];
-
-const fallbackComments: SolidarityComment[] = [
-  {
-    id: "placeholder-comment",
-    topicId: "placeholder-topic",
-    body: "İlk yorum örneği.",
-    createdAt: new Date().toISOString(),
-  },
-];
-
 const mapTopic = (row: TopicRow): SolidarityTopic => ({
   id: row.id,
   title: row.title,
@@ -68,7 +44,7 @@ const mapComment = (row: CommentRow): SolidarityComment => ({
 
 export const fetchSolidarityTopics = async (): Promise<SolidarityTopic[]> => {
   if (!supabase) {
-    return fallbackTopics;
+    return [];
   }
 
   const { data, error } = await supabase
@@ -78,11 +54,7 @@ export const fetchSolidarityTopics = async (): Promise<SolidarityTopic[]> => {
 
   if (error || !data) {
     console.error("Dayanışma başlıkları alınamadı", error);
-    return fallbackTopics;
-  }
-
-  if (data.length === 0) {
-    return fallbackTopics;
+    return [];
   }
 
   return data.map(mapTopic);
@@ -90,7 +62,7 @@ export const fetchSolidarityTopics = async (): Promise<SolidarityTopic[]> => {
 
 export const fetchSolidarityComments = async (): Promise<SolidarityComment[]> => {
   if (!supabase) {
-    return fallbackComments;
+    return [];
   }
 
   const { data, error } = await supabase
@@ -100,10 +72,6 @@ export const fetchSolidarityComments = async (): Promise<SolidarityComment[]> =>
 
   if (error || !data) {
     console.error("Dayanışma yorumları alınamadı", error);
-    return fallbackComments;
-  }
-
-  if (data.length === 0) {
     return [];
   }
 
