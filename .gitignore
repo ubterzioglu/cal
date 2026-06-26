@@ -13,6 +13,10 @@ dist-ssr
 *.local
 .env
 
+# Package manager: this project uses npm (package-lock.json).
+# bun is not used — don't track a stray bun lockfile.
+bun.lockb
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

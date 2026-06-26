@@ -14,6 +14,4 @@ supabase/.temp
 *.log
 .DS_Store
 README.md
-PROJECT_NOTES.md
-SecurityRules.docx
 .vercel

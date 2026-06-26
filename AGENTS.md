@@ -309,7 +309,7 @@ Primary target is **Coolify** via the `Dockerfile` (single container running `se
 - Admin panel writes go directly to Supabase (protected by RLS but not API-level validation)
 - No explicit CSRF handling for serverless routes
 - Role selection on login page is UI-only (the real access gate is the Supabase session via RequireAuth)
-- Live-DB check pending: confirm only the consolidated reconstruct migration is applied (not the older RLS-less `202602010013`), and delete the unused empty Supabase project noted in PROJECT_NOTES.md
+- Live-DB check pending: confirm only the consolidated reconstruct migration is applied (not the older RLS-less `202602010013`), and delete the unused empty Supabase project noted in docs/PROJECT_NOTES.md
 
 > Note: anon-key inserts are NOT possible. The consolidated schema grants `anon` only `select` on public views and defines no anon insert policy; all writes go through `/api` (service_role).
 
