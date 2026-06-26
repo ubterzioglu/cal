@@ -9,6 +9,12 @@ import { supabase } from "@/lib/supabase";
 import type { Club, ClubRow } from "@/data/clubs";
 import type { StudentEvent, StudentEventRow } from "@/data/events";
 import type { StudentTeam, StudentTeamRow } from "@/data/teams";
+import {
+  ENTITY_TYPE_LABEL,
+  fetchPendingClaimRequests,
+  reviewClaimRequest,
+  type PendingClaimRequest,
+} from "@/data/claimRequests";
 
 const SUPERADMIN_EMAIL = "ubterzioglu@gmail.com";
 
@@ -36,8 +42,17 @@ const Admin = () => {
   const [clubAdminEmail, setClubAdminEmail] = useState("");
   const [eventAdminEmail, setEventAdminEmail] = useState("");
   const [teamAdminEmail, setTeamAdminEmail] = useState("");
+  const [claimRequests, setClaimRequests] = useState<PendingClaimRequest[]>([]);
+  const [isClaimsLoading, setIsClaimsLoading] = useState(false);
 
   const isSuperAdmin = useMemo(() => sessionEmail === SUPERADMIN_EMAIL, [sessionEmail]);
+
+  const loadClaimRequests = async () => {
+    setIsClaimsLoading(true);
+    const requests = await fetchPendingClaimRequests();
+    setClaimRequests(requests);
+    setIsClaimsLoading(false);
+  };
 
   useEffect(() => {
     if (!supabase) return;
@@ -312,6 +327,26 @@ const Admin = () => {
     loadTeams();
   }, [sessionEmail, isSuperAdmin]);
 
+  useEffect(() => {
+    if (!supabase || !isSuperAdmin) {
+      setClaimRequests([]);
+      return;
+    }
+    loadClaimRequests();
+  }, [isSuperAdmin]);
+
+  const handleReviewClaim = async (requestId: string, approve: boolean) => {
+    setError(null);
+    setAdminMessage(null);
+    try {
+      await reviewClaimRequest(requestId, approve);
+      setAdminMessage(approve ? "Sahiplenme talebi onaylandı." : "Sahiplenme talebi reddedildi.");
+      await loadClaimRequests();
+    } catch {
+      setError("Sahiplenme talebi işlenemedi.");
+    }
+  };
+
   const handleSignIn = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!supabase) return;
@@ -564,6 +599,58 @@ const Admin = () => {
             <div className="mb-6 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
               {adminMessage}
             </div>
+          )}
+
+          {isSuperAdmin && (
+            <Card className="mb-6">
+              <CardHeader>
+                <CardTitle>Sahiplenme Talepleri</CardTitle>
+                <CardDescription>
+                  Kullanıcıların kulüp / etkinlik / takım sahiplenme taleplerini onayla veya reddet.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {isClaimsLoading && (
+                  <div className="text-sm text-muted-foreground">Talepler yükleniyor...</div>
+                )}
+                {!isClaimsLoading && claimRequests.length === 0 && (
+                  <div className="text-sm text-muted-foreground">Bekleyen talep yok.</div>
+                )}
+                {claimRequests.map((request) => (
+                  <div
+                    key={request.id}
+                    className="flex flex-col gap-3 rounded-lg border px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
+                  >
+                    <div className="space-y-1">
+                      <div className="font-medium">
+                        {request.entityName}{" "}
+                        <span className="text-sm text-muted-foreground">
+                          ({ENTITY_TYPE_LABEL[request.entityType]})
+                        </span>
+                      </div>
+                      {request.note && (
+                        <div className="text-sm text-muted-foreground whitespace-pre-line">
+                          Not: {request.note}
+                        </div>
+                      )}
+                      <div className="text-xs text-muted-foreground">Kullanıcı: {request.userId}</div>
+                    </div>
+                    <div className="flex gap-2">
+                      <Button size="sm" onClick={() => handleReviewClaim(request.id, true)}>
+                        Onayla
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        onClick={() => handleReviewClaim(request.id, false)}
+                      >
+                        Reddet
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
           )}
 
           {!sessionEmail && supabase && (

@@ -5,6 +5,7 @@ import path from "node:path";
 import { fileURLToPath, URL } from "node:url";
 
 import alumniProfilesHandler from "./api/alumni-profiles.js";
+import studentProfilesHandler from "./api/student-profiles.js";
 import solidarityCommentsHandler from "./api/solidarity/comments.js";
 import solidarityTopicsHandler from "./api/solidarity/topics.js";
 
@@ -16,6 +17,7 @@ const indexFilePath = path.join(distDir, "index.html");
 
 const apiRoutes = new Map([
   ["/api/alumni-profiles", alumniProfilesHandler],
+  ["/api/student-profiles", studentProfilesHandler],
   ["/api/solidarity/comments", solidarityCommentsHandler],
   ["/api/solidarity/topics", solidarityTopicsHandler],
 ]);
