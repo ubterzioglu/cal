@@ -79,7 +79,7 @@ const Footer = () => {
               ubterzioglu@gmail.com
             </a>
           </p>
-          <p className="text-white/50">Yasal metinler son güncelleme: 26.06.2026 · Sürüm v2.0</p>
+          <p className="text-white/50">Yasal metinler son güncelleme: 05.07.2026 · Sürüm v2.1</p>
           <p>© {new Date().getFullYear()} CAL Community. Tüm hakları saklıdır.</p>
           <p className="space-x-1">
             <a href="https://chatio.com.tr/" rel="dofollow" className="underline hover:text-white">
