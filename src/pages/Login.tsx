@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/lib/supabase";
+import Seo from "@/seo/Seo";
 
 type Mode = "signin" | "signup";
 
@@ -88,6 +89,7 @@ const Login = () => {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <Seo title="Giriş Yap" description="CAL Community'e giriş yap." path="/login" noindex />
       <Header />
       <main className="flex-1 py-16">
         <div className="container max-w-md space-y-8">

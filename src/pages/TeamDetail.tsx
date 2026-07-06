@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchTeamBySlug } from "@/data/teams";
 import { Link, useParams } from "react-router-dom";
 import ClaimButton from "@/components/claim/ClaimButton";
+import Seo from "@/seo/Seo";
 
 const TeamDetail = () => {
   const { slug } = useParams();
@@ -25,6 +26,12 @@ const TeamDetail = () => {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <Seo
+        title={data?.name ?? "Takım Detayı"}
+        description={data?.shortInfo ?? "Cağaloğlu Anadolu Lisesi öğrenci takımı detayı."}
+        path={`/takimlar/${slug ?? ""}`}
+        noindex
+      />
       <Header />
       <main className="flex-1">
         <section className="py-16">

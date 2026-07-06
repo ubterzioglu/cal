@@ -10,6 +10,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { supabase } from "@/lib/supabase";
 import { fetchMyStudentProfile, upsertMyStudentProfile } from "@/data/students";
 import { fetchMyAlumniProfile, upsertMyAlumniProfile } from "@/data/alumni";
+import Seo from "@/seo/Seo";
 
 type Role = "ogrenci" | "mezun";
 
@@ -177,6 +178,7 @@ const Profil = () => {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <Seo title="Profilini Tamamla" description="CAL Community profil bilgilerini düzenle." path="/profil" noindex />
       <Header />
       <main className="flex-1 py-16">
         <div className="container max-w-2xl space-y-8">

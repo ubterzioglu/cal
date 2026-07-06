@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { useQuery } from "@tanstack/react-query";
 import { fetchStudents } from "@/data/students";
 import { Link } from "react-router-dom";
+import Seo from "@/seo/Seo";
 
 const Students = () => {
   const { data, isLoading, isError } = useQuery({
@@ -38,6 +39,12 @@ const Students = () => {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <Seo
+        title="Öğrenciler"
+        description="Cağaloğlu Anadolu Lisesi öğrenci profilleri."
+        path="/students"
+        noindex
+      />
       <Header />
       <main className="flex-1">
         <section className="py-20">

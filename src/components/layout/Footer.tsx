@@ -90,6 +90,11 @@ const Footer = () => {
               Seo Ajansı
             </a>
             <span>Spindora Tarafından Seosu Yapılmıştır.</span>
+            <span>·</span>
+            <a href="https://ufuksoynakliyat.com.tr/esya-depolama" rel="dofollow" className="underline hover:text-white">
+              Eşya Depolama
+            </a>
+            <span>Ufuksoy Nakliyat A.Ş</span>
           </p>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchStudentById } from "@/data/students";
 import { Link, useParams } from "react-router-dom";
+import Seo from "@/seo/Seo";
 
 const StudentDetail = () => {
   const { id } = useParams();
@@ -23,6 +24,12 @@ const StudentDetail = () => {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <Seo
+        title="Öğrenci Profili"
+        description="Cağaloğlu Anadolu Lisesi öğrenci profili detayı."
+        path={`/students/${id ?? ""}`}
+        noindex
+      />
       <Header />
       <main className="flex-1">
         <section className="py-16">

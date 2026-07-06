@@ -8,7 +8,6 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchEvents } from "@/data/events";
 import { Link } from "react-router-dom";
 import Seo from "@/seo/Seo";
-import { breadcrumbSchema, collectionPageSchema } from "@/seo/jsonLd";
 
 const Events = () => {
   const { data, isLoading, isError } = useQuery({
@@ -24,13 +23,7 @@ const Events = () => {
         title="Öğrenci Etkinlikleri"
         description="Cağaloğlu Anadolu Lisesi öğrenci etkinliklerini keşfet ve destek ol."
         path="/etkinlikler"
-        jsonLd={[
-          breadcrumbSchema([
-            { name: "Ana Sayfa", path: "/" },
-            { name: "Öğrenci Etkinlikleri", path: "/etkinlikler" },
-          ]),
-          collectionPageSchema("Öğrenci Etkinlikleri", "/etkinlikler"),
-        ]}
+        noindex
       />
       <Header />
       <main className="flex-1">

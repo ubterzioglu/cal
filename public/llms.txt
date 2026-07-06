@@ -7,12 +7,15 @@ Site dili Türkçe'dir. Üretici: Umut Barış Terzioğlu (2003 CAL mezunu). İl
 ## Ana Sayfalar
 
 - [Ana Sayfa](https://calcom.club/): Topluluğun tanıtımı ve öne çıkan bölümler.
-- [Haberler & Duyurular](https://calcom.club/news): Topluluktan güncel haberler ve duyurular.
-- [Öğrenci Kulüpleri](https://calcom.club/clubs): CAL öğrenci kulüpleri ve destek ihtiyaçları.
-- [Öğrenci Etkinlikleri](https://calcom.club/etkinlikler): Öğrenci etkinlikleri ve destek çağrıları.
-- [Öğrenci Takımları](https://calcom.club/takimlar): Öğrenci takımları ve destek ihtiyaçları.
-- [Mezun Dayanışması](https://calcom.club/mezun-dayanisma): Mezunların birbirine destek olduğu dayanışma topluluğu.
 - [İletişim](https://calcom.club/contact): İletişim ve başvuru bilgileri.
+
+## Üyelere Özel İçerik (Login Gerekli)
+
+Haberler, öğrenci kulüpleri, etkinlikler, takımlar ve mezun dayanışması içeriği yalnızca
+giriş yapmış ve profilini tamamlamış üyelere gösterilir (/news, /clubs, /etkinlikler,
+/takimlar, /mezun-dayanisma, /students, /alumni, /profil). Bu sayfalar arama motorları ve
+AI crawler'ları için indekslenmez (noindex + robots.txt disallow); oturum açmadan
+görüntülenen içerik yalnızca bir giriş formudur, gerçek topluluk içeriği değildir.
 
 ## Yasal
 

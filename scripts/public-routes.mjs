@@ -8,11 +8,6 @@
 
 export const PUBLIC_ROUTES = [
   { path: "/", changefreq: "weekly", priority: 1.0 },
-  { path: "/news", changefreq: "weekly", priority: 0.8 },
-  { path: "/clubs", changefreq: "monthly", priority: 0.7 },
-  { path: "/etkinlikler", changefreq: "weekly", priority: 0.7 },
-  { path: "/takimlar", changefreq: "monthly", priority: 0.7 },
-  { path: "/mezun-dayanisma", changefreq: "weekly", priority: 0.6 },
   { path: "/contact", changefreq: "yearly", priority: 0.5 },
   { path: "/gizlilik-politikasi", changefreq: "yearly", priority: 0.3 },
   { path: "/cerez-politikasi", changefreq: "yearly", priority: 0.3 },
@@ -22,9 +17,19 @@ export const PUBLIC_ROUTES = [
 ];
 
 // Routes that should NOT be indexed (auth-gated / operational).
+// news/clubs/etkinlikler/takimlar/mezun-dayanisma require a logged-in +
+// completed profile (RequireProfile guard in src/App.tsx) — a logged-out
+// crawler only ever sees the login redirect, so they must not be prerendered,
+// sitemapped, or indexed as if they were public content.
 export const PRIVATE_ROUTES = [
   "/students",
   "/alumni",
   "/login",
   "/admin",
+  "/profil",
+  "/news",
+  "/clubs",
+  "/etkinlikler",
+  "/takimlar",
+  "/mezun-dayanisma",
 ];

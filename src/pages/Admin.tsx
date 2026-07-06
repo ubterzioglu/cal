@@ -15,6 +15,7 @@ import {
   reviewClaimRequest,
   type PendingClaimRequest,
 } from "@/data/claimRequests";
+import Seo from "@/seo/Seo";
 
 const SUPERADMIN_EMAIL = "ubterzioglu@gmail.com";
 
@@ -570,6 +571,7 @@ const Admin = () => {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <Seo title="Yönetim Paneli" path="/admin" noindex />
       <Header />
       <main className="flex-1 py-16">
         <div className="container">

@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchEventBySlug } from "@/data/events";
 import { Link, useParams } from "react-router-dom";
 import ClaimButton from "@/components/claim/ClaimButton";
+import Seo from "@/seo/Seo";
 
 const EventDetail = () => {
   const { slug } = useParams();
@@ -25,6 +26,12 @@ const EventDetail = () => {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <Seo
+        title={data?.name ?? "Etkinlik Detayı"}
+        description={data?.shortInfo ?? "Cağaloğlu Anadolu Lisesi öğrenci etkinliği detayı."}
+        path={`/etkinlikler/${slug ?? ""}`}
+        noindex
+      />
       <Header />
       <main className="flex-1">
         <section className="py-16">

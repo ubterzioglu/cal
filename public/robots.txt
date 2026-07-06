@@ -1,54 +1,206 @@
 # CAL Community — robots.txt
+# Auth-gated / operational paths (excluded for every crawler group below):
+#   /admin /login /students /alumni /profil
+#   /news /clubs /clubs/* /etkinlikler /etkinlikler/* /takimlar /takimlar/* /mezun-dayanisma
+# (news, clubs, events, teams and mezun-dayanisma require a logged-in + completed profile
+# since RequireProfile was added — see src/App.tsx)
+
 # Search engines
 User-agent: Googlebot
 Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /profil
+Disallow: /students
+Disallow: /alumni
+Disallow: /news
+Disallow: /clubs
+Disallow: /etkinlikler
+Disallow: /takimlar
+Disallow: /mezun-dayanisma
 
 User-agent: Bingbot
 Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /profil
+Disallow: /students
+Disallow: /alumni
+Disallow: /news
+Disallow: /clubs
+Disallow: /etkinlikler
+Disallow: /takimlar
+Disallow: /mezun-dayanisma
 
 User-agent: Twitterbot
 Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /profil
+Disallow: /students
+Disallow: /alumni
+Disallow: /news
+Disallow: /clubs
+Disallow: /etkinlikler
+Disallow: /takimlar
+Disallow: /mezun-dayanisma
 
 User-agent: facebookexternalhit
 Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /profil
+Disallow: /students
+Disallow: /alumni
+Disallow: /news
+Disallow: /clubs
+Disallow: /etkinlikler
+Disallow: /takimlar
+Disallow: /mezun-dayanisma
 
 # AI / LLM crawlers (GEO) — explicitly allowed for public content
 User-agent: GPTBot
 Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /profil
+Disallow: /students
+Disallow: /alumni
+Disallow: /news
+Disallow: /clubs
+Disallow: /etkinlikler
+Disallow: /takimlar
+Disallow: /mezun-dayanisma
 
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /profil
+Disallow: /students
+Disallow: /alumni
+Disallow: /news
+Disallow: /clubs
+Disallow: /etkinlikler
+Disallow: /takimlar
+Disallow: /mezun-dayanisma
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /profil
+Disallow: /students
+Disallow: /alumni
+Disallow: /news
+Disallow: /clubs
+Disallow: /etkinlikler
+Disallow: /takimlar
+Disallow: /mezun-dayanisma
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /profil
+Disallow: /students
+Disallow: /alumni
+Disallow: /news
+Disallow: /clubs
+Disallow: /etkinlikler
+Disallow: /takimlar
+Disallow: /mezun-dayanisma
 
 User-agent: anthropic-ai
 Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /profil
+Disallow: /students
+Disallow: /alumni
+Disallow: /news
+Disallow: /clubs
+Disallow: /etkinlikler
+Disallow: /takimlar
+Disallow: /mezun-dayanisma
 
 User-agent: Claude-Web
 Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /profil
+Disallow: /students
+Disallow: /alumni
+Disallow: /news
+Disallow: /clubs
+Disallow: /etkinlikler
+Disallow: /takimlar
+Disallow: /mezun-dayanisma
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /profil
+Disallow: /students
+Disallow: /alumni
+Disallow: /news
+Disallow: /clubs
+Disallow: /etkinlikler
+Disallow: /takimlar
+Disallow: /mezun-dayanisma
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /profil
+Disallow: /students
+Disallow: /alumni
+Disallow: /news
+Disallow: /clubs
+Disallow: /etkinlikler
+Disallow: /takimlar
+Disallow: /mezun-dayanisma
 
 User-agent: CCBot
 Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /profil
+Disallow: /students
+Disallow: /alumni
+Disallow: /news
+Disallow: /clubs
+Disallow: /etkinlikler
+Disallow: /takimlar
+Disallow: /mezun-dayanisma
 
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /profil
+Disallow: /students
+Disallow: /alumni
+Disallow: /news
+Disallow: /clubs
+Disallow: /etkinlikler
+Disallow: /takimlar
+Disallow: /mezun-dayanisma
 
 # Default: allow public pages, block auth-gated / operational areas
 User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /login
+Disallow: /profil
 Disallow: /students
 Disallow: /alumni
+Disallow: /news
+Disallow: /clubs
+Disallow: /etkinlikler
+Disallow: /takimlar
+Disallow: /mezun-dayanisma
 
 Sitemap: https://calcom.club/sitemap.xml
