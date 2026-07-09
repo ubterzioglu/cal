@@ -12,6 +12,7 @@ import { fileURLToPath } from "node:url";
 
 import puppeteer from "puppeteer";
 
+import { getPuppeteerLaunchOptions } from "./prerender-config.mjs";
 import { PUBLIC_ROUTES } from "./public-routes.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -76,10 +77,7 @@ const routeToOutputFile = (routePath) => {
 
 const run = async () => {
   const server = await startServer();
-  const browser = await puppeteer.launch({
-    headless: "new",
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
-  });
+  const browser = await puppeteer.launch(getPuppeteerLaunchOptions());
 
   let rendered = 0;
   try {
