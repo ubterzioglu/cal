@@ -1,8 +1,10 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/home/HeroSection";
+import WhatCanYouDo from "@/components/home/WhatCanYouDo";
 import CommunityCards from "@/components/home/CommunityCards";
 import CommunityMessage from "@/components/home/CommunityMessage";
+import FeedbackForm from "@/components/home/FeedbackForm";
 import Seo from "@/seo/Seo";
 import { DEFAULT_TITLE } from "@/seo/siteConfig";
 import { organizationSchema, websiteSchema } from "@/seo/jsonLd";
@@ -19,8 +21,10 @@ const Index = () => {
       <Header />
       <main className="flex-1">
         <HeroSection />
+        <WhatCanYouDo />
         <CommunityMessage />
         <CommunityCards />
+        <FeedbackForm />
       </main>
       <Footer />
     </div>

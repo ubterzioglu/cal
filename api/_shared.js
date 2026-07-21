@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import crypto from "crypto";
+import nodemailer from "nodemailer";
 
 const DEFAULT_ALLOWED_ORIGINS = ["http://localhost:5173", "http://127.0.0.1:5173"];
 
@@ -126,6 +127,68 @@ export const getIpHash = (req) => {
   const salt = process.env.IP_HASH_SALT || "";
   const rawIp = getRequestIp(req) || "unknown";
   return hashText(`${salt}:${rawIp}`);
+};
+
+// Verifies the bearer token against Supabase Auth and returns the user,
+// or null if missing/invalid. Used by endpoints that require a signed-in
+// caller (unlike the anonymous, rate-limited write endpoints elsewhere here).
+export const getAuthenticatedUser = async (req, supabase) => {
+  const header = req.headers?.authorization || "";
+  const token = header.startsWith("Bearer ") ? header.slice("Bearer ".length).trim() : "";
+
+  if (!token) {
+    return null;
+  }
+
+  const { data, error } = await supabase.auth.getUser(token);
+  if (error || !data.user) {
+    return null;
+  }
+
+  return data.user;
+};
+
+let zohoTransporter = null;
+
+// Lazily builds (and caches) a Zoho Mail SMTP transporter. Returns null when
+// Zoho credentials are not configured, so callers can treat email as
+// best-effort and not fail the request over it.
+export const getZohoTransporter = () => {
+  if (zohoTransporter) {
+    return zohoTransporter;
+  }
+
+  const user = process.env.ZOHO_SMTP_USER;
+  const pass = process.env.ZOHO_SMTP_PASS;
+
+  if (!user || !pass) {
+    return null;
+  }
+
+  zohoTransporter = nodemailer.createTransport({
+    host: process.env.ZOHO_SMTP_HOST || "smtp.zoho.eu",
+    port: Number(process.env.ZOHO_SMTP_PORT) || 465,
+    secure: true,
+    auth: { user, pass },
+  });
+
+  return zohoTransporter;
+};
+
+export const sendAdminNotificationEmail = async ({ subject, text }) => {
+  const transporter = getZohoTransporter();
+  const to = process.env.ADMIN_NOTIFY_EMAIL;
+
+  if (!transporter || !to) {
+    return;
+  }
+
+  await transporter.sendMail({
+    from: process.env.ZOHO_SMTP_USER,
+    to,
+    subject,
+    text,
+  });
 };
 
 export const enforceRateLimit = async ({

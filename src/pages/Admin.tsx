@@ -15,6 +15,7 @@ import {
   reviewClaimRequest,
   type PendingClaimRequest,
 } from "@/data/claimRequests";
+import { fetchAllFeedback, markFeedbackAsRead, type FeedbackSubmission } from "@/data/feedback";
 import Seo from "@/seo/Seo";
 
 const SUPERADMIN_EMAIL = "ubterzioglu@gmail.com";
@@ -45,6 +46,8 @@ const Admin = () => {
   const [teamAdminEmail, setTeamAdminEmail] = useState("");
   const [claimRequests, setClaimRequests] = useState<PendingClaimRequest[]>([]);
   const [isClaimsLoading, setIsClaimsLoading] = useState(false);
+  const [feedbackSubmissions, setFeedbackSubmissions] = useState<FeedbackSubmission[]>([]);
+  const [isFeedbackLoading, setIsFeedbackLoading] = useState(false);
 
   const isSuperAdmin = useMemo(() => sessionEmail === SUPERADMIN_EMAIL, [sessionEmail]);
 
@@ -53,6 +56,13 @@ const Admin = () => {
     const requests = await fetchPendingClaimRequests();
     setClaimRequests(requests);
     setIsClaimsLoading(false);
+  };
+
+  const loadFeedback = async () => {
+    setIsFeedbackLoading(true);
+    const submissions = await fetchAllFeedback();
+    setFeedbackSubmissions(submissions);
+    setIsFeedbackLoading(false);
   };
 
   useEffect(() => {
@@ -336,6 +346,14 @@ const Admin = () => {
     loadClaimRequests();
   }, [isSuperAdmin]);
 
+  useEffect(() => {
+    if (!supabase || !isSuperAdmin) {
+      setFeedbackSubmissions([]);
+      return;
+    }
+    loadFeedback();
+  }, [isSuperAdmin]);
+
   const handleReviewClaim = async (requestId: string, approve: boolean) => {
     setError(null);
     setAdminMessage(null);
@@ -345,6 +363,16 @@ const Admin = () => {
       await loadClaimRequests();
     } catch {
       setError("Sahiplenme talebi işlenemedi.");
+    }
+  };
+
+  const handleMarkFeedbackRead = async (id: string) => {
+    setError(null);
+    try {
+      await markFeedbackAsRead(id);
+      await loadFeedback();
+    } catch {
+      setError("Geri bildirim güncellenemedi.");
     }
   };
 
@@ -601,6 +629,48 @@ const Admin = () => {
             <div className="mb-6 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
               {adminMessage}
             </div>
+          )}
+
+          {isSuperAdmin && (
+            <Card className="mb-6">
+              <CardHeader>
+                <CardTitle>Geri Bildirimler</CardTitle>
+                <CardDescription>
+                  Kullanıcıların ana sayfadan gönderdiği özellik önerileri ve geri bildirimler.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {isFeedbackLoading && (
+                  <div className="text-sm text-muted-foreground">Geri bildirimler yükleniyor...</div>
+                )}
+                {!isFeedbackLoading && feedbackSubmissions.length === 0 && (
+                  <div className="text-sm text-muted-foreground">Henüz geri bildirim yok.</div>
+                )}
+                {feedbackSubmissions.map((submission) => (
+                  <div
+                    key={submission.id}
+                    className={`flex flex-col gap-3 rounded-lg border px-4 py-3 sm:flex-row sm:items-start sm:justify-between ${
+                      submission.isRead ? "opacity-60" : ""
+                    }`}
+                  >
+                    <div className="space-y-1">
+                      <div className="text-sm font-medium">{submission.userEmail}</div>
+                      <div className="text-sm text-muted-foreground whitespace-pre-line">
+                        {submission.message}
+                      </div>
+                      <div className="text-xs text-muted-foreground">
+                        {new Date(submission.createdAt).toLocaleString("tr-TR")}
+                      </div>
+                    </div>
+                    {!submission.isRead && (
+                      <Button size="sm" variant="secondary" onClick={() => handleMarkFeedbackRead(submission.id)}>
+                        Okundu İşaretle
+                      </Button>
+                    )}
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
           )}
 
           {isSuperAdmin && (

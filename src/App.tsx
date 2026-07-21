@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RequireAuth from "./components/auth/RequireAuth";
 import RequireProfile from "./components/auth/RequireProfile";
 import CookieBanner from "./components/legal/CookieBanner";
+import BetaBanner from "./components/layout/BetaBanner";
 
 const Index = lazy(() => import("./pages/Index"));
 const News = lazy(() => import("./pages/News"));
@@ -40,6 +41,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <BetaBanner />
         <Suspense fallback={<div className="py-16 text-center text-muted-foreground">Yükleniyor...</div>}>
           <Routes>
             {/* Herkese açık sayfalar: ana sayfa, login, iletişim ve yasal metinler */}
