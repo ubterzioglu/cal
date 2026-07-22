@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, MessageSquarePlus, Sparkles } from "lucide-react";
 
 const HeroSection = () => {
   return (
@@ -55,11 +55,11 @@ const HeroSection = () => {
             Platformumuz gayriresmi ve gönüllü bir oluşumdur. Başka hiç bir organizasyonla bağlantısı yoktur.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-in-up [animation-delay:460ms]">
+          <div className="flex flex-col sm:flex-row items-stretch justify-center gap-4 opacity-0 animate-fade-in-up [animation-delay:460ms]">
             <Button
               size="lg"
               asChild
-              className="gap-2 transition-transform duration-200 hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
+              className="gap-2 sm:flex-1 transition-transform duration-200 hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
             >
               <Link to="/login">
                 Topluluğa Katıl
@@ -70,9 +70,20 @@ const HeroSection = () => {
               size="lg"
               variant="outline"
               asChild
-              className="transition-colors duration-200 hover:border-primary/50 hover:text-white"
+              className="sm:flex-1 transition-colors duration-200 hover:border-primary/50 hover:text-white"
             >
               <a href="#how-it-works">Beni Oku!</a>
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              asChild
+              className="gap-2 sm:flex-1 transition-colors duration-200 hover:border-primary/50 hover:text-white"
+            >
+              <a href="#feedback">
+                <MessageSquarePlus size={18} />
+                Geri Bildirim Ver
+              </a>
             </Button>
           </div>
         </div>

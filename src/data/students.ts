@@ -147,3 +147,17 @@ export const upsertMyStudentProfile = async (
 
   return mapStudent(data as StudentRow);
 };
+
+// Remove the signed-in user's student profile (used when switching roles).
+export const deleteMyStudentProfile = async (userId: string): Promise<void> => {
+  if (!supabase) {
+    return;
+  }
+
+  const { error } = await supabase.from("student_profiles").delete().eq("user_id", userId);
+
+  if (error) {
+    console.error("Öğrenci profili silinemedi", error);
+    throw new Error("Öğrenci profili silinemedi");
+  }
+};

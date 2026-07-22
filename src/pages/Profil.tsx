@@ -6,10 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { supabase } from "@/lib/supabase";
-import { fetchMyStudentProfile, upsertMyStudentProfile } from "@/data/students";
-import { fetchMyAlumniProfile, upsertMyAlumniProfile } from "@/data/alumni";
+import { deleteMyStudentProfile, fetchMyStudentProfile, upsertMyStudentProfile } from "@/data/students";
+import { deleteMyAlumniProfile, fetchMyAlumniProfile, upsertMyAlumniProfile } from "@/data/alumni";
 import Seo from "@/seo/Seo";
 
 type Role = "ogrenci" | "mezun";
@@ -17,19 +18,35 @@ type Role = "ogrenci" | "mezun";
 const isValidStudentYear = (year: number) =>
   Number.isInteger(year) && year >= 1990 && year <= 2030 && year !== 2010;
 
+const WHATSAPP_PATTERN = /^\+?[0-9\s()-]{10,17}$/;
+const URL_PATTERN = /^https?:\/\/.+/i;
+
+const SUPPORT_TOPICS = [
+  "Kariyer Danışmanlığı",
+  "Mentorluk",
+  "Staj / İş İlanı",
+  "Üniversite Tercih Danışmanlığı",
+  "Yurt Dışı Eğitim",
+  "Girişimcilik",
+  "Networking",
+] as const;
+
 const Profil = () => {
   const navigate = useNavigate();
   const [ready, setReady] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
 
   const [role, setRole] = useState<Role>("mezun");
+  const [initialRole, setInitialRole] = useState<Role | null>(null);
   const [fullName, setFullName] = useState("");
   const [graduationYear, setGraduationYear] = useState("");
   const [graduationTerm, setGraduationTerm] = useState("");
   const [whatsappNumber, setWhatsappNumber] = useState("");
+  const [email, setEmail] = useState("");
   const [linkedinUrl, setLinkedinUrl] = useState("");
   const [instagramUrl, setInstagramUrl] = useState("");
   const [shortBio, setShortBio] = useState("");
+  const [supportTopics, setSupportTopics] = useState<string[]>([]);
   const [isPublic, setIsPublic] = useState(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -64,6 +81,7 @@ const Profil = () => {
 
       if (studentProfile) {
         setRole("ogrenci");
+        setInitialRole("ogrenci");
         setFullName(studentProfile.fullName);
         setGraduationYear(String(studentProfile.graduationYear));
         setGraduationTerm(studentProfile.graduationTerm);
@@ -74,12 +92,15 @@ const Profil = () => {
         setIsPublic(!studentProfile.isAnonymous);
       } else if (alumniProfile) {
         setRole("mezun");
+        setInitialRole("mezun");
         setFullName(alumniProfile.fullName);
         setGraduationYear(String(alumniProfile.graduationYear));
         setWhatsappNumber(alumniProfile.whatsappNumber ?? "");
+        setEmail(alumniProfile.email ?? "");
         setLinkedinUrl(alumniProfile.linkedinUrl ?? "");
         setInstagramUrl(alumniProfile.instagramUrl ?? "");
         setShortBio(alumniProfile.shortBio ?? "");
+        setSupportTopics(alumniProfile.supportTopics);
         setIsPublic(!alumniProfile.isAnonymous);
       }
 
@@ -124,8 +145,23 @@ const Profil = () => {
       return;
     }
 
-    if (!whatsappNumber.trim()) {
-      setError("WhatsApp numarası zorunludur.");
+    if (!whatsappNumber.trim() || !WHATSAPP_PATTERN.test(whatsappNumber.trim())) {
+      setError("Geçerli bir WhatsApp numarası girin (örn. +90 5xx xxx xx xx).");
+      return;
+    }
+
+    if (role === "mezun" && (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))) {
+      setError("Geçerli bir e-posta adresi girin.");
+      return;
+    }
+
+    if (linkedinUrl.trim() && !URL_PATTERN.test(linkedinUrl.trim())) {
+      setError("LinkedIn bağlantısı http(s):// ile başlamalıdır.");
+      return;
+    }
+
+    if (instagramUrl.trim() && !URL_PATTERN.test(instagramUrl.trim())) {
+      setError("Instagram bağlantısı http(s):// ile başlamalıdır.");
       return;
     }
 
@@ -142,16 +178,24 @@ const Profil = () => {
           shortBio: shortBio.trim() || null,
           isAnonymous: !isPublic,
         });
+        if (initialRole === "mezun") {
+          await deleteMyAlumniProfile(userId);
+        }
       } else {
         await upsertMyAlumniProfile(userId, {
           fullName: fullName.trim(),
           graduationYear: parsedYear,
           whatsappNumber: whatsappNumber.trim(),
+          email: email.trim(),
           linkedinUrl: linkedinUrl.trim() || null,
           instagramUrl: instagramUrl.trim() || null,
           shortBio: shortBio.trim() || null,
+          supportTopics,
           isAnonymous: !isPublic,
         });
+        if (initialRole === "ogrenci") {
+          await deleteMyStudentProfile(userId);
+        }
       }
 
       setInfo("Profilin kaydedildi.");
@@ -162,6 +206,12 @@ const Profil = () => {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const toggleSupportTopic = (topic: string) => {
+    setSupportTopics((prev) =>
+      prev.includes(topic) ? prev.filter((item) => item !== topic) : [...prev, topic],
+    );
   };
 
   if (!ready) {
@@ -223,6 +273,8 @@ const Profil = () => {
               <Input
                 id="graduationYear"
                 type="number"
+                min={1900}
+                max={2100}
                 placeholder="Örn. 2024"
                 value={graduationYear}
                 onChange={(event) => setGraduationYear(event.target.value)}
@@ -250,6 +302,19 @@ const Profil = () => {
                 onChange={(event) => setWhatsappNumber(event.target.value)}
               />
             </div>
+
+            {role === "mezun" && (
+              <div className="space-y-2">
+                <Label htmlFor="email">E-posta *</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="ornek@eposta.com"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                />
+              </div>
+            )}
 
             <div className="space-y-2">
               <Label htmlFor="linkedin">LinkedIn (opsiyonel)</Label>
@@ -280,6 +345,26 @@ const Profil = () => {
                 onChange={(event) => setShortBio(event.target.value)}
               />
             </div>
+
+            {role === "mezun" && (
+              <div className="space-y-3">
+                <Label>Destek Olabileceğin Konular (opsiyonel)</Label>
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  {SUPPORT_TOPICS.map((topic) => (
+                    <div key={topic} className="flex items-center gap-2">
+                      <Checkbox
+                        id={`topic-${topic}`}
+                        checked={supportTopics.includes(topic)}
+                        onCheckedChange={() => toggleSupportTopic(topic)}
+                      />
+                      <Label htmlFor={`topic-${topic}`} className="font-normal">
+                        {topic}
+                      </Label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div className="flex items-start justify-between gap-4 rounded-lg border px-4 py-3">
               <div>

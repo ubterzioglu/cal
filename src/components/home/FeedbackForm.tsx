@@ -65,7 +65,7 @@ const FeedbackForm = () => {
   }
 
   return (
-    <section className="py-20 bg-black">
+    <section id="feedback" className="py-20 bg-black">
       <div className="container">
         <div className="mx-auto max-w-2xl">
           <Card className="border-white/10 bg-white/[0.03]">

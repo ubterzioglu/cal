@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/lib/supabase";
 import Seo from "@/seo/Seo";
+import { ShieldCheck } from "lucide-react";
 
 type Mode = "signin" | "signup";
 
@@ -88,16 +87,57 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen w-full items-center justify-center bg-background p-4">
       <Seo title="Giriş Yap" description="CAL Community'e giriş yap." path="/login" noindex />
-      <Header />
-      <main className="flex-1 py-16">
-        <div className="container max-w-md space-y-8">
-          <div className="space-y-2 text-center">
-            <h1 className="text-3xl font-bold tracking-tight">
+
+      <div className="flex w-full max-w-4xl overflow-hidden rounded-3xl border border-border bg-card shadow-2xl">
+        {/* Visual panel */}
+        <div className="relative hidden w-1/2 overflow-hidden md:block">
+          <div className="absolute inset-0 bg-gradient-to-br from-[hsl(352,75%,18%)] via-[hsl(352,75%,10%)] to-black" />
+          <div className="ember-field absolute inset-0" aria-hidden="true">
+            {Array.from({ length: 24 }).map((_, index) => (
+              <span key={index} className="ember" style={{ "--i": index } as React.CSSProperties} />
+            ))}
+          </div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(143,22,39,0.35),transparent_60%)]" />
+          <div className="relative flex h-full flex-col justify-between p-10 text-white">
+            <Link to="/" className="flex items-center gap-3">
+              <img
+                src="/logo.png"
+                alt="CAL Community logo"
+                className="h-10 w-10 rounded-full object-contain ring-2 ring-white/20"
+              />
+              <span className="font-semibold">CAL Community</span>
+            </Link>
+
+            <div className="space-y-3">
+              <p className="text-xs font-semibold uppercase tracking-widest text-white/50">
+                Cağaloğlu Anadolu Lisesi
+              </p>
+              <h2 className="text-3xl font-bold leading-tight tracking-tight">
+                Topluluğa katıl,
+                <br />
+                bağlarını güçlendir.
+              </h2>
+              <p className="max-w-sm text-sm text-white/60">
+                Kulüpler, etkinlikler, takımlar ve mezun dayanışması — hepsi tek bir çatı altında.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2 text-xs text-white/40">
+              <ShieldCheck className="h-4 w-4" />
+              Bilgilerin güvenle saklanır, seçtiğin görünürlük ayarına göre paylaşılır.
+            </div>
+          </div>
+        </div>
+
+        {/* Form panel */}
+        <div className="w-full space-y-8 p-8 md:w-1/2 md:p-12">
+          <div className="space-y-2">
+            <h1 className="text-2xl font-bold tracking-tight">
               {mode === "signin" ? "Üye Girişi" : "Ücretsiz Üyelik"}
             </h1>
-            <p className="text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               {mode === "signin"
                 ? "Devam etmek için giriş yap."
                 : "Ücretsiz hesap oluştur, topluluğa katıl."}
@@ -114,7 +154,7 @@ const Login = () => {
             <span className="h-px flex-1 bg-border" />
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
               <Label htmlFor="email">E-posta</Label>
               <Input
@@ -186,8 +226,7 @@ const Login = () => {
             )}
           </p>
         </div>
-      </main>
-      <Footer />
+      </div>
     </div>
   );
 };

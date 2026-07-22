@@ -103,3 +103,48 @@
     @apply bg-background text-foreground;
   }
 }
+
+.ember-field {
+  overflow: hidden;
+}
+
+.ember {
+  position: absolute;
+  left: calc((var(--i) * 4.3%) % 100%);
+  bottom: -10px;
+  width: 3px;
+  height: 3px;
+  border-radius: 9999px;
+  background: hsl(30 90% 65% / 0.8);
+  box-shadow: 0 0 6px 1px hsl(30 90% 55% / 0.6);
+  animation: ember-rise calc(6s + (var(--i) * 0.7s)) linear infinite;
+  animation-delay: calc(var(--i) * -0.4s);
+}
+
+.ember:nth-child(3n) {
+  width: 2px;
+  height: 2px;
+  background: hsl(352 75% 55% / 0.8);
+  box-shadow: 0 0 6px 1px hsl(352 75% 45% / 0.6);
+}
+
+@keyframes ember-rise {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-420px) translateX(20px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ember {
+    animation: none;
+    opacity: 0;
+  }
+}
