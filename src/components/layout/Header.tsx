@@ -35,7 +35,9 @@ const Header = () => {
           <Link to="/news" className="text-sm font-medium hover:text-primary transition-colors">
             Haberler
           </Link>
-          <Button size="sm">Katıl</Button>
+          <Button size="sm" asChild>
+            <Link to="/login">Katıl</Link>
+          </Button>
         </nav>
 
         {/* Menu Button */}
@@ -141,7 +143,7 @@ const Header = () => {
               Açık Rıza Metni
             </Link>
             <Link
-              to="/"
+              to="/login"
               className="text-sm font-medium hover:text-white/80 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >

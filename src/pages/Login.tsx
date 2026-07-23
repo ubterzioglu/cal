@@ -122,13 +122,20 @@ const Login = () => {
       <div className="flex w-full max-w-4xl overflow-hidden rounded-3xl border border-border bg-card shadow-2xl">
         {/* Visual panel */}
         <div className="relative hidden w-1/2 overflow-hidden md:block">
-          <div className="absolute inset-0 bg-gradient-to-br from-[hsl(352,75%,18%)] via-[hsl(352,75%,10%)] to-black" />
-          <div className="ember-field absolute inset-0" aria-hidden="true">
-            {Array.from({ length: 24 }).map((_, index) => (
-              <span key={index} className="ember" style={{ "--i": index } as React.CSSProperties} />
-            ))}
+          <div className="absolute inset-0 bg-gradient-to-br from-[hsl(352,75%,14%)] via-[hsl(352,75%,8%)] to-black" />
+          <div className="login-blob-field absolute inset-0" aria-hidden="true">
+            <span className="login-blob login-blob-a" />
+            <span className="login-blob login-blob-b" />
+            <span className="login-blob login-blob-c" />
           </div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(143,22,39,0.35),transparent_60%)]" />
+          <div
+            className="absolute inset-0 opacity-[0.05]"
+            style={{
+              backgroundImage:
+                "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)",
+              backgroundSize: "44px 44px",
+            }}
+          />
           <div className="relative flex h-full flex-col justify-between p-10 text-white">
             <Link to="/" className="flex items-center gap-3">
               <img
