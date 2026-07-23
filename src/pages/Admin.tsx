@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
   AlertDialog,
@@ -36,6 +37,7 @@ import {
   type AdminAnnouncement,
 } from "@/data/announcements";
 import Seo from "@/seo/Seo";
+import { ShieldCheck } from "lucide-react";
 
 const SUPERADMIN_EMAIL = "ubterzioglu@gmail.com";
 
@@ -1087,33 +1089,94 @@ const Admin = () => {
           )}
 
           {!sessionEmail && supabase && (
-            <Card className="max-w-lg">
-              <CardHeader>
-                <CardTitle>Giriş</CardTitle>
-                <CardDescription>Yetkili kulüp hesabı ile giriş yap.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form className="space-y-4" onSubmit={handleSignIn}>
-                  <Input
-                    type="email"
-                    placeholder="E-posta"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                    required
+            <div className="flex w-full justify-center">
+              <div className="flex w-full max-w-4xl overflow-hidden rounded-3xl border border-border bg-card shadow-2xl">
+                {/* Visual panel */}
+                <div className="relative hidden w-1/2 overflow-hidden md:block">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[hsl(352,75%,14%)] via-[hsl(352,75%,8%)] to-black" />
+                  <div className="login-blob-field absolute inset-0" aria-hidden="true">
+                    <span className="login-blob login-blob-a" />
+                    <span className="login-blob login-blob-b" />
+                    <span className="login-blob login-blob-c" />
+                  </div>
+                  <div
+                    className="absolute inset-0 opacity-[0.05]"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)",
+                      backgroundSize: "44px 44px",
+                    }}
                   />
-                  <Input
-                    type="password"
-                    placeholder="Şifre"
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                    required
-                  />
-                  <Button type="submit" disabled={isLoading}>
-                    {isLoading ? "Giriş yapılıyor..." : "Giriş Yap"}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+                  <div className="relative flex h-full flex-col justify-between p-10 text-white">
+                    <div className="flex items-center gap-3">
+                      <img
+                        src="/logo.png"
+                        alt="CAL Community logo"
+                        className="h-10 w-10 rounded-full object-contain ring-2 ring-white/20"
+                      />
+                      <span className="font-semibold">CAL Community</span>
+                    </div>
+
+                    <div className="space-y-3">
+                      <p className="text-xs font-semibold uppercase tracking-widest text-white/50">
+                        Kulüp Yönetimi
+                      </p>
+                      <h2 className="text-3xl font-bold leading-tight tracking-tight">
+                        Panelini yönet,
+                        <br />
+                        topluluğunu güçlendir.
+                      </h2>
+                      <p className="max-w-sm text-sm text-white/60">
+                        Kulüpler, etkinlikler, takımlar ve duyurular — hepsini tek panelden yönet.
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-2 text-xs text-white/40">
+                      <ShieldCheck className="h-4 w-4" />
+                      Bilgilerin güvenle saklanır, sadece yetkili hesaplarla paylaşılır.
+                    </div>
+                  </div>
+                </div>
+
+                {/* Form panel */}
+                <div className="w-full space-y-8 p-8 md:w-1/2 md:p-12">
+                  <div className="space-y-2">
+                    <h1 className="text-2xl font-bold tracking-tight">Giriş</h1>
+                    <p className="text-sm text-muted-foreground">Panel için giriş yap.</p>
+                  </div>
+
+                  <form className="space-y-5" onSubmit={handleSignIn}>
+                    <div className="space-y-2">
+                      <Label htmlFor="admin-email">E-posta</Label>
+                      <Input
+                        id="admin-email"
+                        type="email"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
+                        required
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="admin-password">Şifre</Label>
+                      <Input
+                        id="admin-password"
+                        type="password"
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)}
+                        required
+                      />
+                    </div>
+
+                    {error && <p className="text-sm text-destructive">{error}</p>}
+
+                    <Button type="submit" className="w-full" disabled={isLoading}>
+                      {isLoading ? "Giriş yapılıyor..." : "Giriş Yap"}
+                    </Button>
+                  </form>
+                </div>
+              </div>
+            </div>
           )}
 
           {sessionEmail && (

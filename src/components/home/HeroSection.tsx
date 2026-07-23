@@ -25,6 +25,12 @@ const HeroSection = () => {
 
       <div className="container relative">
         <div className="mx-auto max-w-4xl text-center">
+          <div className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground opacity-0 animate-fade-in-up [animation-delay:40ms]">
+            Son Güncellemeler
+          </div>
+
+          <AnnouncementMarquee />
+
           <div className="mb-8 flex justify-center opacity-0 animate-fade-in-up [animation-delay:80ms]">
             <div className="relative rounded-full p-1 animate-pulse-glow">
               <img
@@ -39,8 +45,6 @@ const HeroSection = () => {
             <Sparkles size={16} className="text-office4" />
             <span>Öğrenciler &amp; Mezunlar Bir Arada</span>
           </div>
-
-          <AnnouncementMarquee />
 
           <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl opacity-0 animate-fade-in-up [animation-delay:240ms]">
             <span className="block">

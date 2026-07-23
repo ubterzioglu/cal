@@ -31,11 +31,11 @@ const WhatCanYouDo = () => {
             inView ? "animate-fade-in-up" : ""
           }`}
         >
-          <ul className="space-y-4">
+          <ul className="space-y-4 overflow-x-auto">
             {items.map((item) => (
-              <li key={item} className="flex items-start gap-3">
-                <CheckCircle2 size={20} className="mt-0.5 shrink-0 text-primary" />
-                <span className="text-muted-foreground">{item}</span>
+              <li key={item} className="flex items-center gap-3">
+                <CheckCircle2 size={20} className="shrink-0 text-primary" />
+                <span className="whitespace-nowrap text-muted-foreground">{item}</span>
               </li>
             ))}
           </ul>
