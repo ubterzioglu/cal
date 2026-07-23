@@ -102,6 +102,18 @@ const Profil = () => {
         setShortBio(alumniProfile.shortBio ?? "");
         setSupportTopics(alumniProfile.supportTopics);
         setIsPublic(!alumniProfile.isAnonymous);
+      } else {
+        // Henüz profili yok: Google hesabından gelen adı ön doldur.
+        const metadataName = sessionData.session?.user.user_metadata?.full_name as
+          | string
+          | undefined;
+        const metadataEmail = sessionData.session?.user.email;
+        if (metadataName) {
+          setFullName(metadataName);
+        }
+        if (metadataEmail) {
+          setEmail(metadataEmail);
+        }
       }
 
       setReady(true);

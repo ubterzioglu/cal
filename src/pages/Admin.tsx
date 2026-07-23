@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/lib/supabase";
+import { slugify } from "@/lib/utils";
 import type { Club, ClubRow } from "@/data/clubs";
 import type { StudentEvent, StudentEventRow } from "@/data/events";
 import type { StudentTeam, StudentTeamRow } from "@/data/teams";
@@ -48,6 +49,18 @@ const Admin = () => {
   const [isClaimsLoading, setIsClaimsLoading] = useState(false);
   const [feedbackSubmissions, setFeedbackSubmissions] = useState<FeedbackSubmission[]>([]);
   const [isFeedbackLoading, setIsFeedbackLoading] = useState(false);
+  const [clubsReloadCounter, setClubsReloadCounter] = useState(0);
+  const [eventsReloadCounter, setEventsReloadCounter] = useState(0);
+  const [teamsReloadCounter, setTeamsReloadCounter] = useState(0);
+  const [newClubName, setNewClubName] = useState("");
+  const [newClubShortInfo, setNewClubShortInfo] = useState("");
+  const [isCreatingClub, setIsCreatingClub] = useState(false);
+  const [newEventName, setNewEventName] = useState("");
+  const [newEventShortInfo, setNewEventShortInfo] = useState("");
+  const [isCreatingEvent, setIsCreatingEvent] = useState(false);
+  const [newTeamName, setNewTeamName] = useState("");
+  const [newTeamShortInfo, setNewTeamShortInfo] = useState("");
+  const [isCreatingTeam, setIsCreatingTeam] = useState(false);
 
   const isSuperAdmin = useMemo(() => sessionEmail === SUPERADMIN_EMAIL, [sessionEmail]);
 
@@ -160,7 +173,7 @@ const Admin = () => {
     };
 
     loadClubs();
-  }, [sessionEmail, isSuperAdmin]);
+  }, [sessionEmail, isSuperAdmin, clubsReloadCounter]);
 
   useEffect(() => {
     if (!supabase || !sessionEmail) return;
@@ -248,7 +261,7 @@ const Admin = () => {
     };
 
     loadEvents();
-  }, [sessionEmail, isSuperAdmin]);
+  }, [sessionEmail, isSuperAdmin, eventsReloadCounter]);
 
   useEffect(() => {
     if (!supabase || !sessionEmail) return;
@@ -336,7 +349,7 @@ const Admin = () => {
     };
 
     loadTeams();
-  }, [sessionEmail, isSuperAdmin]);
+  }, [sessionEmail, isSuperAdmin, teamsReloadCounter]);
 
   useEffect(() => {
     if (!supabase || !isSuperAdmin) {
@@ -556,6 +569,81 @@ const Admin = () => {
     setTeamAdminEmail("");
   };
 
+  const handleCreateClub = async () => {
+    if (!supabase || !newClubName.trim()) return;
+    setError(null);
+    setAdminMessage(null);
+    setIsCreatingClub(true);
+
+    const { error: insertError } = await supabase.from("clubs").insert({
+      slug: slugify(newClubName),
+      name: newClubName.trim(),
+      short_info: newClubShortInfo.trim() || null,
+    });
+
+    setIsCreatingClub(false);
+
+    if (insertError) {
+      setError("Kulüp oluşturulamadı.");
+      return;
+    }
+
+    setAdminMessage("Kulüp oluşturuldu.");
+    setNewClubName("");
+    setNewClubShortInfo("");
+    setClubsReloadCounter((prev) => prev + 1);
+  };
+
+  const handleCreateEvent = async () => {
+    if (!supabase || !newEventName.trim()) return;
+    setError(null);
+    setAdminMessage(null);
+    setIsCreatingEvent(true);
+
+    const { error: insertError } = await supabase.from("student_events").insert({
+      slug: slugify(newEventName),
+      name: newEventName.trim(),
+      short_info: newEventShortInfo.trim() || null,
+    });
+
+    setIsCreatingEvent(false);
+
+    if (insertError) {
+      setError("Etkinlik oluşturulamadı.");
+      return;
+    }
+
+    setAdminMessage("Etkinlik oluşturuldu.");
+    setNewEventName("");
+    setNewEventShortInfo("");
+    setEventsReloadCounter((prev) => prev + 1);
+  };
+
+  const handleCreateTeam = async () => {
+    if (!supabase || !newTeamName.trim()) return;
+    setError(null);
+    setAdminMessage(null);
+    setIsCreatingTeam(true);
+
+    const { error: insertError } = await supabase.from("student_teams").insert({
+      slug: slugify(newTeamName),
+      name: newTeamName.trim(),
+      short_info: newTeamShortInfo.trim() || null,
+    });
+
+    setIsCreatingTeam(false);
+
+    if (insertError) {
+      setError("Takım oluşturulamadı.");
+      return;
+    }
+
+    setAdminMessage("Takım oluşturuldu.");
+    setNewTeamName("");
+    setNewTeamShortInfo("");
+    setTeamsReloadCounter((prev) => prev + 1);
+  };
+
   const handlePasswordChange = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!supabase) return;
@@ -765,6 +853,28 @@ const Admin = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
+                  {isSuperAdmin && (
+                    <div className="space-y-2 rounded-lg border px-3 py-3">
+                      <div className="text-sm font-medium">Yeni Kulüp Ekle</div>
+                      <Input
+                        value={newClubName}
+                        onChange={(event) => setNewClubName(event.target.value)}
+                        placeholder="Kulüp adı"
+                      />
+                      <Input
+                        value={newClubShortInfo}
+                        onChange={(event) => setNewClubShortInfo(event.target.value)}
+                        placeholder="Kısa bilgi (opsiyonel)"
+                      />
+                      <Button
+                        size="sm"
+                        onClick={handleCreateClub}
+                        disabled={isCreatingClub || !newClubName.trim()}
+                      >
+                        {isCreatingClub ? "Ekleniyor..." : "Kulüp Ekle"}
+                      </Button>
+                    </div>
+                  )}
                   {isLoading && <div className="text-sm text-muted-foreground">Yükleniyor...</div>}
                   {!isLoading && clubs.length === 0 && (
                     <div className="text-sm text-muted-foreground">Henüz yetkili kulüp bulunamadı.</div>
@@ -984,6 +1094,28 @@ const Admin = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
+                  {isSuperAdmin && (
+                    <div className="space-y-2 rounded-lg border px-3 py-3">
+                      <div className="text-sm font-medium">Yeni Etkinlik Ekle</div>
+                      <Input
+                        value={newEventName}
+                        onChange={(event) => setNewEventName(event.target.value)}
+                        placeholder="Etkinlik adı"
+                      />
+                      <Input
+                        value={newEventShortInfo}
+                        onChange={(event) => setNewEventShortInfo(event.target.value)}
+                        placeholder="Kısa bilgi (opsiyonel)"
+                      />
+                      <Button
+                        size="sm"
+                        onClick={handleCreateEvent}
+                        disabled={isCreatingEvent || !newEventName.trim()}
+                      >
+                        {isCreatingEvent ? "Ekleniyor..." : "Etkinlik Ekle"}
+                      </Button>
+                    </div>
+                  )}
                   {isEventsLoading && (
                     <div className="text-sm text-muted-foreground">Yükleniyor...</div>
                   )}
@@ -1204,6 +1336,28 @@ const Admin = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
+                  {isSuperAdmin && (
+                    <div className="space-y-2 rounded-lg border px-3 py-3">
+                      <div className="text-sm font-medium">Yeni Takım Ekle</div>
+                      <Input
+                        value={newTeamName}
+                        onChange={(event) => setNewTeamName(event.target.value)}
+                        placeholder="Takım adı"
+                      />
+                      <Input
+                        value={newTeamShortInfo}
+                        onChange={(event) => setNewTeamShortInfo(event.target.value)}
+                        placeholder="Kısa bilgi (opsiyonel)"
+                      />
+                      <Button
+                        size="sm"
+                        onClick={handleCreateTeam}
+                        disabled={isCreatingTeam || !newTeamName.trim()}
+                      >
+                        {isCreatingTeam ? "Ekleniyor..." : "Takım Ekle"}
+                      </Button>
+                    </div>
+                  )}
                   {isTeamsLoading && (
                     <div className="text-sm text-muted-foreground">Yükleniyor...</div>
                   )}

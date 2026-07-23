@@ -7,7 +7,7 @@ import { supabase } from "@/lib/supabase";
 import Seo from "@/seo/Seo";
 import { ShieldCheck } from "lucide-react";
 
-type Mode = "signin" | "signup";
+type Mode = "signin" | "signup" | "forgot";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -86,6 +86,35 @@ const Login = () => {
     }
   };
 
+  const handleForgotPassword = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setError(null);
+    setInfo(null);
+
+    if (!supabase) {
+      setError("Supabase yapılandırması eksik.");
+      return;
+    }
+
+    if (!email.trim()) {
+      setError("E-posta adresini gir.");
+      return;
+    }
+
+    setIsLoading(true);
+    const { error: resetError } = await supabase.auth.resetPasswordForEmail(email.trim(), {
+      redirectTo: `${window.location.origin}/sifre-guncelle`,
+    });
+    setIsLoading(false);
+
+    if (resetError) {
+      setError("Şifre sıfırlama e-postası gönderilemedi.");
+      return;
+    }
+
+    setInfo("E-postana şifre sıfırlama bağlantısı gönderdik.");
+  };
+
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-background p-4">
       <Seo title="Giriş Yap" description="CAL Community'e giriş yap." path="/login" noindex />
@@ -135,65 +164,108 @@ const Login = () => {
         <div className="w-full space-y-8 p-8 md:w-1/2 md:p-12">
           <div className="space-y-2">
             <h1 className="text-2xl font-bold tracking-tight">
-              {mode === "signin" ? "Üye Girişi" : "Ücretsiz Üyelik"}
+              {mode === "signin" ? "Üye Girişi" : mode === "signup" ? "Ücretsiz Üyelik" : "Şifremi Unuttum"}
             </h1>
             <p className="text-sm text-muted-foreground">
               {mode === "signin"
                 ? "Devam etmek için giriş yap."
-                : "Ücretsiz hesap oluştur, topluluğa katıl."}
+                : mode === "signup"
+                  ? "Ücretsiz hesap oluştur, topluluğa katıl."
+                  : "E-postanı gir, sana sıfırlama bağlantısı gönderelim."}
             </p>
           </div>
 
-          <Button type="button" variant="outline" className="w-full" onClick={handleGoogle}>
-            Google ile devam et
-          </Button>
+          {mode !== "forgot" && (
+            <>
+              <Button type="button" variant="outline" className="w-full" onClick={handleGoogle}>
+                Google ile devam et
+              </Button>
 
-          <div className="flex items-center gap-4">
-            <span className="h-px flex-1 bg-border" />
-            <span className="text-xs uppercase text-muted-foreground">veya e-posta ile</span>
-            <span className="h-px flex-1 bg-border" />
-          </div>
+              <div className="flex items-center gap-4">
+                <span className="h-px flex-1 bg-border" />
+                <span className="text-xs uppercase text-muted-foreground">veya e-posta ile</span>
+                <span className="h-px flex-1 bg-border" />
+              </div>
+            </>
+          )}
 
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="space-y-2">
-              <Label htmlFor="email">E-posta</Label>
-              <Input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                required
-              />
-            </div>
+          {mode === "forgot" ? (
+            <form onSubmit={handleForgotPassword} className="space-y-5">
+              <div className="space-y-2">
+                <Label htmlFor="forgot-email">E-posta</Label>
+                <Input
+                  id="forgot-email"
+                  type="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  required
+                />
+              </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="password">Şifre</Label>
-              <Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                minLength={6}
-                required
-              />
-            </div>
+              {error && <p className="text-sm text-destructive">{error}</p>}
+              {info && <p className="text-sm text-emerald-600">{info}</p>}
 
-            {error && <p className="text-sm text-destructive">{error}</p>}
-            {info && <p className="text-sm text-emerald-600">{info}</p>}
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading ? "Gönderiliyor..." : "Sıfırlama Bağlantısı Gönder"}
+              </Button>
+            </form>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="space-y-2">
+                <Label htmlFor="email">E-posta</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  required
+                />
+              </div>
 
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading
-                ? mode === "signin"
-                  ? "Giriş yapılıyor..."
-                  : "Kayıt yapılıyor..."
-                : mode === "signin"
-                  ? "Giriş Yap"
-                  : "Kayıt Ol"}
-            </Button>
-          </form>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="password">Şifre</Label>
+                  {mode === "signin" && (
+                    <button
+                      type="button"
+                      className="text-xs font-medium text-primary underline-offset-4 hover:underline"
+                      onClick={() => {
+                        setMode("forgot");
+                        setError(null);
+                        setInfo(null);
+                      }}
+                    >
+                      Şifremi unuttum
+                    </button>
+                  )}
+                </div>
+                <Input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  minLength={6}
+                  required
+                />
+              </div>
+
+              {error && <p className="text-sm text-destructive">{error}</p>}
+              {info && <p className="text-sm text-emerald-600">{info}</p>}
+
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading
+                  ? mode === "signin"
+                    ? "Giriş yapılıyor..."
+                    : "Kayıt yapılıyor..."
+                  : mode === "signin"
+                    ? "Giriş Yap"
+                    : "Kayıt Ol"}
+              </Button>
+            </form>
+          )}
 
           <p className="text-center text-sm text-muted-foreground">
-            {mode === "signin" ? (
+            {mode === "signin" && (
               <>
                 Hesabın yok mu?{" "}
                 <button
@@ -208,7 +280,8 @@ const Login = () => {
                   Ücretsiz üye ol
                 </button>
               </>
-            ) : (
+            )}
+            {mode === "signup" && (
               <>
                 Zaten üye misin?{" "}
                 <button
@@ -223,6 +296,19 @@ const Login = () => {
                   Giriş yap
                 </button>
               </>
+            )}
+            {mode === "forgot" && (
+              <button
+                type="button"
+                className="font-medium text-primary underline-offset-4 hover:underline"
+                onClick={() => {
+                  setMode("signin");
+                  setError(null);
+                  setInfo(null);
+                }}
+              >
+                Giriş ekranına dön
+              </button>
             )}
           </p>
         </div>

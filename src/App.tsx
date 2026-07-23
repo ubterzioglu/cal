@@ -30,6 +30,7 @@ const AcikRiza = lazy(() => import("./pages/AcikRiza"));
 const GizlilikPolitikasi = lazy(() => import("./pages/GizlilikPolitikasi"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Login = lazy(() => import("./pages/Login"));
+const SifreGuncelle = lazy(() => import("./pages/SifreGuncelle"));
 const Admin = lazy(() => import("./pages/Admin"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -48,6 +49,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/sifre-guncelle" element={<SifreGuncelle />} />
             <Route path="/gizlilik-politikasi" element={<GizlilikPolitikasi />} />
             <Route path="/cerez-politikasi" element={<CerezPolitikasi />} />
             <Route path="/kullanim-sartlari" element={<KullanimSartlari />} />

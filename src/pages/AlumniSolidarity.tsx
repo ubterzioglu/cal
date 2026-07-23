@@ -14,6 +14,7 @@ import {
   fetchSolidarityTopics,
 } from "@/data/alumniSolidarity";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 import Seo from "@/seo/Seo";
 
 const AlumniSolidarity = () => {
@@ -62,6 +63,10 @@ const AlumniSolidarity = () => {
       setTopicTitle("");
       setTopicDescription("");
       await queryClient.invalidateQueries({ queryKey: ["solidarity-topics"] });
+      toast.success("Paylaşımın eklendi.");
+    },
+    onError: () => {
+      toast.error("Paylaşım eklenemedi. Lütfen tekrar dene.");
     },
   });
 
@@ -71,6 +76,10 @@ const AlumniSolidarity = () => {
     onSuccess: async (_data, variables) => {
       setCommentDrafts((prev) => ({ ...prev, [variables.topicId]: "" }));
       await queryClient.invalidateQueries({ queryKey: ["solidarity-comments"] });
+      toast.success("Yorumun eklendi.");
+    },
+    onError: () => {
+      toast.error("Yorum eklenemedi. Lütfen tekrar dene.");
     },
   });
 

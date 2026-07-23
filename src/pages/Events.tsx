@@ -1,8 +1,10 @@
+import { useMemo, useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { HandHeart } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchEvents } from "@/data/events";
@@ -14,8 +16,19 @@ const Events = () => {
     queryKey: ["events"],
     queryFn: fetchEvents,
   });
+  const [search, setSearch] = useState("");
 
   const events = data ?? [];
+
+  const filteredEvents = useMemo(() => {
+    const query = search.trim().toLocaleLowerCase("tr-TR");
+    if (!query) return events;
+    return events.filter(
+      (event) =>
+        event.name.toLocaleLowerCase("tr-TR").includes(query) ||
+        event.shortInfo.toLocaleLowerCase("tr-TR").includes(query),
+    );
+  }, [events, search]);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -36,6 +49,17 @@ const Events = () => {
               </p>
             </div>
 
+            {!isLoading && !isError && events.length > 0 && (
+              <div className="mx-auto mb-8 max-w-md">
+                <Input
+                  type="search"
+                  placeholder="Etkinlik ara..."
+                  value={search}
+                  onChange={(event) => setSearch(event.target.value)}
+                />
+              </div>
+            )}
+
             {isLoading && (
               <div className="text-center text-muted-foreground">Öğrenci etkinlikleri yükleniyor...</div>
             )}
@@ -48,9 +72,14 @@ const Events = () => {
                 Henüz etkinlik eklenmemiş. Çok yakında burada olacak.
               </div>
             )}
-            {!isLoading && !isError && events.length > 0 && (
+            {!isLoading && !isError && events.length > 0 && filteredEvents.length === 0 && (
+              <div className="text-center text-muted-foreground py-12">
+                Aramanla eşleşen etkinlik bulunamadı.
+              </div>
+            )}
+            {!isLoading && !isError && filteredEvents.length > 0 && (
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {events.map((event) => (
+                {filteredEvents.map((event) => (
                   <Card key={event.id} className="overflow-hidden">
                     <div className="aspect-[16/9] w-full bg-muted">
                       <img

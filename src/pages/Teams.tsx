@@ -1,8 +1,10 @@
+import { useMemo, useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { HandHeart } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchTeams } from "@/data/teams";
@@ -14,8 +16,19 @@ const Teams = () => {
     queryKey: ["teams"],
     queryFn: fetchTeams,
   });
+  const [search, setSearch] = useState("");
 
   const teams = data ?? [];
+
+  const filteredTeams = useMemo(() => {
+    const query = search.trim().toLocaleLowerCase("tr-TR");
+    if (!query) return teams;
+    return teams.filter(
+      (team) =>
+        team.name.toLocaleLowerCase("tr-TR").includes(query) ||
+        team.shortInfo.toLocaleLowerCase("tr-TR").includes(query),
+    );
+  }, [teams, search]);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -36,6 +49,17 @@ const Teams = () => {
               </p>
             </div>
 
+            {!isLoading && !isError && teams.length > 0 && (
+              <div className="mx-auto mb-8 max-w-md">
+                <Input
+                  type="search"
+                  placeholder="Takım ara..."
+                  value={search}
+                  onChange={(event) => setSearch(event.target.value)}
+                />
+              </div>
+            )}
+
             {isLoading && (
               <div className="text-center text-muted-foreground">Öğrenci takımları yükleniyor...</div>
             )}
@@ -48,9 +72,14 @@ const Teams = () => {
                 Henüz takım eklenmemiş. Çok yakında burada olacak.
               </div>
             )}
-            {!isLoading && !isError && teams.length > 0 && (
+            {!isLoading && !isError && teams.length > 0 && filteredTeams.length === 0 && (
+              <div className="text-center text-muted-foreground py-12">
+                Aramanla eşleşen takım bulunamadı.
+              </div>
+            )}
+            {!isLoading && !isError && filteredTeams.length > 0 && (
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {teams.map((team) => (
+                {filteredTeams.map((team) => (
                   <Card key={team.id} className="overflow-hidden">
                     <div className="aspect-[16/9] w-full bg-muted">
                       <img
