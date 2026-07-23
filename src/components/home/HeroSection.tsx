@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MessageSquarePlus, Sparkles } from "lucide-react";
+import AnnouncementMarquee from "./AnnouncementMarquee";
 
 const HeroSection = () => {
   return (
@@ -38,6 +39,8 @@ const HeroSection = () => {
             <Sparkles size={16} className="text-office4" />
             <span>Öğrenciler &amp; Mezunlar Bir Arada</span>
           </div>
+
+          <AnnouncementMarquee />
 
           <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl opacity-0 animate-fade-in-up [animation-delay:240ms]">
             <span className="block">

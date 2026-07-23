@@ -5,6 +5,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { supabase } from "@/lib/supabase";
 import { slugify } from "@/lib/utils";
 import type { Club, ClubRow } from "@/data/clubs";
@@ -17,6 +28,13 @@ import {
   type PendingClaimRequest,
 } from "@/data/claimRequests";
 import { fetchAllFeedback, markFeedbackAsRead, type FeedbackSubmission } from "@/data/feedback";
+import {
+  createAnnouncement,
+  deleteAnnouncement,
+  fetchAllAnnouncements,
+  updateAnnouncement,
+  type AdminAnnouncement,
+} from "@/data/announcements";
 import Seo from "@/seo/Seo";
 
 const SUPERADMIN_EMAIL = "ubterzioglu@gmail.com";
@@ -61,6 +79,15 @@ const Admin = () => {
   const [newTeamName, setNewTeamName] = useState("");
   const [newTeamShortInfo, setNewTeamShortInfo] = useState("");
   const [isCreatingTeam, setIsCreatingTeam] = useState(false);
+  const [announcements, setAnnouncements] = useState<AdminAnnouncement[]>([]);
+  const [isAnnouncementsLoading, setIsAnnouncementsLoading] = useState(false);
+  const [announcementsReloadCounter, setAnnouncementsReloadCounter] = useState(0);
+  const [selectedAnnouncement, setSelectedAnnouncement] = useState<AdminAnnouncement | null>(null);
+  const [newAnnouncementTitle, setNewAnnouncementTitle] = useState("");
+  const [newAnnouncementBody, setNewAnnouncementBody] = useState("");
+  const [newAnnouncementImageUrl, setNewAnnouncementImageUrl] = useState("");
+  const [isCreatingAnnouncement, setIsCreatingAnnouncement] = useState(false);
+  const [isAnnouncementSaving, setIsAnnouncementSaving] = useState(false);
 
   const isSuperAdmin = useMemo(() => sessionEmail === SUPERADMIN_EMAIL, [sessionEmail]);
 
@@ -76,6 +103,13 @@ const Admin = () => {
     const submissions = await fetchAllFeedback();
     setFeedbackSubmissions(submissions);
     setIsFeedbackLoading(false);
+  };
+
+  const loadAnnouncements = async () => {
+    setIsAnnouncementsLoading(true);
+    const items = await fetchAllAnnouncements();
+    setAnnouncements(items);
+    setIsAnnouncementsLoading(false);
   };
 
   useEffect(() => {
@@ -367,6 +401,14 @@ const Admin = () => {
     loadFeedback();
   }, [isSuperAdmin]);
 
+  useEffect(() => {
+    if (!supabase || !isSuperAdmin) {
+      setAnnouncements([]);
+      return;
+    }
+    loadAnnouncements();
+  }, [isSuperAdmin, announcementsReloadCounter]);
+
   const handleReviewClaim = async (requestId: string, approve: boolean) => {
     setError(null);
     setAdminMessage(null);
@@ -386,6 +428,72 @@ const Admin = () => {
       await loadFeedback();
     } catch {
       setError("Geri bildirim güncellenemedi.");
+    }
+  };
+
+  const handleCreateAnnouncement = async () => {
+    if (!newAnnouncementTitle.trim() || !newAnnouncementBody.trim()) return;
+    setError(null);
+    setAdminMessage(null);
+    setIsCreatingAnnouncement(true);
+    try {
+      await createAnnouncement({
+        title: newAnnouncementTitle.trim(),
+        body: newAnnouncementBody.trim(),
+        imageUrl: newAnnouncementImageUrl.trim() || null,
+        displayOrder: announcements.length,
+        isActive: true,
+      });
+      setAdminMessage("Duyuru oluşturuldu.");
+      setNewAnnouncementTitle("");
+      setNewAnnouncementBody("");
+      setNewAnnouncementImageUrl("");
+      setAnnouncementsReloadCounter((prev) => prev + 1);
+    } catch {
+      setError("Duyuru oluşturulamadı.");
+    } finally {
+      setIsCreatingAnnouncement(false);
+    }
+  };
+
+  const updateSelectedAnnouncement = (patch: Partial<AdminAnnouncement>) => {
+    setSelectedAnnouncement((prev) => (prev ? { ...prev, ...patch } : prev));
+  };
+
+  const handleUpdateAnnouncement = async () => {
+    if (!selectedAnnouncement) return;
+    setError(null);
+    setAdminMessage(null);
+    setIsAnnouncementSaving(true);
+    try {
+      await updateAnnouncement(selectedAnnouncement.id, {
+        title: selectedAnnouncement.title,
+        body: selectedAnnouncement.body,
+        imageUrl: selectedAnnouncement.imageUrl,
+        displayOrder: selectedAnnouncement.displayOrder,
+        isActive: selectedAnnouncement.isActive,
+      });
+      setAdminMessage("Duyuru güncellendi.");
+      setAnnouncementsReloadCounter((prev) => prev + 1);
+    } catch {
+      setError("Duyuru güncellenemedi.");
+    } finally {
+      setIsAnnouncementSaving(false);
+    }
+  };
+
+  const handleDeleteAnnouncement = async (id: string) => {
+    setError(null);
+    setAdminMessage(null);
+    try {
+      await deleteAnnouncement(id);
+      setAdminMessage("Duyuru silindi.");
+      if (selectedAnnouncement?.id === id) {
+        setSelectedAnnouncement(null);
+      }
+      setAnnouncementsReloadCounter((prev) => prev + 1);
+    } catch {
+      setError("Duyuru silinemedi.");
     }
   };
 
@@ -757,6 +865,171 @@ const Admin = () => {
                     )}
                   </div>
                 ))}
+              </CardContent>
+            </Card>
+          )}
+
+          {isSuperAdmin && (
+            <Card className="mb-6">
+              <CardHeader>
+                <CardTitle>Hero Duyuruları</CardTitle>
+                <CardDescription>
+                  Ana sayfadaki hareketli duyuru şeridinde görünecek içerikleri yönet.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2 rounded-lg border px-3 py-3">
+                  <div className="text-sm font-medium">Yeni Duyuru Ekle</div>
+                  <Input
+                    value={newAnnouncementTitle}
+                    onChange={(event) => setNewAnnouncementTitle(event.target.value)}
+                    placeholder="Başlık"
+                  />
+                  <Textarea
+                    value={newAnnouncementBody}
+                    onChange={(event) => setNewAnnouncementBody(event.target.value)}
+                    placeholder="Metin"
+                    rows={3}
+                  />
+                  <Input
+                    value={newAnnouncementImageUrl}
+                    onChange={(event) => setNewAnnouncementImageUrl(event.target.value)}
+                    placeholder="Görsel URL (opsiyonel)"
+                  />
+                  <Button
+                    size="sm"
+                    onClick={handleCreateAnnouncement}
+                    disabled={
+                      isCreatingAnnouncement ||
+                      !newAnnouncementTitle.trim() ||
+                      !newAnnouncementBody.trim()
+                    }
+                  >
+                    {isCreatingAnnouncement ? "Ekleniyor..." : "Duyuru Ekle"}
+                  </Button>
+                </div>
+
+                {isAnnouncementsLoading && (
+                  <div className="text-sm text-muted-foreground">Yükleniyor...</div>
+                )}
+                {!isAnnouncementsLoading && announcements.length === 0 && (
+                  <div className="text-sm text-muted-foreground">Henüz duyuru eklenmedi.</div>
+                )}
+
+                <div className="space-y-3">
+                  {announcements.map((announcement) => (
+                    <div key={announcement.id} className="rounded-lg border px-4 py-3">
+                      <button
+                        type="button"
+                        className="w-full text-left"
+                        onClick={() =>
+                          setSelectedAnnouncement(
+                            selectedAnnouncement?.id === announcement.id ? null : announcement,
+                          )
+                        }
+                      >
+                        <div className="flex items-center justify-between gap-3">
+                          <div className="font-medium">{announcement.title}</div>
+                          <span
+                            className={`rounded-full px-2 py-0.5 text-xs font-medium ${
+                              announcement.isActive
+                                ? "bg-emerald-500/15 text-emerald-500"
+                                : "bg-muted text-muted-foreground"
+                            }`}
+                          >
+                            {announcement.isActive ? "Yayında" : "Gizli"}
+                          </span>
+                        </div>
+                        <div className="text-sm text-muted-foreground line-clamp-1">
+                          {announcement.body}
+                        </div>
+                      </button>
+
+                      {selectedAnnouncement?.id === announcement.id && (
+                        <div className="mt-3 space-y-2 border-t pt-3">
+                          <Input
+                            value={selectedAnnouncement.title}
+                            onChange={(event) =>
+                              updateSelectedAnnouncement({ title: event.target.value })
+                            }
+                            placeholder="Başlık"
+                          />
+                          <Textarea
+                            value={selectedAnnouncement.body}
+                            onChange={(event) =>
+                              updateSelectedAnnouncement({ body: event.target.value })
+                            }
+                            placeholder="Metin"
+                            rows={3}
+                          />
+                          <Input
+                            value={selectedAnnouncement.imageUrl ?? ""}
+                            onChange={(event) =>
+                              updateSelectedAnnouncement({ imageUrl: event.target.value || null })
+                            }
+                            placeholder="Görsel URL"
+                          />
+                          <div className="flex items-center gap-2">
+                            <button
+                              type="button"
+                              onClick={() => updateSelectedAnnouncement({ isActive: true })}
+                              className={`h-8 rounded-md border px-3 text-sm font-medium transition-colors ${
+                                selectedAnnouncement.isActive
+                                  ? "border-emerald-500 bg-emerald-500 text-white"
+                                  : "border-white/10 bg-muted/40 text-muted-foreground hover:bg-muted/60"
+                              }`}
+                            >
+                              Yayında
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => updateSelectedAnnouncement({ isActive: false })}
+                              className={`h-8 rounded-md border px-3 text-sm font-medium transition-colors ${
+                                !selectedAnnouncement.isActive
+                                  ? "border-rose-500 bg-rose-500 text-white"
+                                  : "border-white/10 bg-muted/40 text-muted-foreground hover:bg-muted/60"
+                              }`}
+                            >
+                              Gizli
+                            </button>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button
+                              size="sm"
+                              onClick={handleUpdateAnnouncement}
+                              disabled={isAnnouncementSaving}
+                            >
+                              {isAnnouncementSaving ? "Kaydediliyor..." : "Kaydet"}
+                            </Button>
+                            <AlertDialog>
+                              <AlertDialogTrigger asChild>
+                                <Button size="sm" variant="destructive">
+                                  Sil
+                                </Button>
+                              </AlertDialogTrigger>
+                              <AlertDialogContent>
+                                <AlertDialogHeader>
+                                  <AlertDialogTitle>Duyuru silinsin mi?</AlertDialogTitle>
+                                  <AlertDialogDescription>
+                                    "{announcement.title}" duyurusu kalıcı olarak silinecek. Bu işlem geri alınamaz.
+                                  </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                  <AlertDialogCancel>Vazgeç</AlertDialogCancel>
+                                  <AlertDialogAction
+                                    onClick={() => handleDeleteAnnouncement(announcement.id)}
+                                  >
+                                    Sil
+                                  </AlertDialogAction>
+                                </AlertDialogFooter>
+                              </AlertDialogContent>
+                            </AlertDialog>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </CardContent>
             </Card>
           )}
