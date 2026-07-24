@@ -95,6 +95,11 @@ const Footer = () => {
               Eşya Depolama
             </a>
             <span>Ufuksoy Nakliyat A.Ş</span>
+            <span>·</span>
+            <a href="https://tekhurdametal.com/hurda-fiyatlari/" rel="dofollow" className="underline hover:text-white">
+              Hurda Fiyatları
+            </a>
+            <span>Tek Hurda Metal</span>
           </p>
         </div>
       </div>
