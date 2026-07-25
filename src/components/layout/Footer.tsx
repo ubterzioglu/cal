@@ -81,7 +81,7 @@ const Footer = () => {
           </p>
           <p className="text-white/50">Yasal metinler son güncelleme: 05.07.2026 · Sürüm v2.1</p>
           <p>© {new Date().getFullYear()} CAL Community. Tüm hakları saklıdır.</p>
-          <p className="space-x-1">
+          <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
             <a href="https://chatio.com.tr/" rel="dofollow" className="underline hover:text-white">
               Canlı Destek Yazılımı
             </a>
@@ -100,6 +100,36 @@ const Footer = () => {
               Hurda Fiyatları
             </a>
             <span>Tek Hurda Metal</span>
+            <span>·</span>
+            <a href="https://tekhurdametal.com/istanbul-hurdaci/" rel="dofollow" className="underline hover:text-white">
+              İstanbul Hurdacı
+            </a>
+            <span>Firması Tek Hurda Metal A.Ş</span>
+            <span>·</span>
+            <a href="https://tekhurdametal.com/hurda-demir-fiyatlari/" rel="dofollow" className="underline hover:text-white">
+              Demir Hurda Fiyatları
+            </a>
+            <span>Tek Hurda Metal</span>
+            <span>·</span>
+            <a href="https://tekhurdametal.com/beylikduzu-hurdaci/" rel="dofollow" className="underline hover:text-white">
+              Beylikdüzü Hurdacı
+            </a>
+            <span>Firması Tek Hurda Metal A.Ş</span>
+            <span>·</span>
+            <a href="https://lionerotik.com/urunler/fetis-urunleri" rel="dofollow" className="underline hover:text-white">
+              Antalya Sex Shop
+            </a>
+            <span>Lion Erotik</span>
+            <span>·</span>
+            <a href="https://lionerotik.com/urunler/fetis-urunleri" rel="dofollow" className="underline hover:text-white">
+              Antalya Erotik Shop
+            </a>
+            <span>Lion Erotik</span>
+            <span>·</span>
+            <a href="https://lionerotik.com/urunler/fetis-urunleri" rel="dofollow" className="underline hover:text-white">
+              Antalya Seks Shop
+            </a>
+            <span>Lion Erotik</span>
           </p>
         </div>
       </div>
