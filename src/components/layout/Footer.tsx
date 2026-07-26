@@ -91,6 +91,11 @@ const Footer = () => {
               İstanbul Hurdacı
             </a>
             <span>Firması Tek Hurda Metal A.Ş</span>
+            <span>·</span>
+            <a href="https://lionerotik.com/urunler/fetis-urunleri" rel="dofollow" className="underline hover:text-white">
+              Antalya Seks Shop
+            </a>
+            <span>Lion Erotik</span>
           </p>
         </div>
       </div>
