@@ -66,21 +66,24 @@ const Footer = () => {
               </button>
             </div>
           </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-white/70 leading-relaxed">
+            <span>
+              Bu topluluk gayriresmidir ve CALMED veya Cağaloğlu Anadolu Lisesi ya da diğer oluşumlarla bağlantılı değildir.
+            </span>
+            <span>KVKK ve öğrencilerimizi korumak amacıyla öğrencilerimizin isimleri sadece isim ve soyisminin baş harfleri ile verilmektedir.</span>
+            <span>
+              Veri sahibi başvuruları ve hukuki bildirimler için:{" "}
+              <a href="mailto:ubterzioglu@gmail.com" className="underline hover:text-white">
+                ubterzioglu@gmail.com
+              </a>
+            </span>
+            <span className="text-white/50">Yasal metinler son güncelleme: 05.07.2026 · Sürüm v2.1</span>
+            <span>© {new Date().getFullYear()} CAL Community. Tüm hakları saklıdır.</span>
+          </div>
         </div>
 
         <div className="mt-12 border-t border-white/10 pt-8 text-center text-white/70 space-y-2 leading-relaxed">
-          <p>
-            Bu topluluk gayriresmidir ve CALMED veya Cağaloğlu Anadolu Lisesi ya da diğer oluşumlarla bağlantılı değildir.
-          </p>
-          <p>KVKK ve öğrencilerimizi korumak amacıyla öğrencilerimizin isimleri sadece isim ve soyisminin baş harfleri ile verilmektedir.</p>
-          <p>
-            Veri sahibi başvuruları ve hukuki bildirimler için:{" "}
-            <a href="mailto:ubterzioglu@gmail.com" className="underline hover:text-white">
-              ubterzioglu@gmail.com
-            </a>
-          </p>
-          <p className="text-white/50">Yasal metinler son güncelleme: 05.07.2026 · Sürüm v2.1</p>
-          <p>© {new Date().getFullYear()} CAL Community. Tüm hakları saklıdır.</p>
           <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
             <a href="https://ufuksoynakliyat.com.tr/esya-depolama" rel="dofollow" className="underline hover:text-white">
               Eşya Depolama
