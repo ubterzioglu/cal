@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
+import type { AuthError } from "@supabase/supabase-js";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,6 +9,19 @@ import Seo from "@/seo/Seo";
 import { ShieldCheck } from "lucide-react";
 
 type Mode = "signin" | "signup" | "forgot";
+
+function getAuthErrorMessage(error: AuthError, fallback: string): string {
+  if (error.status === 429 || /rate limit/i.test(error.message)) {
+    return "Çok fazla deneme yapıldı. Lütfen birkaç dakika sonra tekrar dene.";
+  }
+  if (/already registered/i.test(error.message)) {
+    return "Bu e-posta zaten kayıtlı. Giriş yapmayı dene.";
+  }
+  if (/invalid login credentials/i.test(error.message)) {
+    return "E-posta veya şifre hatalı.";
+  }
+  return fallback;
+}
 
 const Login = () => {
   const navigate = useNavigate();
@@ -39,7 +53,7 @@ const Login = () => {
       setIsLoading(false);
 
       if (signUpError) {
-        setError("Kayıt başarısız. Bilgileri kontrol et.");
+        setError(getAuthErrorMessage(signUpError, "Kayıt başarısız. Bilgileri kontrol et."));
         return;
       }
 
@@ -58,7 +72,7 @@ const Login = () => {
     setIsLoading(false);
 
     if (signInError) {
-      setError("Giriş başarısız. Bilgileri kontrol et.");
+      setError(getAuthErrorMessage(signInError, "Giriş başarısız. Bilgileri kontrol et."));
       return;
     }
 
@@ -108,7 +122,7 @@ const Login = () => {
     setIsLoading(false);
 
     if (resetError) {
-      setError("Şifre sıfırlama e-postası gönderilemedi.");
+      setError(getAuthErrorMessage(resetError, "Şifre sıfırlama e-postası gönderilemedi."));
       return;
     }
 
